@@ -1,0 +1,54 @@
+<div class="card border-primary mb-3 m-5 animated fadeIn">
+    <div class="card-header">Listado de libros</div>
+    <div class="card-body text-primary">
+        <h5 class="card-title">Cantidad de libros: {{libros?.length}}</h5>
+            <div class="my-2 text-left">
+                <button class="btn btn-rounded btn-primary" [routerLink] = "['/libros/form']">Crear Libro</button>
+            </div>
+            <div *ngIf="libros?.length == 0">
+                <p>No hay registros en la base de datos</p>
+            </div>
+            <table class="table table-bordered table-striped" *ngIf="libros?.length > 0">
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>Nombre</th>
+                        <th>Categoria</th>
+                        <th>Editorial</th>
+                        <th>Fecha de publicación</th>
+                        <th>Fecha de creación</th>
+                        <th>Fecha de actualización</th>
+                        <th>Precio</th>
+                        <th>Estado</th>
+                        <th>Editar</th>
+                        <th>Eliminar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let libro of libros">
+                        <td>{{ libro.idLibro }}</td>
+                        <td>{{ libro.nombreLibro }}</td>
+                        <td>{{ libro.categoria.nombreCategoria }}</td>
+                        <td>{{ libro.editorial.nombreEditorial }}</td>
+                        <td>{{ libro.fechaPublicacion | date}}</td>
+                        <td>{{ libro.fechaCreacion | date }}</td>
+                        <td>{{ libro.fechaActualizacion | date }}</td>
+                        <td>{{ libro.precio }}</td>
+                        <ng-container *ngIf="libro.estado == true else elseTemplate">
+                            <td>Disponible</td>
+                        </ng-container>
+                        <ng-template #elseTemplate>
+                            <td>Reservado</td>
+                        </ng-template>
+                        
+                        <td>
+                            <button type="button" name="button" [routerLink]="['/libros/form', libro.idLibro]" class="btn btn-success">Editar</button>
+                        </td>
+                        <td>
+                            <button type="button" name="Eliminar" (click)="eliminarLibro(libro)" class="btn btn-danger">Eliminar</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+    </div>
+</div>
