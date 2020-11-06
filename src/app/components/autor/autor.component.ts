@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Autor } from '../../model/autor';
+import { ActivatedRoute } from '@angular/router';
+import { AutorService } from '../../service/autor.service';
 
 @Component({
   selector: 'app-autor',
@@ -7,9 +10,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AutorComponent implements OnInit {
 
-  constructor() { }
+  autores: Autor[];
+  messageError: string;
+
+  constructor(private autorService: AutorService,
+              private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.autorService.getAutores().subscribe(
+      autores => this.autores = autores
+    );
+  }
+
+  eliminarAutor(autor: Autor){
+
   }
 
 }

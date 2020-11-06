@@ -1,1 +1,40 @@
-<p>autor works!</p>
+<div class="card border-primary mb-3 m-5 animated fadeIn">
+    <div class="card-header">Listado de Autores</div>
+    <div class="card-body text-primary">
+        <h5 class="card-title">Cantidad de autores: {{ autores?.length }} </h5>
+            <div class="my-2 text-left">
+                <button class="btn btn-rounded btn-primary" [routerLink] = "['/autores/form']">Crear Autor</button>
+            </div>
+            <div *ngIf="autores?.length == 0">
+                <p>No hay registros en la base de datos</p>
+            </div>
+            <table class="table table-bordered table-striped" *ngIf="autores?.length > 0">
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Fecha de nacimiento</th>
+                        <th>Fecha de registro</th>
+                        <th>Editar</th>
+                        <th>Eliminar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let autor of autores">
+                        <td>{{ autor.idAutor }}</td>
+                        <td>{{ autor.nombreAutor }}</td>
+                        <td>{{ autor.apellido }}</td>
+                        <td>{{ autor.fechaNacimiento | date:'mediumDate':'':'es'}}</td>
+                        <td>{{ autor.fechaCreacion | date:'mediumDate':'':'es'}}</td>
+                        <td>
+                            <button type="button" name="button" [routerLink]="['/autores/form', autor.idAutor]" class="btn btn-success">Editar</button>
+                        </td>
+                        <td>
+                            <button type="button" name="Eliminar" (click)="eliminarAutor(autor)" class="btn btn-danger">Eliminar</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+    </div>
+</div>

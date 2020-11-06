@@ -10,15 +10,20 @@ import { ActivatedRoute } from '@angular/router';
 export class LibroComponent implements OnInit {
 
   libros: Libro[];
+  cargandoLibro: boolean;
+
   messageError: string;
 
   constructor(private libroService: LibroService,
               private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-
+    this.cargandoLibro = true;
     this.libroService.getLibros().subscribe(
-      libros => this.libros = libros['Libros']
+      libros => {
+        this.libros = libros['Libros']
+        this.cargandoLibro = false;
+      }
     );
 
   }

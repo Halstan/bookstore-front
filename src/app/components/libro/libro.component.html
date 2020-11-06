@@ -1,9 +1,11 @@
-<div class="card border-primary mb-3 m-5 animated fadeIn">
-    <div class="card-header">Listado de libros</div>
-    <div class="card-body text-primary">
-        <h5 class="card-title">Cantidad de libros: {{libros?.length}}</h5>
+<app-loading *ngIf="cargandoLibro" class="m-5"></app-loading>
+<div class="row animated fadeIn" *ngIf="!cargandoLibro">
+    <div class="card border-primary mb-3 m-5 animated fadeIn">
+        <div class="card-header">Listado de libros</div>
+        <div class="card-body text-primary">
+            <h5 class="card-title">Cantidad de libros: {{libros?.length}}</h5>
             <div class="my-2 text-left">
-                <button class="btn btn-rounded btn-primary" [routerLink] = "['/libros/form']">Crear Libro</button>
+                <button class="btn btn-rounded btn-primary" [routerLink]="['/libros/form']">Crear Libro</button>
             </div>
             <div *ngIf="libros?.length == 0">
                 <p>No hay registros en la base de datos</p>
@@ -40,15 +42,18 @@
                         <ng-template #elseTemplate>
                             <td>Reservado</td>
                         </ng-template>
-                        
+
                         <td>
-                            <button type="button" name="button" [routerLink]="['/libros/form', libro.idLibro]" class="btn btn-success">Editar</button>
+                            <button type="button" name="button" [routerLink]="['/libros/form', libro.idLibro]"
+                                class="btn btn-success">Editar</button>
                         </td>
                         <td>
-                            <button type="button" name="Eliminar" (click)="eliminarLibro(libro)" class="btn btn-danger">Eliminar</button>
+                            <button type="button" name="Eliminar" (click)="eliminarLibro(libro)"
+                                class="btn btn-danger">Eliminar</button>
                         </td>
                     </tr>
                 </tbody>
             </table>
+        </div>
     </div>
 </div>

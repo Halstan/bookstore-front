@@ -19,11 +19,19 @@
                 <a class="nav-link" routerLink="/autores">Autores</a>
             </li>
 
+            <li class="nav-item dropdown" routerLinkActive="active">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Libros
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" routerLinkActive="active" routerLink="/mostrar">Mostrar Libros</a>
+                  <a class="dropdown-item" routerLinkActive="active" routerLink="/libros">Libros</a>
+                  <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/libros/buscar']">Buscar</a>
+                </div>
+              </li>
+
             <li class="nav-item" routerLinkActive="active">
                 <a class="nav-link" routerLink="/editoriales">Editoriales</a>
-            </li>
-            <li class="nav-item" routerLinkActive="active">
-                <a class="nav-link" routerLink="/libros">Libros</a>
             </li>
         </ul>
         <ul class="navbar-nav navbar-right">

@@ -13,7 +13,19 @@ import { LoadingComponent } from './components/shared/loading/loading.component'
 import { LibroComponent } from './components/libro/libro.component';
 import { EditorialComponent } from './components/editorial/editorial.component';
 import { HttpClientModule } from '@angular/common/http';
+import { CardComponent } from './components/libro/card/card.component';
+import localEs from '@angular/common/locales/es';
+import { registerLocaleData } from '@angular/common';
+import { HomeComponent } from './components/home/home.component';
+import { FormsModule } from '@angular/forms';
+import { AutorService } from './service/autor.service';
+import { CategoriaService } from './service/categoria.service';
+import { EditorialService } from './service/editorial.service';
+import { LibroService } from './service/libro.service';
+import { BuscarComponent } from './components/libro/buscar/buscar.component';
+import { MostrarComponent } from './components/libro/mostrar/mostrar.component';
 
+registerLocaleData(localEs);
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,15 +36,25 @@ import { HttpClientModule } from '@angular/common/http';
     FooterComponent,
     LoadingComponent,
     LibroComponent,
-    EditorialComponent
+    EditorialComponent,
+    CardComponent,
+    HomeComponent,
+    BuscarComponent,
+    MostrarComponent
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [
+    AutorService,
+    CategoriaService,
+    EditorialService,
+    LibroService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

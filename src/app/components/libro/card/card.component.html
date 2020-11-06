@@ -1,0 +1,64 @@
+<div class="card-columns m-5 animated fadeIn">
+    <div *ngFor="let item of items" class="card puntero">
+      <img
+        [src]="item.urlPortada"
+        class="card-img-top"
+        alt="{{ item.nombreLibro }}"
+      />
+      <div class="card-body">
+        <h2 class="card-title text-center">
+          {{ item.nombreLibro }}
+        </h2>
+        <p class="text-justify">
+          {{ item.descripcion }}
+        </p>
+        <ul>
+          <li>{{ item.fechaPublicacion | date: "mediumDate":"":"es" }}</li>
+          <ng-container *ngIf="item.estado == true; else elseTemplate">
+            <li>Disponible</li>
+          </ng-container>
+          <ng-template #elseTemplate>
+            <li>Reservado</li>
+          </ng-template>
+          <ng-container *ngIf="item.precio > 0; else elseTemplate2">
+            <li>Precio: {{ item.precio }}</li>
+          </ng-container>
+          <ng-template #elseTemplate2>
+            <li>Precio: Gratuito</li>
+          </ng-template>
+        </ul>
+        <div class="card-text">
+          <h2>
+            Autor:
+            <span class="badge badge-danger font-weight-normal"
+              >{{ item.autor.nombreAutor }} {{ item.autor.apellido }}</span
+            >
+          </h2>
+        </div>
+        <div class="card-text">
+          <h2>
+            Editorial:
+            <span class="badge badge-primary font-weight-normal">{{
+              item.editorial.nombreEditorial
+            }}</span>
+          </h2>
+        </div>
+        <div class="card-text">
+          <h2>
+            Categoría:
+            <span class="badge badge-success font-weight-normal">{{
+              item.categoria.nombreCategoria
+            }}</span>
+          </h2>
+        </div>
+        <div class="card-text">
+          <h2>
+            Idioma:
+            <span class="badge badge-info font-weight-normal">{{
+              item.idioma.nombreIdioma
+            }}</span>
+          </h2>
+        </div>
+      </div>
+    </div>
+  </div>
