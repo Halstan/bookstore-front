@@ -22,7 +22,6 @@ import { AutorService } from './service/autor.service';
 import { CategoriaService } from './service/categoria.service';
 import { EditorialService } from './service/editorial.service';
 import { LibroService } from './service/libro.service';
-import { BuscarComponent } from './components/libro/buscar/buscar.component';
 import { MostrarComponent } from './components/libro/mostrar/mostrar.component';
 
 registerLocaleData(localEs);
@@ -39,7 +38,6 @@ registerLocaleData(localEs);
     EditorialComponent,
     CardComponent,
     HomeComponent,
-    BuscarComponent,
     MostrarComponent
   ],
   imports: [

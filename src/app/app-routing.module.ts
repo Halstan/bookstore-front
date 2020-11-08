@@ -7,7 +7,6 @@ import { EditorialComponent } from './components/editorial/editorial.component';
 import { CardComponent } from './components/libro/card/card.component';
 import { HomeComponent } from './components/home/home.component';
 import { MostrarComponent } from './components/libro/mostrar/mostrar.component';
-import { BuscarComponent } from './components/libro/buscar/buscar.component';
 
 const routes: Routes = [
   {path: '', pathMatch: 'full', redirectTo: 'home'},
@@ -17,7 +16,6 @@ const routes: Routes = [
 
   {path: 'mostrar', component: MostrarComponent},
   {path: 'libros', component: LibroComponent},
-  {path: 'libros/buscar', component: BuscarComponent},
 
   {path: 'editoriales', component: EditorialComponent}
 ];

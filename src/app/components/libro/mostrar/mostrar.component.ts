@@ -29,4 +29,18 @@ export class MostrarComponent implements OnInit {
 
   }
 
+  buscar(termino: string): void{
+
+    this.loading = true;
+
+    this.libroService.getLibrosByNombre(termino)
+          .subscribe((res: any) => {
+            this.libros = res['Libros']
+            this.loading = false;
+    }, err => {
+      console.log('Este libro no existe');
+    });
+
+  }
+
 }
