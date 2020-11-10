@@ -1,0 +1,10 @@
+h1:hover{
+    font-weight: bold;
+    color: white;
+}
+
+picture>img{
+    max-width: 100%;
+    opacity: 0.7;
+    
+}

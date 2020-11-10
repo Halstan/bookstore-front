@@ -23,6 +23,9 @@ import { CategoriaService } from './service/categoria.service';
 import { EditorialService } from './service/editorial.service';
 import { LibroService } from './service/libro.service';
 import { MostrarComponent } from './components/libro/mostrar/mostrar.component';
+import { MostrarAutorComponent } from './components/autor/mostrar-autor/mostrar-autor.component';
+import { FormAutorComponent } from './components/autor/form-autor/form-autor.component';
+import { FormCategoriaComponent } from './components/categoria/form-categoria/form-categoria.component';
 
 registerLocaleData(localEs);
 @NgModule({
@@ -38,7 +41,10 @@ registerLocaleData(localEs);
     EditorialComponent,
     CardComponent,
     HomeComponent,
-    MostrarComponent
+    MostrarComponent,
+    MostrarAutorComponent,
+    FormAutorComponent,
+    FormCategoriaComponent
   ],
   imports: [
     BrowserModule,

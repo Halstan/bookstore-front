@@ -8,7 +8,8 @@
             <div *ngIf="editoriales?.length == 0">
                 <p>No hay registros en la base de datos</p>
             </div>
-            <table class="table table-bordered table-striped" *ngIf="editoriales?.length > 0">
+            <div class="table-bordered table-striped table-responsive-md table-hover">
+            <table class="table" *ngIf="editoriales?.length > 0">
                 <thead>
                     <tr>
                         <th>id</th>
@@ -44,5 +45,6 @@
                     </tr>
                 </tbody>
             </table>
+        </div>
     </div>
 </div>

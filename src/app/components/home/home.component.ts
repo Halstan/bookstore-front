@@ -7,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
+  title = 'Bienvenido a la biblioteca Rikazzo';
+  img = '../../../assets/img/background.jpg';
+
   constructor() { }
 
   ngOnInit(): void {

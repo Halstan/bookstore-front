@@ -1,4 +1,4 @@
-<div class="card-columns m-5 animated fadeIn">
+<div class="card-columns m-5 animated fadeIn lg-5">
     <div *ngFor="let item of items" class="card puntero">
       <img
         [src]="item.urlPortada"
@@ -21,7 +21,7 @@
             <li>Reservado</li>
           </ng-template>
           <ng-container *ngIf="item.precio > 0; else elseTemplate2">
-            <li>Precio: {{ item.precio }}</li>
+            <li>Precio: {{ item.precio |currency:'PEN '}}</li>
           </ng-container>
           <ng-template #elseTemplate2>
             <li>Precio: Gratuito</li>
