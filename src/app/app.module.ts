@@ -26,6 +26,7 @@ import { MostrarComponent } from './components/libro/mostrar/mostrar.component';
 import { MostrarAutorComponent } from './components/autor/mostrar-autor/mostrar-autor.component';
 import { FormAutorComponent } from './components/autor/form-autor/form-autor.component';
 import { FormCategoriaComponent } from './components/categoria/form-categoria/form-categoria.component';
+import { FormEditorialComponent } from './components/editorial/form-editorial/form-editorial.component';
 
 registerLocaleData(localEs);
 @NgModule({
@@ -44,7 +45,8 @@ registerLocaleData(localEs);
     MostrarComponent,
     MostrarAutorComponent,
     FormAutorComponent,
-    FormCategoriaComponent
+    FormCategoriaComponent,
+    FormEditorialComponent
   ],
   imports: [
     BrowserModule,

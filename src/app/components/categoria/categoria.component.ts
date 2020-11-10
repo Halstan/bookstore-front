@@ -35,7 +35,7 @@ export class CategoriaComponent implements OnInit {
 
   }
 
-  eliminarCategoria(categoria: Categoria){
+  eliminarCategoria(categoria: Categoria): void{
     this.swalWithBootstrapButtons.fire({
       title: '¿Estás seguro?',
       text: `¿Seguro que desea eliminar la categoria ${categoria.nombreCategoria}?`,

@@ -30,8 +30,6 @@ export class FormCategoriaComponent implements OnInit {
       },
       err => {
         this.errors = err.error.Errores as string[];
-        console.log(err.status);
-        console.log(err.err.Errores);
       }
     );
   }

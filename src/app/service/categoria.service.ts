@@ -26,7 +26,9 @@ export class CategoriaService {
     return this.httpClient.post(`${uri}categorias`, categoria).pipe(
       map(res => res as Categoria),
       catchError(err => {
-        this.router.navigate(['/categorias']);
+        if (err.status === 400){
+          return throwError(err);
+        }
         Swal.fire('Errores', err.error.Errores, 'error');
         return throwError(err);
       })
@@ -48,7 +50,9 @@ export class CategoriaService {
     return this.httpClient.put(`${uri}categorias`, categoria).pipe(
       map(res => res as Categoria),
       catchError(err => {
-        this.router.navigate(['/categorias']);
+        if (err.status === 400){
+          return throwError(err);
+        }
         Swal.fire('Errores', err.error.Errores, 'error');
         return throwError(err);
       })

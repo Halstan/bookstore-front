@@ -30,8 +30,6 @@ export class FormAutorComponent implements OnInit {
       },
       err => {
         this.errors = err.error.Errores as string[];
-        console.log(err.status);
-        console.log(err.err.Errores);
       }
     );
   }
@@ -55,7 +53,7 @@ export class FormAutorComponent implements OnInit {
       },
       err => {
         this.errors = err.error.Errores as string[];
-        //Swal.fire('Error', `Error al actualizar ${this.errors}`, 'error');
+        Swal.fire('Error', `Error al actualizar ${this.errors}`, 'error');
       }
     );
   }

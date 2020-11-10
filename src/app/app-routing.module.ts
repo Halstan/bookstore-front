@@ -9,6 +9,7 @@ import { MostrarComponent } from './components/libro/mostrar/mostrar.component';
 import { MostrarAutorComponent } from './components/autor/mostrar-autor/mostrar-autor.component';
 import { FormAutorComponent } from './components/autor/form-autor/form-autor.component';
 import { FormCategoriaComponent } from './components/categoria/form-categoria/form-categoria.component';
+import { FormEditorialComponent } from './components/editorial/form-editorial/form-editorial.component';
 
 const routes: Routes = [
   {path: '', pathMatch: 'full', redirectTo: 'home'},
@@ -26,7 +27,9 @@ const routes: Routes = [
   {path: 'libros/mostrar', component: MostrarComponent},
   {path: 'libros', component: LibroComponent},
 
-  {path: 'editoriales', component: EditorialComponent}
+  {path: 'editoriales', component: EditorialComponent},
+  {path: 'editoriales/form', component: FormEditorialComponent},
+  {path: 'editoriales/form/:id', component: FormEditorialComponent}
 ];
 
 @NgModule({
