@@ -39,7 +39,7 @@ export class EditorialService {
       map(res => res as Editorial),
       catchError(err => {
         this.router.navigate(['/editoriales']);
-        Swal.fire('Error al obtener la editorial', err.Error, 'error');
+        Swal.fire('Error al obtener la editorial', err.error, 'error');
         return throwError(err);
       })
     );

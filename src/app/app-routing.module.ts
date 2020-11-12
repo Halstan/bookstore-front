@@ -10,10 +10,16 @@ import { MostrarAutorComponent } from './components/autor/mostrar-autor/mostrar-
 import { FormAutorComponent } from './components/autor/form-autor/form-autor.component';
 import { FormCategoriaComponent } from './components/categoria/form-categoria/form-categoria.component';
 import { FormEditorialComponent } from './components/editorial/form-editorial/form-editorial.component';
+import { UsuarioComponent } from './components/usuario/usuario.component';
+import { FormUsuarioComponent } from './components/usuario/form-usuario/form-usuario.component';
 
 const routes: Routes = [
   {path: '', pathMatch: 'full', redirectTo: 'home'},
   {path: 'home', component: HomeComponent},
+
+  {path: 'usuarios', component: UsuarioComponent},
+  {path: 'usuarios/form', component: FormUsuarioComponent},
+  {path: 'usuarios/form/:id', component: FormUsuarioComponent},
 
   {path: 'categorias', component: CategoriaComponent},
   {path: 'categorias/form', component: FormCategoriaComponent},

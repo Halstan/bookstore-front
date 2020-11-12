@@ -1,0 +1,47 @@
+<div class="card border-primary mb-3 m-5 animated fadeIn">
+    <div class="card-header">Listado de usuarios</div>
+    <div class="card-body text-primary">
+        <h5 class="card-title">Cantidad de usuarios: {{usuarios?.length}}</h5>
+            <div class="my-2 text-left">
+                <button class="btn btn-rounded btn-primary" [routerLink] = "['/usuarios/form']">Crear Usuario</button>
+            </div>
+            <div *ngIf="usuarios?.length == 0">
+                <p>No hay registros en la base de datos</p>
+            </div>
+            <table class="table table-bordered table-striped table-responsive-md table-hover" *ngIf="usuarios?.length > 0">
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Estado</th>
+                        <th>Fecha de creación</th>
+                        <th>Sexo</th>
+                        <th>Editar</th>
+                        <th>Eliminar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let usuario of usuarios">
+                        <td>{{ usuario.idUsuario }}</td>
+                        <td>{{ usuario.nombre }}</td>
+                        <td>{{ usuario.apellido }}</td>
+                        <ng-container *ngIf="usuario.activado else elseTemplate">
+                            <td>Activado</td>
+                        </ng-container>
+                        <ng-template #elseTemplate>
+                            <td>Desactivado</td>
+                        </ng-template>
+                        <td>{{ usuario.fechaCreacion | date}}</td>
+                        <td>{{ usuario.sexo.nombreSexo }}</td>
+                        <td>
+                            <button type="button" name="button" [routerLink]="['/usuarios/form', usuario.idUsuario]" class="btn btn-success">Editar</button>
+                        </td>
+                        <td>
+                            <button type="button" name="Eliminar" (click)="eliminarUsuario(usuario)" class="btn btn-danger">Eliminar</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+</div>

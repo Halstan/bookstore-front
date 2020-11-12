@@ -28,7 +28,7 @@
                         <td>{{ editorial.fundador }}</td>
                         <td>{{ editorial.fechaFundacion | date}}</td>
                         <td>{{ editorial.fechaCreacion | date}}</td>
-                        <ng-container *ngIf="editorial.estado == true else elseTemplate">
+                        <ng-container *ngIf="editorial.estado else elseTemplate">
                             <td>En funcionamiento</td>
                         </ng-container>
                         <ng-template #elseTemplate>

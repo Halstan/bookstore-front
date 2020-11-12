@@ -27,6 +27,9 @@ import { MostrarAutorComponent } from './components/autor/mostrar-autor/mostrar-
 import { FormAutorComponent } from './components/autor/form-autor/form-autor.component';
 import { FormCategoriaComponent } from './components/categoria/form-categoria/form-categoria.component';
 import { FormEditorialComponent } from './components/editorial/form-editorial/form-editorial.component';
+import { UsuarioComponent } from './components/usuario/usuario.component';
+import { UsuarioService } from './service/usuario.service';
+import { FormUsuarioComponent } from './components/usuario/form-usuario/form-usuario.component';
 
 registerLocaleData(localEs);
 @NgModule({
@@ -46,7 +49,9 @@ registerLocaleData(localEs);
     MostrarAutorComponent,
     FormAutorComponent,
     FormCategoriaComponent,
-    FormEditorialComponent
+    FormEditorialComponent,
+    UsuarioComponent,
+    FormUsuarioComponent
   ],
   imports: [
     BrowserModule,
@@ -59,7 +64,8 @@ registerLocaleData(localEs);
     AutorService,
     CategoriaService,
     EditorialService,
-    LibroService
+    LibroService,
+    UsuarioService
   ],
   bootstrap: [AppComponent]
 })
