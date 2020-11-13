@@ -36,7 +36,7 @@ export class FormEditorialComponent implements OnInit {
   }
 
   cargarEditorial(): void{
-    this.activatedRoute .params.subscribe(param => {
+    this.activatedRoute.params.subscribe(param => {
       const id = param['id'];
       if (id){
         this.editorialService.getEditorial(id).subscribe(

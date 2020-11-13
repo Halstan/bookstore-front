@@ -30,6 +30,7 @@ import { FormEditorialComponent } from './components/editorial/form-editorial/fo
 import { UsuarioComponent } from './components/usuario/usuario.component';
 import { UsuarioService } from './service/usuario.service';
 import { FormUsuarioComponent } from './components/usuario/form-usuario/form-usuario.component';
+import { SexoService } from './service/sexo.service';
 
 registerLocaleData(localEs);
 @NgModule({
@@ -65,7 +66,8 @@ registerLocaleData(localEs);
     CategoriaService,
     EditorialService,
     LibroService,
-    UsuarioService
+    UsuarioService,
+    SexoService
   ],
   bootstrap: [AppComponent]
 })

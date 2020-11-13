@@ -22,7 +22,7 @@ export class UsuarioService {
   }
 
   insertarUsuario(usuario: Usuario): Observable<Usuario>{
-    return this.httpClient.post(`usuarios`, usuario).pipe(
+    return this.httpClient.post(`${uri}usuarios`, usuario).pipe(
       map(res => res as Usuario),
       catchError(err => {
         if (err.status === 400){

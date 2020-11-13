@@ -14,9 +14,11 @@
                         <th>id</th>
                         <th>Nombre</th>
                         <th>Apellido</th>
+                        <th>Username</th>
                         <th>Estado</th>
                         <th>Fecha de creación</th>
                         <th>Sexo</th>
+                        <td>Rol</td>
                         <th>Editar</th>
                         <th>Eliminar</th>
                     </tr>
@@ -26,6 +28,7 @@
                         <td>{{ usuario.idUsuario }}</td>
                         <td>{{ usuario.nombre }}</td>
                         <td>{{ usuario.apellido }}</td>
+                        <td>{{ usuario.username }}</td>
                         <ng-container *ngIf="usuario.activado else elseTemplate">
                             <td>Activado</td>
                         </ng-container>
@@ -34,6 +37,11 @@
                         </ng-template>
                         <td>{{ usuario.fechaCreacion | date}}</td>
                         <td>{{ usuario.sexo.nombreSexo }}</td>
+                        <td>
+                            <ul *ngFor="let rol of usuario.roles">
+                                <li>{{ rol['nombreRol'] }}</li>
+                            </ul>
+                        </td>
                         <td>
                             <button type="button" name="button" [routerLink]="['/usuarios/form', usuario.idUsuario]" class="btn btn-success">Editar</button>
                         </td>
