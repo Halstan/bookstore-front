@@ -12,10 +12,14 @@ import { FormCategoriaComponent } from './components/categoria/form-categoria/fo
 import { FormEditorialComponent } from './components/editorial/form-editorial/form-editorial.component';
 import { UsuarioComponent } from './components/usuario/usuario.component';
 import { FormUsuarioComponent } from './components/usuario/form-usuario/form-usuario.component';
+import { FormLibroComponent } from './components/libro/form-libro/form-libro.component';
+import { AlquilerComponent } from './components/alquiler/alquiler.component';
 
 const routes: Routes = [
   {path: '', pathMatch: 'full', redirectTo: 'home'},
   {path: 'home', component: HomeComponent},
+
+  {path: 'alquileres', component: AlquilerComponent},
 
   {path: 'usuarios', component: UsuarioComponent},
   {path: 'usuarios/form', component: FormUsuarioComponent},
@@ -32,6 +36,8 @@ const routes: Routes = [
 
   {path: 'libros/mostrar', component: MostrarComponent},
   {path: 'libros', component: LibroComponent},
+  {path: 'libros/form', component: FormLibroComponent},
+  {path: 'libros/form/:id', component: FormLibroComponent},
 
   {path: 'editoriales', component: EditorialComponent},
   {path: 'editoriales/form', component: FormEditorialComponent},

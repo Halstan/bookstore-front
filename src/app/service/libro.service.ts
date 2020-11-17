@@ -41,5 +41,82 @@ export class LibroService {
       })
     );
   }
-  
+
+  getLibrosByEstado(estado: boolean): Observable<any>{
+    return this.httpClient.get(`${uri}libros/estado`).pipe(
+      map(res => res as Libro[]),
+      catchError(err => {
+        Swal.fire('Error', err.error.Mensaje, 'error');
+        return throwError(err);
+      })
+    );
+  }
+
+  getLibrosByIdEditorial(idEditorial: number): Observable<any>{
+    return this.httpClient.get(`${uri}libros/editorial/${idEditorial}`).pipe(
+      map(res => res as Libro[]),
+      catchError(err => {
+        Swal.fire('Error', err.error.Mensaje, 'error');
+        return throwError(err);
+      })
+    );
+  }
+
+  getLibrosByNombreEditorial(nombreEditorial: string): Observable<any>{
+    return this.httpClient.get(`${uri}libros/editorial/nombre/${nombreEditorial}`).pipe(
+      map(res => res as Libro[]),
+      catchError(err => {
+        Swal.fire('Error', err.error.Mensaje, 'error');
+        return throwError(err);
+      })
+    );
+  }
+
+  insertarLibro(libro: Libro): Observable<Libro>{
+    return this.httpClient.post(`${uri}libros`, libro).pipe(
+      map(res => res as Libro),
+      catchError(err => {
+        if (err.status === 400){
+          return throwError(err);
+        }
+        Swal.fire('Errores', err.error.Errores, 'error');
+        return throwError(err);
+      })
+    );
+  }
+
+  getLibro(idLibro: number): Observable<Libro>{
+    return this.httpClient.get(`${uri}libros/${idLibro}`).pipe(
+      map(res => res as Libro),
+      catchError(err => {
+        this.router.navigate(['/autores']);
+        Swal.fire('Error al obtener el libro', err.Error, 'error');
+        return throwError(err);
+      })
+    );
+  }
+
+  actualizarLibro(libro: Libro): Observable<Libro>{
+    return this.httpClient.put(`${uri}libros`, libro).pipe(
+      map(res => res as Libro),
+      catchError(err => {
+        if (err.status === 400){
+          return throwError(err);
+        }
+        Swal.fire('Errores', err.error.Errores, 'error');
+        return throwError(err);
+      })
+    );
+  }
+
+  eliminarLibro(idLibro: number): Observable<Libro>{
+    return this.httpClient.delete(`${uri}libros/${idLibro}`).pipe(
+      map(res => res as Libro),
+      catchError(err => {
+        Swal.fire('Error', err.error.Mensaje, 'error');
+        return throwError(err);
+      })
+    );
+  }
+
 }

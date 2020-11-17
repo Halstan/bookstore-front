@@ -31,6 +31,10 @@ import { UsuarioComponent } from './components/usuario/usuario.component';
 import { UsuarioService } from './service/usuario.service';
 import { FormUsuarioComponent } from './components/usuario/form-usuario/form-usuario.component';
 import { SexoService } from './service/sexo.service';
+import { FormLibroComponent } from './components/libro/form-libro/form-libro.component';
+import { IdiomaService } from './service/idioma.service';
+import { AlquilerComponent } from './components/alquiler/alquiler.component';
+import { AlquilerService } from './service/alquiler.service';
 
 registerLocaleData(localEs);
 @NgModule({
@@ -52,7 +56,9 @@ registerLocaleData(localEs);
     FormCategoriaComponent,
     FormEditorialComponent,
     UsuarioComponent,
-    FormUsuarioComponent
+    FormUsuarioComponent,
+    FormLibroComponent,
+    AlquilerComponent
   ],
   imports: [
     BrowserModule,
@@ -67,7 +73,9 @@ registerLocaleData(localEs);
     EditorialService,
     LibroService,
     UsuarioService,
-    SexoService
+    SexoService,
+    IdiomaService,
+    AlquilerService
   ],
   bootstrap: [AppComponent]
 })

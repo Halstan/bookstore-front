@@ -13,11 +13,12 @@
             <table class="table table-bordered table-striped table-responsive-md table-hover" *ngIf="libros?.length > 0">
                 <thead>
                     <tr>
-                        <th>id</th>
+                        <th>Id</th>
                         <th>Nombre</th>
                         <th>Categoria</th>
                         <th>Editorial</th>
                         <th>Idioma</th>
+                        <th>Autor</th>
                         <th>Fecha de publicación</th>
                         <th>Fecha de creación</th>
                         <th>Fecha de actualización</th>
@@ -34,6 +35,7 @@
                         <td>{{ libro.categoria.nombreCategoria }}</td>
                         <td>{{ libro.editorial.nombreEditorial }}</td>
                         <td>{{ libro.idioma.nombreIdioma }}</td>
+                        <td>{{ libro.autor.nombreAutor }}</td>
                         <td>{{ libro.fechaPublicacion | date}}</td>
                         <td>{{ libro.fechaCreacion | date }}</td>
                         <td>{{ libro.fechaActualizacion | date }}</td>
