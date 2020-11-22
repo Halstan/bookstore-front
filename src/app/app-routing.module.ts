@@ -14,12 +14,20 @@ import { UsuarioComponent } from './components/usuario/usuario.component';
 import { FormUsuarioComponent } from './components/usuario/form-usuario/form-usuario.component';
 import { FormLibroComponent } from './components/libro/form-libro/form-libro.component';
 import { AlquilerComponent } from './components/alquiler/alquiler.component';
+import { FormAlquilerComponent } from './components/alquiler/form-alquiler/form-alquiler.component';
+import { IdiomaComponent } from './components/idioma/idioma.component';
+import { FormIdiomaComponent } from './components/idioma/form-idioma/form-idioma.component';
 
 const routes: Routes = [
   {path: '', pathMatch: 'full', redirectTo: 'home'},
   {path: 'home', component: HomeComponent},
 
+  {path: 'idiomas', component: IdiomaComponent},
+  {path: 'idiomas/form', component: FormIdiomaComponent},
+  {path: 'idiomas/form/:id', component: FormIdiomaComponent},
+
   {path: 'alquileres', component: AlquilerComponent},
+  {path: 'alquileres/form', component: FormAlquilerComponent},
 
   {path: 'usuarios', component: UsuarioComponent},
   {path: 'usuarios/form', component: FormUsuarioComponent},

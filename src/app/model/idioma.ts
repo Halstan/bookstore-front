@@ -1,6 +1,6 @@
 export class Idioma{
 
-    idIdioma: string;
+    idIdioma: number;
     nombreIdioma: string;
 
 }

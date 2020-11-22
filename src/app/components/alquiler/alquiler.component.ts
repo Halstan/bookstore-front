@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Alquiler } from '../../model/alquiler';
 import { AlquilerService } from '../../service/alquiler.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-alquiler',
@@ -10,11 +11,22 @@ import { AlquilerService } from '../../service/alquiler.service';
 export class AlquilerComponent implements OnInit {
 
   alquileres: Alquiler[];
+  error: boolean;
   cargandoAlquiler: boolean;
   messageError: string;
+  swalWithBootstrapButtons = Swal.mixin({
+    customClass: {
+      confirmButton: 'btn btn-success',
+      cancelButton: 'btn btn-danger'
+    },
+    backdrop: `
+    rgba(179,214,249,0.2)
+    `,
+    buttonsStyling: false
+  });
 
   constructor(private alquilerService: AlquilerService,
-              private activatedRoute: ActivatedRoute) { }
+              private router: Router) { }
 
   ngOnInit(): void {
     this.cargandoAlquiler = true;
@@ -22,7 +34,59 @@ export class AlquilerComponent implements OnInit {
       alquileres => {
         this.alquileres = alquileres;
         this.cargandoAlquiler = false;
-        console.log(this.alquileres);
+      });
+  }
+
+  desactivarAlquiler(alquiler: Alquiler): void {
+    this.swalWithBootstrapButtons.fire({
+      title: '¿Estás seguro?',
+      text: `¿Seguro que desea desactivar el alquiler de ${alquiler.usuario.nombre} ${alquiler.usuario.apellido}?`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Sí, eliminar',
+      cancelButtonText: 'No, cancelar',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.alquilerService.desactivarAlquiler(alquiler.idAlquiler).subscribe(
+          res => {
+            this.swalWithBootstrapButtons.fire(
+              'Alquiler eliminado',
+              `El alquiler de ${alquiler.usuario.nombre} ${alquiler.usuario.apellido} fue cancelado con exito.`,
+              'success'
+            );
+            this.router.navigate(['/alquileres'])
+              .then(() => {
+                window.location.reload();
+          });
+          },
+        );
+      }
+    });
+  }
+
+  eliminarAlquiler(alquiler: Alquiler): void {
+    this.swalWithBootstrapButtons.fire({
+      title: '¿Estás seguro?',
+      text: `¿Seguro que desea eliminar el alquiler de ${alquiler.usuario.nombre} ${alquiler.usuario.apellido}?`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Sí, eliminar',
+      cancelButtonText: 'No, cancelar',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.alquilerService.eliminarAlquiler(alquiler.idAlquiler).subscribe(
+          res => {
+            this.alquileres = this.alquileres.filter(au => au !== alquiler);
+            this.swalWithBootstrapButtons.fire(
+              'Alquiler eliminado',
+              `El alquiler de ${alquiler.usuario.nombre} ${alquiler.usuario.apellido} fue eliminado con exito.`,
+              'success'
+            );
+          }
+        );
+      }
     });
   }
 

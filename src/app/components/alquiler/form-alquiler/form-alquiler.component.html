@@ -1,0 +1,56 @@
+<ul class="alert alert-danger m-5" *ngIf="errors?.length > 0">
+    <li *ngFor="let err of errors">
+        {{ err }}
+    </li>
+</ul>
+<div class="card bg-dark text-white m-5">
+    <div class="card-header">
+        {{ title }}
+    </div>
+    
+    <div class="card-body text-primary">
+        <form #alquilerForm="ngForm">
+
+            <div class="form-group row">
+                <label for="nombreCategoria" class="col-form-label col-sm-2">Fecha de registro</label>
+                <div class="col-sm-6">
+                    <input type="date" class="form-control" [(ngModel)] = "alquiler.fechaCreacion" name="fechaCreacion" #fechaCreacion="ngModel" required>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="fundador" class="col-form-label col-sm-2">Fecha de retorno</label>
+                <div class="col-sm-6">
+                    <input type="date" class="form-control" [(ngModel)] = "alquiler.fechaRetorno" name="fechaRetorno" #fechaRetorno="ngModel" required>
+                </div>
+            </div>
+            
+            <div class="form-group row">
+                <label for="pais" class="col-form-label col-sm-2">Usuario</label>
+                <div class="col-sm-6">
+                    <select class="form-control" [(ngModel)] = "alquiler.usuario" name="usuario">
+                        <option [ngValue]="undefined">Seleccionar Usuario</option>
+                        <option *ngFor="let usuario of usuarios" [ngValue]="usuario">{{ usuario.nombre }} {{ usuario.apellido }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="pais" class="col-form-label col-sm-2">Libro</label>
+                <div class="col-sm-6">
+                    <select class="form-control" [(ngModel)] = "alquiler.libro" name="libro">
+                        <option [ngValue]="undefined">Seleccionar Libro</option>
+                        <option *ngFor="let libro of libros" [ngValue]="libro">{{ libro.nombreLibro }}</option>
+                    </select>
+                </div>
+            </div>
+
+
+            <div class="form-group row">
+                <div class="col-sm-6">
+                    <button class="btn btn-primary" (click)="registrarAlquiler()" role="button" [disabled]="!alquilerForm.form.valid">Registrar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

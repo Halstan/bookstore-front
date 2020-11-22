@@ -60,7 +60,7 @@ export class FormLibroComponent implements OnInit {
       }
     });
     this.idiomaService.getIdiomas().subscribe(
-      idiomas => this.idiomas = idiomas['Idiomas']
+      idiomas => this.idiomas = idiomas
     );
     this.categoriaService.getCategorias().subscribe(
       categorias => this.categorias = categorias['Categorias']);

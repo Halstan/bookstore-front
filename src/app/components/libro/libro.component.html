@@ -36,9 +36,9 @@
                         <td>{{ libro.editorial.nombreEditorial }}</td>
                         <td>{{ libro.idioma.nombreIdioma }}</td>
                         <td>{{ libro.autor.nombreAutor }}</td>
-                        <td>{{ libro.fechaPublicacion | date}}</td>
-                        <td>{{ libro.fechaCreacion | date }}</td>
-                        <td>{{ libro.fechaActualizacion | date }}</td>
+                        <td>{{ libro.fechaPublicacion | date:'mediumDate':'':'es'}}</td>
+                        <td>{{ libro.fechaCreacion | date:'mediumDate':'':'es' }}</td>
+                        <td>{{ libro.fechaActualizacion | date:'mediumDate':'':'es' }}</td>
                         <td>{{ libro.precio }}</td>
                         <ng-container *ngIf="libro.estado == true else elseTemplate">
                             <td>Disponible</td>

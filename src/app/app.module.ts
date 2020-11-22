@@ -17,7 +17,7 @@ import { CardComponent } from './components/libro/card/card.component';
 import localEs from '@angular/common/locales/es';
 import { registerLocaleData } from '@angular/common';
 import { HomeComponent } from './components/home/home.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AutorService } from './service/autor.service';
 import { CategoriaService } from './service/categoria.service';
 import { EditorialService } from './service/editorial.service';
@@ -35,6 +35,9 @@ import { FormLibroComponent } from './components/libro/form-libro/form-libro.com
 import { IdiomaService } from './service/idioma.service';
 import { AlquilerComponent } from './components/alquiler/alquiler.component';
 import { AlquilerService } from './service/alquiler.service';
+import { FormAlquilerComponent } from './components/alquiler/form-alquiler/form-alquiler.component';
+import { IdiomaComponent } from './components/idioma/idioma.component';
+import { FormIdiomaComponent } from './components/idioma/form-idioma/form-idioma.component';
 
 registerLocaleData(localEs);
 @NgModule({
@@ -58,14 +61,18 @@ registerLocaleData(localEs);
     UsuarioComponent,
     FormUsuarioComponent,
     FormLibroComponent,
-    AlquilerComponent
+    AlquilerComponent,
+    FormAlquilerComponent,
+    IdiomaComponent,
+    FormIdiomaComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ReactiveFormsModule
   ],
   providers: [
     AutorService,

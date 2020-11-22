@@ -32,7 +32,7 @@ export class FormUsuarioComponent implements OnInit {
         this.router.navigate(['/home']);
         Swal.fire('Te has registrado con exito', `Bienvenido ${res.username}`, 'success');
       },
-      err =>{
+      err => {
         this.errors = err.error.Errores as string[];
       }
     );

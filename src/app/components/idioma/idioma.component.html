@@ -1,0 +1,59 @@
+<app-loading *ngIf="cargandoIdioma" class="m-5"></app-loading>
+<div class="row animated fadeIn" *ngIf="!cargandoIdioma">
+  <div class="card border-primary mb-3 m-5 col-lg-12 col-xs-6 animated fadeIn">
+    <div class="card-header">Listado de idiomas</div>
+    <div class="card-body text-primary">
+      <h5 class="card-title">Cantidad de idiomas: {{ idiomas?.length }}</h5>
+      <div class="my-2 text-left">
+        <button
+          class="btn btn-rounded btn-primary"
+          [routerLink]="['/idiomas/form']"
+        >
+          Añadir idioma
+        </button>
+      </div>
+      <div *ngIf="idiomas?.length == 0">
+        <p>No hay registros en la base de datos</p>
+      </div>
+      <table
+        class="table table-bordered table-striped table-responsive-md table-hover"
+        *ngIf="idiomas?.length > 0"
+      >
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Idioma</th>
+            <th>Cancelar</th>
+            <th>Eliminar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let idioma of idiomas">
+            <td>{{ idioma.idIdioma }}</td>
+            <td>{{ idioma.nombreIdioma }}</td>
+            <td>
+              <button
+                type="button"
+                name="button"
+                [routerLink]="['/idiomas/form', idioma.idIdioma]"
+                class="btn btn-success"
+              >
+                Editar
+              </button>
+            </td>
+            <td>
+              <button
+                type="button"
+                name="Eliminar"
+                (click)="eliminarIdioma(idioma)"
+                class="btn btn-danger"
+              >
+                Eliminar
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,47 +1,71 @@
 <div class="card border-primary mb-3 m-5 animated fadeIn">
-    <div class="card-header">Listado de editoriales</div>
-    <div class="card-body text-primary">
-        <h5 class="card-title">Cantidad de editoriales: {{editoriales?.length}}</h5>
-            <div class="my-2 text-left">
-                <button class="btn btn-rounded btn-primary" [routerLink] = "['/editoriales/form']">Crear Editorial</button>
-            </div>
-            <div *ngIf="editoriales?.length == 0">
-                <p>No hay registros en la base de datos</p>
-            </div>
-            <table class="table table-bordered table-striped table-responsive-md table-hover" *ngIf="editoriales?.length > 0">
-                <thead>
-                    <tr>
-                        <th>id</th>
-                        <th>Nombre</th>
-                        <th>Fundador</th>
-                        <th>Fecha de fundación</th>
-                        <th>Fecha de creación</th>
-                        <th>Estado</th>
-                        <th>Editar</th>
-                        <th>Eliminar</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let editorial of editoriales">
-                        <td>{{ editorial.idEditorial }}</td>
-                        <td>{{ editorial.nombreEditorial }}</td>
-                        <td>{{ editorial.fundador }}</td>
-                        <td>{{ editorial.fechaFundacion | date}}</td>
-                        <td>{{ editorial.fechaCreacion | date}}</td>
-                        <ng-container *ngIf="editorial.estado else elseTemplate">
-                            <td>En funcionamiento</td>
-                        </ng-container>
-                        <ng-template #elseTemplate>
-                            <td>Cerrado</td>
-                        </ng-template>
-                        <td>
-                            <button type="button" name="button" [routerLink]="['/editoriales/form', editorial.idEditorial]" class="btn btn-success">Editar</button>
-                        </td>
-                        <td>
-                            <button type="button" name="Eliminar" (click)="eliminarEditorial(editorial)" class="btn btn-danger">Eliminar</button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+  <div class="card-header">Listado de editoriales</div>
+  <div class="card-body text-primary">
+    <h5 class="card-title">
+      Cantidad de editoriales: {{ editoriales?.length }}
+    </h5>
+    <div class="my-2 text-left">
+      <button
+        class="btn btn-rounded btn-primary"
+        [routerLink]="['/editoriales/form']"
+      >
+        Crear Editorial
+      </button>
+    </div>
+    <div *ngIf="editoriales?.length == 0">
+      <p>No hay registros en la base de datos</p>
+    </div>
+    <table
+      class="table table-bordered table-striped table-responsive-md table-hover"
+      *ngIf="editoriales?.length > 0"
+    >
+      <thead>
+        <tr>
+          <th>id</th>
+          <th>Nombre</th>
+          <th>Fundador</th>
+          <th>Fecha de fundación</th>
+          <th>Fecha de creación</th>
+          <th>Estado</th>
+          <th>Editar</th>
+          <th>Eliminar</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let editorial of editoriales">
+          <td>{{ editorial.idEditorial }}</td>
+          <td>{{ editorial.nombreEditorial }}</td>
+          <td>{{ editorial.fundador }}</td>
+          <td>{{ editorial.fechaFundacion | date: "mediumDate":"":"es" }}</td>
+          <td>{{ editorial.fechaCreacion | date: "mediumDate":"":"es" }}</td>
+          <ng-container *ngIf="editorial.estado; else elseTemplate">
+            <td>En funcionamiento</td>
+          </ng-container>
+          <ng-template #elseTemplate>
+            <td>Cerrado</td>
+          </ng-template>
+          <td>
+            <button
+              type="button"
+              name="button"
+              [routerLink]="['/editoriales/form', editorial.idEditorial]"
+              class="btn btn-success"
+            >
+              Editar
+            </button>
+          </td>
+          <td>
+            <button
+              type="button"
+              name="Eliminar"
+              (click)="eliminarEditorial(editorial)"
+              class="btn btn-danger"
+            >
+              Eliminar
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
