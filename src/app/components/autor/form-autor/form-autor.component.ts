@@ -15,6 +15,7 @@ export class FormAutorComponent implements OnInit {
   title = 'Registrar Autor';
   errors: string[] = [];
   formAutor: FormGroup;
+  messageError: string;
 
   constructor(private autorService: AutorService,
               private router: Router,
@@ -36,6 +37,7 @@ export class FormAutorComponent implements OnInit {
         Swal.fire('Autor registrado', `Autor ${res.nombreAutor} registrado con éxito`, 'success');
       },
       err => {
+        this.messageError = err.error.Message;
         this.errors = err.error.Errores as string[];
       }
     );
@@ -61,6 +63,7 @@ export class FormAutorComponent implements OnInit {
       nombreAutor: this.autor.nombreAutor,
       urlFoto: this.autor.urlFoto,
       apellido: this.autor.apellido,
+      biografia: this.autor.biografia,
       fechaNacimiento: this.autor.fechaNacimiento
     });
   }
@@ -70,19 +73,22 @@ export class FormAutorComponent implements OnInit {
       nombreAutor: ['', [Validators.required, Validators.maxLength(40)]],
       urlFoto: ['', [Validators.required, Validators.minLength(30), Validators.maxLength(160)]],
       apellido: ['', [Validators.required, Validators.maxLength(40)]],
+      biografia: ['', [Validators.minLength(20), Validators.maxLength(300)]],
       fechaNacimiento: ['', [Validators.required]]
     });
   }
 
   actualizarAutor(): void{
-    this.autorService.actualizarAutor(this.formAutor.value).subscribe(
-      autor => {
+    const autor = this.formAutor.value as Autor;
+    autor.idAutor = this.autor.idAutor;
+    this.autorService.actualizarAutor(autor).subscribe(
+      res => {
         this.router.navigate(['/autores']);
-        Swal.fire('Autor actualizado', `${autor.nombreAutor} ${autor.apellido} ha sido actualizado con éxito`, 'success');
+        Swal.fire('Autor actualizado', `${res.nombreAutor} ${res.apellido} ha sido actualizado con éxito`, 'success');
       },
       err => {
+        this.messageError = err.error.Message;
         this.errors = err.error.Errores as string[];
-        Swal.fire('Error', `Error al actualizar ${this.errors}`, 'error');
       }
     );
   }

@@ -43,7 +43,7 @@ export class LibroService {
   }
 
   getLibrosByEstado(estado: boolean): Observable<any>{
-    return this.httpClient.get(`${uri}libros/estado`).pipe(
+    return this.httpClient.get(`${uri}libros/estado/${estado}`).pipe(
       map(res => res as Libro[]),
       catchError(err => {
         Swal.fire('Error', err.error.Mensaje, 'error');

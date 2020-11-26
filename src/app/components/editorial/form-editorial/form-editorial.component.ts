@@ -16,6 +16,7 @@ export class FormEditorialComponent implements OnInit {
   formEditorial: FormGroup;
   cantidad: number;
   errors: string[] = [];
+  messageError: string;
 
   constructor(private editorialService: EditorialService,
               private router: Router,
@@ -25,7 +26,7 @@ export class FormEditorialComponent implements OnInit {
     this.crearFormulario();
     this.cargarEditorial();
 
-    }
+  }
 
   ngOnInit(): void {
   }
@@ -37,6 +38,7 @@ export class FormEditorialComponent implements OnInit {
         Swal.fire('Categoria registrada', `${res.nombreEditorial} registrada con éxito`, 'success');
       },
       err => {
+        this.messageError = err.error.Message;
         this.errors = err.error.Errores as string[];
       }
     );
@@ -83,6 +85,7 @@ export class FormEditorialComponent implements OnInit {
         Swal.fire('Categoria actualizada', `${res.nombreEditorial} actualizada con éxito`, 'success');
       },
       err => {
+        this.messageError = err.error.Message;
         this.errors = err.error.Errores as string[];
         console.log(err.status);
       }

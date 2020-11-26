@@ -15,7 +15,7 @@
                         <th>Nombre</th>
                         <th>Apellido</th>
                         <th>Fecha de nacimiento</th>
-                        <th>Fecha de registro</th>
+                        <th>Fecha de modificacion</th>
                         <th>Editar</th>
                         <th>Eliminar</th>
                     </tr>
@@ -26,7 +26,7 @@
                         <td>{{ autor.nombreAutor }}</td>
                         <td>{{ autor.apellido }}</td>
                         <td>{{ autor.fechaNacimiento | date:'mediumDate':'':'es'}}</td>
-                        <td>{{ autor.fechaCreacion | date:'mediumDate':'':'es'}}</td>
+                        <td>{{ autor.fechaModificacion | date:'mediumDate':'':'es'}}</td>
                         <td>
                             <button type="button" name="button" [routerLink]="['/autores/form', autor.idAutor]" class="btn btn-success">Editar</button>
                         </td>

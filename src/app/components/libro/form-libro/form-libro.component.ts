@@ -11,6 +11,7 @@ import { CategoriaService } from '../../../service/categoria.service';
 import { EditorialService } from '../../../service/editorial.service';
 import { IdiomaService } from '../../../service/idioma.service';
 import { AutorService } from '../../../service/autor.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-form-libro',
@@ -23,8 +24,10 @@ export class FormLibroComponent implements OnInit {
   editoriales: Editorial[];
   idiomas: Idioma[];
   autores: Autor[];
-  title = 'Registrar/Actualizar Libro';
+  title = 'Registrar Libro';
   errors: string[] = [];
+  messageError: string;
+  formLibro: FormGroup;
 
   constructor(private libroService: LibroService,
               private categoriaService: CategoriaService,
@@ -32,19 +35,57 @@ export class FormLibroComponent implements OnInit {
               private idiomaService: IdiomaService,
               private autorService: AutorService,
               private router: Router,
-              private activatedRoute: ActivatedRoute) { }
+              private activatedRoute: ActivatedRoute,
+              private fb: FormBuilder) {
 
-  ngOnInit(): void {
+    this.crearFormulario();
     this.cargarLibro();
   }
 
+  ngOnInit(): void {
+    this.listIdiomas();
+    this.listCategorias();
+    this.listEditoriales();
+    this.listAutores();
+    this.cargarData();
+  }
+
+  listIdiomas(): void{
+    this.idiomaService.getIdiomas().subscribe(
+      idiomas => {
+        this.idiomas = idiomas;
+      }
+    );
+  }
+
+  listCategorias(): void{
+    this.categoriaService.getCategorias().subscribe(
+      categorias => {
+        this.categorias = categorias['Categorias']
+      }
+    );
+  }
+
+  listEditoriales(): void{
+    this.editorialService.getEditoriales().subscribe(
+      editoriales => this.editoriales = editoriales['Editoriales']
+    );
+  }
+
+  listAutores(): void{
+    this.autorService.getAutores().subscribe(
+      autores => this.autores = autores
+    );
+  }
+
   registrarLibro(): void{
-    this.libroService.insertarLibro(this.libro).subscribe(
+    this.libroService.insertarLibro(this.formLibro.value).subscribe(
       res => {
         this.router.navigate(['/libros']);
         Swal.fire('Libro registrado', `El libro ${res.nombreLibro} ha sido registrado con éxito`, 'success');
       },
       err => {
+        this.messageError = err.error.Message;
         this.errors = err.error.Errores as string[];
       }
     );
@@ -54,31 +95,58 @@ export class FormLibroComponent implements OnInit {
     this.activatedRoute.params.subscribe(param => {
       const id = param['id'];
       if (id){
+        this.title = 'Editar Libro';
         this.libroService.getLibro(id).subscribe(
-          libro => this.libro = libro
+          libro => {
+            this.libro = libro;
+            this.cargarData();
+          }
         );
       }
     });
-    this.idiomaService.getIdiomas().subscribe(
-      idiomas => this.idiomas = idiomas
-    );
-    this.categoriaService.getCategorias().subscribe(
-      categorias => this.categorias = categorias['Categorias']);
-    this.editorialService.getEditoriales().subscribe(
-      editoriales => this.editoriales = editoriales['Editoriales']);
-    this.autorService.getAutores().subscribe(
-      autores => this.autores = autores);
+  }
+
+  cargarData(): void{
+    this.formLibro.reset({
+      nombreLibro: this.libro.nombreLibro,
+      isbn: this.libro.isbn,
+      descripcion: this.libro.descripcion,
+      urlPortada: this.libro.urlPortada,
+      precio: this.libro.precio,
+      categoria: this.libro.categoria,
+      editorial: this.libro.editorial,
+      idioma:  this.libro.idioma,
+      autor: this.libro.autor,
+      fechaPublicacion: this.libro.fechaPublicacion
+    });
+  }
+
+  crearFormulario(): void{
+    this.formLibro = this.fb.group({
+      nombreLibro: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(80)]],
+      isbn: ['', [Validators.required, Validators.maxLength(30)]],
+      descripcion: ['', [Validators.required, Validators.maxLength(200)]],
+      urlPortada: ['', [Validators.required, Validators.minLength(30), Validators.maxLength(150)]],
+      precio: ['', [Validators.maxLength(5)]],
+      categoria: ['', [Validators.required]],
+      editorial: ['', [Validators.required]],
+      idioma: ['', [Validators.required]],
+      autor: ['', [Validators.required]],
+      fechaPublicacion: ['', [Validators.required]]
+    });
   }
 
   actualizarLibro(): void{
-    this.libroService.actualizarLibro(this.libro).subscribe(
-      libro => {
+    const libro = this.formLibro.value as Libro;
+    libro.idLibro = this.libro.idLibro;
+    this.libroService.actualizarLibro(libro).subscribe(
+      res => {
         this.router.navigate(['/libros']);
         Swal.fire('Libro actualizado', `${libro.nombreLibro} ha sido actualizado con éxito`, 'success');
       },
       err => {
+        this.messageError = err.error.Message;
         this.errors = err.error.Errores as string[];
-        Swal.fire('Error', `Error al actualizar ${this.errors}`, 'error');
       }
     );
   }

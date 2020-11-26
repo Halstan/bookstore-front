@@ -3,6 +3,11 @@
     {{ err }}
   </li>
 </ul>
+
+<ul class="alert alert-danger m-5" *ngIf="messageError">
+  {{ messageError }}
+</ul>
+
 <div class="card bg-dark text-white m-5">
   <div class="card-header">
     {{ title }}

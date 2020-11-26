@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CategoriaService } from '../../../service/categoria.service';
 import Swal from 'sweetalert2';
 import { Categoria } from 'src/app/model/categoria';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-form-categoria',
@@ -10,48 +11,75 @@ import { Categoria } from 'src/app/model/categoria';
 })
 export class FormCategoriaComponent implements OnInit {
 
+  formCategoria: FormGroup;
   categoria: Categoria = new Categoria();
   title = 'Registrar Categoria';
   errors: string[] = [];
+  messageError: string;
 
   constructor(private categoriaService: CategoriaService,
               private router: Router,
-              private activatedRoute: ActivatedRoute) { }
+              private activatedRoute: ActivatedRoute,
+              private fb: FormBuilder) {
+
+    this.crearFormulario();
+    this.cargarCategoria();
+
+  }
 
   ngOnInit(): void {
-    this.cargarCategoria();
   }
 
   registrarCategoria(): void{
-    this.categoriaService.insertarCategoria(this.categoria).subscribe(
+    this.categoriaService.insertarCategoria(this.formCategoria.value).subscribe(
       res => {
         this.router.navigate(['/categorias']);
         Swal.fire('Categoria Registrada', `Categoria ${res.nombreCategoria} registrada con éxito`, 'success');
       },
       err => {
+        this.messageError = err.error.Message;
         this.errors = err.error.Errores as string[];
       }
     );
+  }
+
+  crearFormulario(): void{
+    this.formCategoria = this.fb.group({
+      nombreCategoria: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(40)]]
+    });
+  }
+
+  cargarData(): void{
+    this.formCategoria.reset({
+      nombreCategoria: this.categoria.nombreCategoria
+    });
   }
 
   cargarCategoria(): void{
     this.activatedRoute.params.subscribe(param => {
       const id = param['id'];
       if (id){
+        this.title = 'Editar categoria';
         this.categoriaService.getCategoria(id).subscribe(
-          categoria => this.categoria = categoria
+          categoria => {
+            this.categoria = categoria;
+            this.cargarData();
+          }
         );
       }
     });
   }
 
   actualizarCategoria(): void{
-    this.categoriaService.actualizarCategoria(this.categoria).subscribe(
-      categoria => {
+    const categoria = this.formCategoria.value as Categoria;
+    categoria.idCategoria = this.categoria.idCategoria;
+    this.categoriaService.actualizarCategoria(categoria).subscribe(
+      res => {
         this.router.navigate(['/categorias']);
-        Swal.fire('Categoria actualizada', `${categoria.nombreCategoria} ha sido actualizado`, 'success');
+        Swal.fire('Categoria actualizada', `${res.nombreCategoria} ha sido actualizado`, 'success');
       },
        err => {
+         this.messageError = err.error.Message;
          this.errors  = err.error.Errores as string[];
        }
     );

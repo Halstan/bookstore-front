@@ -1,106 +1,192 @@
 <ul class="alert alert-danger m-5" *ngIf="errors?.length > 0">
-    <li *ngFor="let err of errors">
-        {{ err }}
-    </li>
+  <li *ngFor="let err of errors">
+    {{ err }}
+  </li>
 </ul>
+
+<ul class="alert alert-danger m-5" *ngIf="messageError">
+    {{ messageError }}
+</ul>
+
 <div class="card bg-dark text-white m-5">
-    <div class="card-header">
-        {{ title }}
-    </div>
-    
-    <div class="card-body text-primary">
-        <form #libroForm="ngForm">
+  <div class="card-header">
+    {{ title }}
+  </div>
 
-            <div class="form-group row">
-                <label for="nombreCategoria" class="col-form-label col-sm-2">Nombre</label>
-                <div class="col-sm-6">
-                    <input type="text" class="form-control" [(ngModel)] = "libro.nombreLibro" name="nombreLibro" minlength="5" maxlength="50" #nombreLibro="ngModel">
-                </div>
-            </div>
+  <div class="card-body text-primary">
+    <form [formGroup]="formLibro" (ngSubmit)="registrarLibro()">
+      <div class="form-group row">
+        <label for="nombreCategoria" class="col-form-label col-sm-2"
+          >Nombre</label
+        >
+        <div class="col-sm-6">
+          <input
+            type="text"
+            class="form-control"
+            autofocus
+            formControlName="nombreLibro"
+            name="nombreLibro"
+          />
+        </div>
+      </div>
 
-            <div class="form-group row">
-                <label for="fundador" class="col-form-label col-sm-2">ISBN</label>
-                <div class="col-sm-6">
-                    <input type="text" class="form-control" [(ngModel)] = "libro.isbn" name="isbn" minlength="5" maxlength="50" #isbn="ngModel">
-                </div>
-            </div>
+      <div class="form-group row">
+        <label for="fundador" class="col-form-label col-sm-2">ISBN</label>
+        <div class="col-sm-6">
+          <input
+            type="text"
+            class="form-control"
+            formControlName="isbn"
+            name="isbn"
+          />
+        </div>
+      </div>
 
-            <div class="form-group row">
-                <label for="fechaFundacion" class="col-form-label col-sm-2">Descripcion</label>
-                <div class="col-sm-6">
-                    <textarea class="form-control" [(ngModel)] = "libro.descripcion" name="descripcion" #descripcion="ngModel" maxlength="200" required autocapitalize="on"></textarea>
-                </div>
-            </div>
+      <div class="form-group row">
+        <label for="fechaFundacion" class="col-form-label col-sm-2"
+          >Descripcion</label
+        >
+        <div class="col-sm-6">
+          <textarea
+            class="form-control"
+            formControlName="descripcion"
+            name="descripcion"
+          ></textarea>
+        </div>
+      </div>
 
-            <div class="form-group row">
-                <label for="fechaFundacion" class="col-form-label col-sm-2">Url Portada</label>
-                <div class="col-sm-6">
-                    <input type="text" class="form-control" [(ngModel)] = "libro.urlPortada" name="urlPortada" #urlPortada="ngModel">
-                </div>
-            </div>
+      <div class="form-group row">
+        <label for="fechaFundacion" class="col-form-label col-sm-2"
+          >Url Portada</label
+        >
+        <div class="col-sm-6">
+          <input
+            type="text"
+            class="form-control"
+            formControlName="urlPortada"
+            name="urlPortada"
+          />
+        </div>
+      </div>
 
-            <div class="form-group row">
-                <label for="fechaFundacion" class="col-form-label col-sm-2">Precio</label>
-                <div class="col-sm-6">
-                    <input type="text" class="form-control" [(ngModel)] = "libro.precio" name="precio" #precio="ngModel">
-                </div>
-            </div>
+      <div class="form-group row">
+        <label for="fechaFundacion" class="col-form-label col-sm-2"
+          >Precio</label
+        >
+        <div class="col-sm-6">
+          <input
+            type="text"
+            class="form-control"
+            formControlName="precio"
+            name="precio"
+          />
+        </div>
+      </div>
 
-            <div class="form-group row">
-                <label for="fechaFundacion" class="col-form-label col-sm-2">Fecha de Publicación</label>
-                <div class="col-sm-6">
-                    <input type="date" class="form-control" [(ngModel)] = "libro.fechaPublicacion" name="fechaPublicacion" #fechaPublicacion="ngModel">
-                </div>
-            </div>
+      <div class="form-group row">
+        <label for="fechaFundacion" class="col-form-label col-sm-2"
+          >Fecha de Publicación</label
+        >
+        <div class="col-sm-6">
+          <input
+            type="date"
+            class="form-control"
+            formControlName="fechaPublicacion"
+            name="fechaPublicacion"
+          />
+        </div>
+      </div>
 
-            <div class="form-group row">
-                <label for="pais" class="col-form-label col-sm-2">Idioma</label>
-                <div class="col-sm-6">
-                    <select [compareWith]="compararIdioma" class="form-control" [(ngModel)] = "libro.idioma" name="idioma">
-                        <option [ngValue]="undefined">Seleccionar Idioma</option>
-                        <option *ngFor="let idioma of idiomas" [ngValue]="idioma">{{ idioma.nombreIdioma }}</option>
-                    </select>
-                </div>
-            </div>
+      <div class="form-group row">
+        <label for="pais" class="col-form-label col-sm-2">Idioma</label>
+        <div class="col-sm-6">
+          <select
+            [compareWith]="compararIdioma"
+            class="form-control"
+            formControlName="idioma"
+            name="idioma"
+          >
+            <option [ngValue]="undefined" selected>Seleccionar Idioma</option>
+            <option *ngFor="let idioma of idiomas" [ngValue]="idioma">
+              {{ idioma.nombreIdioma }}
+            </option>
+          </select>
+        </div>
+      </div>
 
-            <div class="form-group row">
-                <label for="pais" class="col-form-label col-sm-2">Categoria</label>
-                <div class="col-sm-6">
-                    <select [compareWith]="compararCategoria" class="form-control" [(ngModel)] = "libro.categoria" name="categoria">
-                        <option [ngValue]="undefined">Seleccionar Categoria</option>
-                        <option *ngFor="let categoria of categorias" [ngValue]="categoria">{{ categoria.nombreCategoria }}</option>
-                    </select>
-                </div>
-            </div>
+      <div class="form-group row">
+        <label for="pais" class="col-form-label col-sm-2">Categoria</label>
+        <div class="col-sm-6">
+          <select
+            [compareWith]="compararCategoria"
+            class="form-control"
+            formControlName="categoria"
+            name="categoria"
+          >
+            <option [ngValue]="undefined" selected>Seleccionar Categoria</option>
+            <option *ngFor="let categoria of categorias" [ngValue]="categoria">
+              {{ categoria.nombreCategoria }}
+            </option>
+          </select>
+        </div>
+      </div>
 
-            <div class="form-group row">
-                <label for="pais" class="col-form-label col-sm-2">Editorial</label>
-                <div class="col-sm-6">
-                    <select [compareWith]="compareEditorial" class="form-control" [(ngModel)] = "libro.editorial" name="editorial">
-                        <option [ngValue]="undefined">Seleccionar Editorial</option>
-                        <option *ngFor="let editorial of editoriales" [ngValue]="editorial">{{ editorial.nombreEditorial }}</option>
-                    </select>
-                </div>
-            </div>
+      <div class="form-group row">
+        <label for="pais" class="col-form-label col-sm-2">Editorial</label>
+        <div class="col-sm-6">
+          <select
+            [compareWith]="compareEditorial"
+            class="form-control"
+            formControlName="editorial"
+            name="editorial"
+          >
+            <option [ngValue]="undefined" selected>Seleccionar Editorial</option>
+            <option *ngFor="let editorial of editoriales" [ngValue]="editorial">
+              {{ editorial.nombreEditorial }}
+            </option>
+          </select>
+        </div>
+      </div>
 
-            <div class="form-group row">
-                <label for="pais" class="col-form-label col-sm-2">Autor</label>
-                <div class="col-sm-6">
-                    <select [compareWith]="compareAutor" class="form-control" [(ngModel)] = "libro.autor" name="autor">
-                        <option [ngValue]="undefined">Seleccionar Autor</option>
-                        <option *ngFor="let autor of autores" [ngValue]="autor">{{ autor.nombreAutor }}</option>
-                    </select>
-                </div>
-            </div>
+      <div class="form-group row">
+        <label for="pais" class="col-form-label col-sm-2">Autor</label>
+        <div class="col-sm-6">
+          <select
+            [compareWith]="compareAutor"
+            class="form-control"
+            formControlName="autor"
+            name="autor"
+          >
+            <option [ngValue]="undefined" selected>Seleccionar Autor</option>
+            <option *ngFor="let autor of autores" [ngValue]="autor">
+              {{ autor.nombreAutor }}
+            </option>
+          </select>
+        </div>
+      </div>
 
-            <div class="form-group row">
-                <div class="col-sm-6">
-                    <button class="btn btn-primary" (click)="registrarLibro()" role="button" *ngIf="!libro.idLibro else elseBlock" [disabled]="!libroForm.form.valid">Registrar</button>
-                    <ng-template #elseBlock>
-                        <button class="btn btn-primary" (click)="actualizarLibro()" role="button" [disabled]="!libroForm.form.valid">Actualizar</button>  
-                    </ng-template>
-                </div>
-            </div>
-        </form>
-    </div>
+      <div class="form-group row">
+        <div class="col-sm-6">
+          <button
+            class="btn btn-primary"
+            role="button"
+            *ngIf="!libro.idLibro; else elseBlock"
+            [disabled]="!formLibro.valid"
+          >
+            Registrar
+          </button>
+          <ng-template #elseBlock>
+            <button
+              class="btn btn-primary"
+              (click)="actualizarLibro()"
+              role="button"
+              [disabled]="!formLibro.valid"
+            >
+              Actualizar
+            </button>
+          </ng-template>
+        </div>
+      </div>
+    </form>
+  </div>
 </div>

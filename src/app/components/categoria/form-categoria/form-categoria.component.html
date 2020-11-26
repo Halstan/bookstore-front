@@ -1,30 +1,64 @@
 <ul class="alert alert-danger m-5" *ngIf="errors?.length > 0">
-    <li *ngFor="let err of errors">
-        {{ err }}
-    </li>
+  <li *ngFor="let err of errors">
+    {{ err }}
+  </li>
 </ul>
+
+<ul class="alert alert-danger m-5" *ngIf="messageError">
+      {{ messageError }}
+</ul>
+
 <div class="card bg-dark text-white m-5">
-    <div class="card-header">
-        {{ title }}
-    </div>
-    <div class="card-body">
-        <form #categoriaForm="ngForm">
+  <div class="card-header">
+    {{ title }}
+  </div>
+  <div class="card-body">
+    <form [formGroup]="formCategoria" (ngSubmit)="registrarCategoria()">
+      <div class="form-group row">
+        <label for="nombreCategoria" class="col-form-label col-sm-2"
+          >Nombre</label
+        >
+        <div class="col-sm-6">
+          <input
+            type="text"
+            class="form-control"
+            formControlName="nombreCategoria"
+          />
+        </div>
+      </div>
 
-            <div class="form-group row">
-                <label for="nombreCategoria" class="col-form-label col-sm-2">Nombre</label>
-                <div class="col-sm-6">
-                    <input type="text" class="form-control" [(ngModel)] = "categoria.nombreCategoria" name="nombreCategoria" maxlength="40" #nombreCategoria="ngModel">
-                </div>
-            </div>
-
-            <div class="form-group row">
-                <div class="col-sm-6">
-                    <button class="btn btn-primary" (click)="registrarCategoria()" role="button" *ngIf="!categoria.idCategoria else elseBlock" [disabled]="!categoriaForm.form.valid">Registrar</button>
-                    <ng-template #elseBlock>
-                        <button class="btn btn-primary" (click)="actualizarCategoria()" role="button" [disabled]="!categoriaForm.form.valid">Actualizar</button>  
-                    </ng-template>
-                </div>
-            </div>
-        </form>
-    </div>
+      <div class="form-group row">
+        <div class="col-sm-6">
+          <button
+            class="btn btn-primary"
+            role="button"
+            *ngIf="!categoria.idCategoria; else elseBlock"
+            [disabled]="!formCategoria.valid"
+          >
+            Registrar
+          </button>
+          <ng-template #elseBlock>
+            <button
+              class="btn btn-primary"
+              (click)="actualizarCategoria()"
+              role="button"
+              [disabled]="!formCategoria.valid"
+            >
+              Actualizar
+            </button>
+          </ng-template>
+        </div>
+      </div>
+    </form>
+  </div>
 </div>
+
+<hr />
+<pre class="text-white">
+  Estado del formulario: {{ formCategoria.valid }}
+  <br>
+  Status: {{ formCategoria.status }}
+  <pre class="text-white">
+    {{ formCategoria.value | json}}
+  </pre>
+</pre>

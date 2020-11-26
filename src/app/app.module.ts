@@ -38,6 +38,8 @@ import { AlquilerService } from './service/alquiler.service';
 import { FormAlquilerComponent } from './components/alquiler/form-alquiler/form-alquiler.component';
 import { IdiomaComponent } from './components/idioma/idioma.component';
 import { FormIdiomaComponent } from './components/idioma/form-idioma/form-idioma.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 registerLocaleData(localEs);
 @NgModule({
@@ -72,7 +74,8 @@ registerLocaleData(localEs);
     HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [
     AutorService,

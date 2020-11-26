@@ -4,7 +4,8 @@ export class Autor {
     nombreAutor: string;
     urlFoto: string;
     apellido: string;
+    biografia: string;
     fechaNacimiento: Date;
-    fechaCreacion: string;
+    fechaModificacion: string;
 
 }

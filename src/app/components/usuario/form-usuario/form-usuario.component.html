@@ -1,69 +1,126 @@
 <ul class="alert alert-danger m-5" *ngIf="errors?.length > 0">
-    <li *ngFor="let err of errors">
-        {{ err }}
-    </li>
+  <li *ngFor="let err of errors">
+    {{ err }}
+  </li>
 </ul>
+
+<ul class="alert alert-danger m-5" *ngIf="messageError">
+  {{ messageError }}
+</ul>
+
 <div class="card bg-dark text-white m-5">
-    <div class="card-header">
-        {{ title }}
-    </div>
-    
-    <div class="card-body text-primary">
-        <form #usuarioForm="ngForm">
+  <div class="card-header">
+    {{ title }}
+  </div>
 
-            <div class="form-group row">
-                <label for="nombreCategoria" class="col-form-label col-sm-2">Nombre</label>
-                <div class="col-sm-6">
-                    <input type="text" class="form-control" [(ngModel)] = "usuario.nombre" name="nombre" minlength="5" maxlength="50" #nombre="ngModel">
-                </div>
-            </div>
+  <div class="card-body text-primary">
+    <form [formGroup]="formUsuario" (ngSubmit)="registrarUsuario()">
+      <div class="form-group row">
+        <label for="nombreCategoria" class="col-form-label col-sm-2"
+          >Nombre</label
+        >
+        <div class="col-sm-6">
+          <input
+            type="text"
+            class="form-control"
+            formControlName="nombre"
+            name="nombre"
+          />
+        </div>
+      </div>
 
-            <div class="form-group row">
-                <label for="fundador" class="col-form-label col-sm-2">Apellido</label>
-                <div class="col-sm-6">
-                    <input type="text" class="form-control" [(ngModel)] = "usuario.apellido" name="apellido" minlength="5" maxlength="50" #apellido="ngModel">
-                </div>
-            </div>
+      <div class="form-group row">
+        <label for="fundador" class="col-form-label col-sm-2">Apellido</label>
+        <div class="col-sm-6">
+          <input
+            type="text"
+            class="form-control"
+            formControlName="apellido"
+            name="apellido"
+          />
+        </div>
+      </div>
 
-            <div class="form-group row">
-                <label for="fechaFundacion" class="col-form-label col-sm-2">Nombre de usuario</label>
-                <div class="col-sm-6">
-                    <input type="text" class="form-control" [(ngModel)] = "usuario.username" name="username" #username="ngModel">
-                </div>
-            </div>
+      <div class="form-group row">
+        <label for="fechaFundacion" class="col-form-label col-sm-2"
+          >Nombre de usuario</label
+        >
+        <div class="col-sm-6">
+          <input
+            type="text"
+            class="form-control"
+            formControlName="username"
+          />
+        </div>
+      </div>
 
-            <div class="form-group row">
-                <label for="fechaFundacion" class="col-form-label col-sm-2">Contraseña</label>
-                <div class="col-sm-6">
-                    <input type="password" class="form-control" [(ngModel)] = "usuario.contrasenha" name="contrasenha" #contrasenha="ngModel">
-                </div>
-            </div>
+      <div class="form-group row">
+        <label for="fechaFundacion" class="col-form-label col-sm-2"
+          >Contraseña</label
+        >
+        <div class="col-sm-6">
+          <input
+            type="password"
+            class="form-control"
+            formControlName="contrasenha"
+            name="contrasenha"
+          />
+        </div>
+      </div>
 
-            <div class="form-group row">
-                <label for="fechaFundacion" class="col-form-label col-sm-2">Vuelve a introducir tu contraseña</label>
-                <div class="col-sm-6">
-                    <input type="password" class="form-control" [(ngModel)] = "usuario.asegurarContrasenha" name="asegurarContrasenha" #asegurarContrasenha="ngModel">
-                </div>
-            </div>
+      <div class="form-group row">
+        <label for="fechaFundacion" class="col-form-label col-sm-2"
+          >Vuelve a introducir tu contraseña</label
+        >
+        <div class="col-sm-6">
+          <input
+            type="password"
+            class="form-control"
+            formControlName="asegurarContrasenha"
+            name="asegurarContrasenha"
+          />
+        </div>
+      </div>
 
-            <div class="form-group row">
-                <label for="pais" class="col-form-label col-sm-2">Sexo</label>
-                <div class="col-sm-6">
-                    <select [compareWith]="compareSexo" class="form-control" [(ngModel)] = "usuario.sexo" name="sexo">
-                        <option [ngValue]="undefined">Seleccionar Sexo</option>
-                        <option *ngFor="let sexo of sexos" [ngValue]="sexo">{{ sexo.nombreSexo }}</option>
-                    </select>
-                </div>
-            </div>
+      <div class="form-group row">
+        <label for="pais" class="col-form-label col-sm-2">Sexo</label>
+        <div class="col-sm-6">
+          <select
+            [compareWith]="compareSexo"
+            class="form-control"
+            formControlName="sexo"
+            name="sexo"
+          >
+            <option [ngValue]="undefined" selected>Seleccionar Sexo</option>
+            <option *ngFor="let sexo of sexos" [ngValue]="sexo">
+              {{ sexo.nombreSexo }}
+            </option>
+          </select>
+        </div>
+      </div>
 
-            <div class="form-group row">
-                <div class="col-sm-6">
-                    <button class="btn btn-primary" (click)="registrarUsuario()" role="button" *ngIf="!usuario.idUsuario else elseBlock" [disabled]="!usuarioForm.form.valid">Registrar</button>
-                    <ng-template #elseBlock>
-                        <button class="btn btn-primary" (click)="actualizarUsuario()" role="button" [disabled]="!usuarioForm.form.valid">Actualizar</button>  
-                    </ng-template>
-                </div>
-            </div>
-        </form>
-    </div>
+      <div class="form-group row">
+        <div class="col-sm-6">
+          <button
+            class="btn btn-primary"
+            role="button"
+            *ngIf="!usuario.idUsuario; else elseBlock"
+            [disabled]="!formUsuario.valid"
+          >
+            Registrar
+          </button>          
+          <ng-template #elseBlock>
+            <button
+              class="btn btn-primary"
+              (click)="actualizarUsuario()"
+              role="button"
+              [disabled]="!formUsuario.valid"
+            >
+              Actualizar
+            </button>
+          </ng-template>
+        </div>
+      </div>
+    </form>
+  </div>
 </div>
