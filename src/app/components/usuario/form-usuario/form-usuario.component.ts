@@ -73,6 +73,7 @@ export class FormUsuarioComponent implements OnInit {
       nombre: this.usuario.nombre,
       apellido: this.usuario.apellido,
       username: this.usuario.username,
+      correo: this.usuario.correo,
       contrasenha: this.usuario.contrasenha,
       asegurarContrasenha: this.usuario.asegurarContrasenha,
       sexo: this.usuario.sexo
@@ -84,6 +85,7 @@ export class FormUsuarioComponent implements OnInit {
       nombre: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(40)]],
       apellido: ['', [Validators.minLength(5), Validators.maxLength(40)]],
       username: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(40)]],
+      correo: ['', [Validators.minLength(10), Validators.maxLength(70)]],
       contrasenha: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(20)]],
       asegurarContrasenha: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(20)]],
       sexo: ['', [Validators.required]],

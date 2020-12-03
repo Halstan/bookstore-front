@@ -15,6 +15,7 @@
                         <th>Nombre</th>
                         <th>Apellido</th>
                         <th>Username</th>
+                        <th>Correo</th>
                         <th>Estado</th>
                         <th>Fecha de creación</th>
                         <th>Sexo</th>
@@ -29,6 +30,7 @@
                         <td>{{ usuario.nombre }}</td>
                         <td>{{ usuario.apellido }}</td>
                         <td>{{ usuario.username }}</td>
+                        <td>{{ usuario.correo }}</td>
                         <ng-container *ngIf="usuario.activado else elseTemplate">
                             <td>Activado</td>
                         </ng-container>

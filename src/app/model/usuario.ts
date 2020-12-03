@@ -7,6 +7,7 @@ export class Usuario{
     nombre: string;
     apellido: string;
     username: string;
+    correo: string;
     contrasenha: string;
     asegurarContrasenha: string;
     activado: boolean;
