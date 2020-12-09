@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import uri from './global.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
@@ -12,6 +12,8 @@ import Swal from 'sweetalert2';
 })
 export class UsuarioService {
 
+  header = new HttpHeaders();
+
   constructor(private httpClient: HttpClient,
               private router: Router) { }
 
@@ -22,7 +24,8 @@ export class UsuarioService {
   }
 
   insertarUsuario(usuario: Usuario): Observable<Usuario>{
-    return this.httpClient.post(`${uri}usuarios`, usuario).pipe(
+    this.header.append('Access-Control-Allow-Origin', '*');
+    return this.httpClient.post(`${uri}usuarios`, usuario, {headers: this.header}).pipe(
       map(res => res as Usuario),
       catchError(err => {
         if (err.status === 400){
@@ -40,6 +43,15 @@ export class UsuarioService {
       catchError(err => {
         this.router.navigate(['/usuarios']);
         Swal.fire('Error al obtener al usuario', err.error, 'error');
+        return throwError(err);
+      })
+    );
+  }
+
+  getUsuarioByUsername(username: string): Observable<Usuario>{
+    return this.httpClient.get(`${uri}usuarios/username/${username}`).pipe(
+      map(res => res as Usuario),
+      catchError(err => {
         return throwError(err);
       })
     );

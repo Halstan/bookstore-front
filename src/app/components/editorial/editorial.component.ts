@@ -12,6 +12,7 @@ export class EditorialComponent implements OnInit {
 
   editoriales: Editorial[];
   messageError: string;
+  cargandoEditorial: boolean;
   swalWithBootstrapButtons = Swal.mixin({
     customClass: {
       confirmButton: 'btn btn-success',
@@ -27,9 +28,12 @@ export class EditorialComponent implements OnInit {
               private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-
+    this.cargandoEditorial = true;
     this.editorialService.getEditoriales().subscribe(
-      editoriales => this.editoriales = editoriales['Editoriales']
+      editoriales => {
+        this.editoriales = editoriales['Editoriales'];
+        this.cargandoEditorial = false;
+      }
     );
 
   }

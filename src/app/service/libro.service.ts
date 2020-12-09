@@ -89,7 +89,7 @@ export class LibroService {
     return this.httpClient.get(`${uri}libros/${idLibro}`).pipe(
       map(res => res as Libro),
       catchError(err => {
-        this.router.navigate(['/autores']);
+        this.router.navigate(['/libros']);
         Swal.fire('Error al obtener el libro', err.Error, 'error');
         return throwError(err);
       })

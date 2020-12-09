@@ -12,7 +12,7 @@ import { FooterComponent } from './components/shared/footer/footer.component';
 import { LoadingComponent } from './components/shared/loading/loading.component';
 import { LibroComponent } from './components/libro/libro.component';
 import { EditorialComponent } from './components/editorial/editorial.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CardComponent } from './components/libro/card/card.component';
 import localEs from '@angular/common/locales/es';
 import { registerLocaleData } from '@angular/common';
@@ -30,7 +30,6 @@ import { FormEditorialComponent } from './components/editorial/form-editorial/fo
 import { UsuarioComponent } from './components/usuario/usuario.component';
 import { UsuarioService } from './service/usuario.service';
 import { FormUsuarioComponent } from './components/usuario/form-usuario/form-usuario.component';
-import { SexoService } from './service/sexo.service';
 import { FormLibroComponent } from './components/libro/form-libro/form-libro.component';
 import { IdiomaService } from './service/idioma.service';
 import { AlquilerComponent } from './components/alquiler/alquiler.component';
@@ -40,6 +39,10 @@ import { IdiomaComponent } from './components/idioma/idioma.component';
 import { FormIdiomaComponent } from './components/idioma/form-idioma/form-idioma.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { AuthService } from './service/auth.service';
+import { TokenInterceptor } from './interceptors/token/token.interceptor';
+import { AuthInterceptor } from './interceptors/token/auth.interceptor';
+import { LoginComponent } from './components/login/login.component';
 
 registerLocaleData(localEs);
 @NgModule({
@@ -66,7 +69,8 @@ registerLocaleData(localEs);
     AlquilerComponent,
     FormAlquilerComponent,
     IdiomaComponent,
-    FormIdiomaComponent
+    FormIdiomaComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -83,9 +87,11 @@ registerLocaleData(localEs);
     EditorialService,
     LibroService,
     UsuarioService,
-    SexoService,
     IdiomaService,
-    AlquilerService
+    AlquilerService,
+    AuthService,
+    {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]
 })

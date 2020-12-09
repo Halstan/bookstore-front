@@ -13,6 +13,7 @@ export class CategoriaComponent implements OnInit {
 
   categorias: Categoria[];
   messageError: string;
+  cargandoCategoria: boolean;
   swalWithBootstrapButtons = Swal.mixin({
     customClass: {
       confirmButton: 'btn btn-success',
@@ -28,9 +29,12 @@ export class CategoriaComponent implements OnInit {
               private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-
+    this.cargandoCategoria = true;
     this.categoriaService.getCategorias().subscribe(
-      categorias => this.categorias = categorias['Categorias']
+      categorias => {
+        this.categorias = categorias['Categorias']
+        this.cargandoCategoria = false;
+      }
     );
 
   }

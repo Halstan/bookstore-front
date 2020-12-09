@@ -3,9 +3,8 @@ import { Usuario } from '../../../model/usuario';
 import { UsuarioService } from '../../../service/usuario.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
-import { SexoService } from '../../../service/sexo.service';
-import { Sexo } from '../../../model/sexo';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ValidadorService } from '../../../service/validador.service';
 
 @Component({
   selector: 'app-form-usuario',
@@ -14,24 +13,23 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class FormUsuarioComponent implements OnInit {
 
   usuario: Usuario = new Usuario();
-  sexos: Sexo[];
+  sexos = [`Masculino`, `Femenino`];
   title = 'Registrarme';
   errors: string[] = [];
   formUsuario: FormGroup;
   messageError: string;
 
   constructor(private usuarioService: UsuarioService,
-              private sexoService: SexoService,
               private router: Router,
               private activatedRoute: ActivatedRoute,
-              private fb: FormBuilder) {
+              private fb: FormBuilder,
+              private validadorService: ValidadorService) {
 
     this.crearFormulario();
     this.cargarUsuario();
   }
 
   ngOnInit(): void {
-    this.listSexos();
   }
 
   registrarUsuario(): void{
@@ -62,10 +60,14 @@ export class FormUsuarioComponent implements OnInit {
     });
   }
 
-  listSexos(): void{
-    this.sexoService.getSexos().subscribe(
-      sexos => this.sexos = sexos['Sexos']
-    );
+  get pass1NoValido(): boolean{
+    return this.formUsuario.get('contrasenha').invalid && this.formUsuario.get('contrasenha').touched;
+  }
+
+  get pass2NoValido(): boolean{
+    const pass1 = this.formUsuario.get('contrasenha').value;
+    const pass2 = this.formUsuario.get('asegurarContrasenha').value;
+    return pass1 === pass2 ? false : true;
   }
 
   cargarData(): void{
@@ -85,10 +87,12 @@ export class FormUsuarioComponent implements OnInit {
       nombre: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(40)]],
       apellido: ['', [Validators.minLength(5), Validators.maxLength(40)]],
       username: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(40)]],
-      correo: ['', [Validators.minLength(10), Validators.maxLength(70)]],
+      correo: ['', [Validators.minLength(10), Validators.maxLength(70), Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]],
       contrasenha: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(20)]],
       asegurarContrasenha: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(20)]],
       sexo: ['', [Validators.required]],
+    }, {
+      validators: [this.validadorService.passwordsIguales('contrasenha', 'asegurarContrasenha')]
     });
   }
 
@@ -105,13 +109,6 @@ export class FormUsuarioComponent implements OnInit {
         this.errors = err.error.Errores as string[];
       }
     );
-  }
-
-  compareSexo(sexo1: Sexo, sexo2: Sexo): boolean {
-    if (sexo1 === undefined && sexo2 === undefined ){
-      return true;
-    }
-    return sexo1 == null || sexo2 == null ? false : sexo1.idSexo === sexo2.idSexo;
   }
 
 }

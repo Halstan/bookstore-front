@@ -25,24 +25,26 @@
             class="form-control"
             formControlName="nombre"
             name="nombre"
+            placeholder="Nombre"
           />
         </div>
       </div>
 
       <div class="form-group row">
-        <label for="fundador" class="col-form-label col-sm-2">Apellido</label>
+        <label for="apellido" class="col-form-label col-sm-2">Apellido</label>
         <div class="col-sm-6">
           <input
             type="text"
             class="form-control"
             formControlName="apellido"
             name="apellido"
+            placeholder="Apellido"
           />
         </div>
       </div>
 
       <div class="form-group row">
-        <label for="fechaFundacion" class="col-form-label col-sm-2"
+        <label for="username" class="col-form-label col-sm-2"
           >Nombre de usuario</label
         >
         <div class="col-sm-6">
@@ -50,12 +52,13 @@
             type="text"
             class="form-control"
             formControlName="username"
+            placeholder="Nombre de usuario"
           />
         </div>
       </div>
 
       <div class="form-group row">
-        <label for="fechaFundacion" class="col-form-label col-sm-2"
+        <label for="correo" class="col-form-label col-sm-2"
           >Correo</label
         >
         <div class="col-sm-6">
@@ -63,12 +66,13 @@
             type="email"
             class="form-control"
             formControlName="correo"
+            placeholder="Correo"
           />
         </div>
       </div>
 
       <div class="form-group row">
-        <label for="fechaFundacion" class="col-form-label col-sm-2"
+        <label for="contrasenha" class="col-form-label col-sm-2"
           >Contraseña</label
         >
         <div class="col-sm-6">
@@ -77,12 +81,14 @@
             class="form-control"
             formControlName="contrasenha"
             name="contrasenha"
+            placeholder="Contraseña"
+            [class.is-invalid]="pass1NoValido"
           />
         </div>
       </div>
 
       <div class="form-group row">
-        <label for="fechaFundacion" class="col-form-label col-sm-2"
+        <label for="asegurarContrasenha" class="col-form-label col-sm-2"
           >Vuelve a introducir tu contraseña</label
         >
         <div class="col-sm-6">
@@ -91,22 +97,23 @@
             class="form-control"
             formControlName="asegurarContrasenha"
             name="asegurarContrasenha"
+            placeholder="Confirmar contraseña"
+            [class.is-invalid]="pass2NoValido"
           />
         </div>
       </div>
 
       <div class="form-group row">
-        <label for="pais" class="col-form-label col-sm-2">Sexo</label>
+        <label for="sexo" class="col-form-label col-sm-2">Sexo</label>
         <div class="col-sm-6">
           <select
-            [compareWith]="compareSexo"
             class="form-control"
             formControlName="sexo"
             name="sexo"
           >
-            <option [ngValue]="undefined" selected>Seleccionar Sexo</option>
+            <option [ngValue]="undefined" [selected]="undefined">Seleccionar Sexo</option>
             <option *ngFor="let sexo of sexos" [ngValue]="sexo">
-              {{ sexo.nombreSexo }}
+              {{ sexo }}
             </option>
           </select>
         </div>
@@ -137,3 +144,13 @@
     </form>
   </div>
 </div>
+<hr>
+
+<pre class="text-white">
+  Estado del formulario: {{ formUsuario.valid }}
+  <br>
+  Status: {{ formUsuario.status }}
+  <pre class="text-white">
+    {{ formUsuario.value | json}}
+  </pre>
+</pre>

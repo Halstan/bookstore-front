@@ -11,6 +11,7 @@ export class UsuarioComponent implements OnInit {
 
   usuarios: Usuario[];
   messageError: string;
+  cargandoUsuario: boolean;
   swalWithBootstrapButtons = Swal.mixin({
     customClass: {
       confirmButton: 'btn btn-success',
@@ -25,9 +26,12 @@ export class UsuarioComponent implements OnInit {
   constructor(private usuarioService: UsuarioService) { }
 
   ngOnInit(): void {
-
+    this.cargandoUsuario = true;
     this.usuarioService.getUsuarios().subscribe(
-      usuarios => this.usuarios = usuarios['Usuarios']
+      usuarios => {
+        this.usuarios = usuarios['Usuarios'];
+        this.cargandoUsuario = false;
+      }
     );
 
   }

@@ -17,10 +17,12 @@ import { AlquilerComponent } from './components/alquiler/alquiler.component';
 import { FormAlquilerComponent } from './components/alquiler/form-alquiler/form-alquiler.component';
 import { IdiomaComponent } from './components/idioma/idioma.component';
 import { FormIdiomaComponent } from './components/idioma/form-idioma/form-idioma.component';
+import { LoginComponent } from './components/login/login.component';
 
 const routes: Routes = [
   {path: '', pathMatch: 'full', redirectTo: 'home'},
   {path: 'home', component: HomeComponent},
+  {path: 'login', component: LoginComponent},
 
   {path: 'idiomas', component: IdiomaComponent},
   {path: 'idiomas/form', component: FormIdiomaComponent},

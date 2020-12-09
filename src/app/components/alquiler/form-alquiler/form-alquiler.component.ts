@@ -61,7 +61,6 @@ export class FormAlquilerComponent implements OnInit {
   cargarData(): void{
     this.formAlquiler.reset({
       fechaRetorno: this.alquiler.fechaRetorno,
-      fechaCreacion: this.alquiler.fechaCreacion,
       usuario: this.alquiler.usuario,
       libro: this.alquiler.libro
     });

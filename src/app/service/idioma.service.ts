@@ -34,7 +34,7 @@ export class IdiomaService {
   }
 
   getIdioma(idIdioma: number): Observable<Idioma>{
-    return this.httpClient.get(`${uri}/idiomas/${idIdioma}`).pipe(
+    return this.httpClient.get(`${uri}idiomas/${idIdioma}`).pipe(
       map(res => res as Idioma),
       catchError(err => {
         if (err.status === 400){

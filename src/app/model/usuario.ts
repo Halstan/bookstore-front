@@ -1,4 +1,3 @@
-import { Sexo } from './sexo';
 import { Rol } from './rol';
 
 export class Usuario{
@@ -11,8 +10,8 @@ export class Usuario{
     contrasenha: string;
     asegurarContrasenha: string;
     activado: boolean;
-    fechaCreacion: Date;
-    sexo: Sexo;
-    roles: Rol[];
+    fechaModificacion: Date;
+    sexo: string;
+    roles: string[];
 
 }

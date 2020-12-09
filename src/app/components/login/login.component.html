@@ -1,0 +1,22 @@
+<div class="card border-primary text-center m-5 animated fadeIn">
+    <div class="card-header">{{ titulo }}</div>
+    <div class="card-body">
+
+        <form method="post">
+            <div class="form-group col-sm-6 col-lg col-md">
+                <label for="username"></label>
+                <input [(ngModel)]="user.username" type="text" class="form-control" 
+                name="username" placeholder="Nombre de usuario" required autofocus>
+            </div>
+
+            <div class="form-group col-sm-6 col-lg col-md">
+                <input [(ngModel)]="user.contrasenha" type="password" class="form-control" 
+                name="password" placeholder="Contraseña" required>
+            </div>
+
+            <div class="form-group col-sm-6 col-lg col-md">
+                <input (click)="login()" type="submit" class="btn btn-lg btn-primary btn-block" value="Iniciar sesión">
+            </div>
+        </form>
+    </div>
+</div>

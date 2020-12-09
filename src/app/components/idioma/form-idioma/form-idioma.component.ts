@@ -47,7 +47,7 @@ export class FormIdiomaComponent implements OnInit {
 
   crearFormulario(): void{
     this.formIdioma = this.fb.group({
-      nombreIdioma: ['', [Validators.required, Validators.maxLength(5), Validators.minLength(30)]]
+      nombreIdioma: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(30)]]
     });
   }
 
