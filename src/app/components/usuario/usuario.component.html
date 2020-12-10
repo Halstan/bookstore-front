@@ -2,7 +2,7 @@
 <div class="card border-primary mb-3 m-5 animated fadeIn" *ngIf="!cargandoUsuario">
     <div class="card-header">Listado de usuarios</div>
     <div class="card-body text-primary">
-        <h5 class="card-title">Cantidad de usuarios: {{usuarios?.length}}</h5>
+        <h5 class="card-title text-white">Cantidad de usuarios: {{usuarios?.length}}</h5>
             <div class="my-2 text-left">
                 <button class="btn btn-rounded btn-primary" [routerLink] = "['/usuarios/form']">Crear Usuario</button>
             </div>
@@ -20,9 +20,9 @@
                         <th>Estado</th>
                         <th>Fecha de creación</th>
                         <th>Sexo</th>
-                        <td>Rol</td>
+                        <td *ngIf="authService.hasRole('ROLE_ADMIN')">Rol</td>
                         <th>Editar</th>
-                        <th>Eliminar</th>
+                        <th *ngIf="authService.hasRole('ROLE_ADMIN')">Eliminar</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -40,15 +40,15 @@
                         </ng-template>
                         <td>{{ usuario.fechaModificacion | date}}</td>
                         <td>{{ usuario.sexo }}</td>
-                        <td>
+                        <td *ngIf="authService.hasRole('ROLE_ADMIN')">
                             <ul *ngFor="let rol of usuario.roles">
-                                <li>{{ rol['nombreRol'] }}</li>
+                                <li class="text-white">{{ rol['nombreRol'] }}</li>
                             </ul>
                         </td>
                         <td>
                             <button type="button" name="button" [routerLink]="['/usuarios/form', usuario.idUsuario]" class="btn btn-success">Editar</button>
                         </td>
-                        <td>
+                        <td *ngIf="authService.hasRole('ROLE_ADMIN')">
                             <button type="button" name="Eliminar" (click)="eliminarUsuario(usuario)" class="btn btn-danger">Eliminar</button>
                         </td>
                     </tr>

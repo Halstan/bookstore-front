@@ -3,6 +3,7 @@ import { Libro } from '../../model/libro';
 import { LibroService } from '../../service/libro.service';
 import { ActivatedRoute } from '@angular/router';
 import Swal from 'sweetalert2';
+import { AuthService } from '../../service/auth.service';
 
 @Component({
   selector: 'app-libros',
@@ -26,7 +27,7 @@ export class LibroComponent implements OnInit {
   messageError: string;
 
   constructor(private libroService: LibroService,
-              private activatedRoute: ActivatedRoute) { }
+              public authService: AuthService) { }
 
   ngOnInit(): void {
     this.cargandoLibro = true;

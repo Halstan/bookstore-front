@@ -24,6 +24,7 @@ export class MostrarComponent implements OnInit {
       libros => {
         this.libros = libros['Libros'];
         this.loading = false;
+        this.error = false;
       }
     );
 

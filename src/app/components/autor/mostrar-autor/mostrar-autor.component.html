@@ -1,12 +1,12 @@
 <div class="row">
     <div class="col m-5">
-        <input #termino type="text" (keyup.enter) = "buscar(termino.value)" class="form-control" placeholder="Buscar autor">
+        <input #termino type="text" (keyup.enter) = "buscar(termino.value)" class="form-control" placeholder="Buscar autor" *ngIf="!loading">
     </div>
 </div>
 
 <app-loading *ngIf="loading"></app-loading>
 
-<div class="card-columns m-5 animated fadeIn">
+<div class="card-columns m-5 animated fadeIn" *ngIf="!loading">
     <div *ngFor="let autor of autores" class="card">
       <img
         [src]="autor.urlFoto"
@@ -14,12 +14,12 @@
         alt="{{ autor.nombreAutor }}"
       />
       <div class="card-body">
-        <h2 class="card-title text-center">
+        <h2 class="card-title text-center text-white">
           {{ autor.nombreAutor }} {{ autor.apellido }}
         </h2>
-        <p> {{ autor.biografia }} </p>
+        <p class="text-white"> {{ autor.biografia }} </p>
         <ul>
-          <li><span class="font-weight-bold">Fecha de nacimiento:</span> {{ autor.fechaNacimiento | date: "mediumDate":"":"es" }}</li>
+          <li class="text-white"><span class="font-weight">Fecha de nacimiento:</span> {{ autor.fechaNacimiento | date: "mediumDate":"":"es" }}</li>
         </ul>
       </div>
     </div>

@@ -1,7 +1,7 @@
 <div class="card border-primary mb-3 m-5 animated fadeIn">
     <div class="card-header">Listado de Autores</div>
     <div class="card-body text-primary">
-        <h5 class="card-title">Cantidad de autores: {{ autores?.length }} </h5>
+        <h5 class="card-title text-white">Cantidad de autores: {{ autores?.length }} </h5>
             <div class="my-2 text-left">
                 <button class="btn btn-rounded btn-primary" [routerLink] = "['/autores/form']">Crear Autor</button>
             </div>
@@ -17,7 +17,7 @@
                         <th>Fecha de nacimiento</th>
                         <th>Fecha de modificacion</th>
                         <th>Editar</th>
-                        <th>Eliminar</th>
+                        <th *ngIf="authService.hasRole('ROLE_ADMIN')">Eliminar</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -30,7 +30,7 @@
                         <td>
                             <button type="button" name="button" [routerLink]="['/autores/form', autor.idAutor]" class="btn btn-success">Editar</button>
                         </td>
-                        <td>
+                        <td *ngIf="authService.hasRole('ROLE_ADMIN')">
                             <button type="button" name="Eliminar" (click)="eliminarAutor(autor)" class="btn btn-danger">Eliminar</button>
                         </td>
                     </tr>

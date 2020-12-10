@@ -3,7 +3,7 @@
     <div class="card border-primary mb-3 m-5 col-lg-12 col-xs-6 animated fadeIn">
         <div class="card-header">Listado de alquileres</div>
         <div class="card-body text-primary">
-            <h5 class="card-title">Cantidad de alquileres: {{alquileres?.length}}</h5>
+            <h5 class="card-title text-white">Cantidad de alquileres: {{alquileres?.length}}</h5>
             <div class="my-2 text-left">
                 <button class="btn btn-rounded btn-primary" [routerLink]="['/alquileres/form']">Añadir alquiler</button>
             </div>
@@ -21,7 +21,7 @@
                         <th>Usuario</th>
                         <th>Libro</th>
                         <th>Cancelar</th>
-                        <th>Eliminar</th>
+                        <th *ngIf="authService.hasRole('ROLE_ADMIN')">Eliminar</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -51,7 +51,7 @@
                             </td>
                         </ng-template>
 
-                        <td>
+                        <td *ngIf="authService.hasRole('ROLE_ADMIN')">
                             <button type="button" name="Eliminar" (click)="eliminarAlquiler(alquiler)"
                                 class="btn btn-danger">Eliminar</button>
                         </td>

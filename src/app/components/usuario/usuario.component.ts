@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from '../../service/usuario.service';
 import { Usuario } from '../../model/usuario';
 import Swal from 'sweetalert2';
+import { AuthService } from '../../service/auth.service';
 
 @Component({
   selector: 'app-usuario',
@@ -23,7 +24,8 @@ export class UsuarioComponent implements OnInit {
     buttonsStyling: false
   });
 
-  constructor(private usuarioService: UsuarioService) { }
+  constructor(private usuarioService: UsuarioService,
+              public authService: AuthService) { }
 
   ngOnInit(): void {
     this.cargandoUsuario = true;

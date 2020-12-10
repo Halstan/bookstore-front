@@ -3,6 +3,7 @@ import { Editorial } from '../../model/editorial';
 import { ActivatedRoute } from '@angular/router';
 import { EditorialService } from '../../service/editorial.service';
 import Swal from 'sweetalert2';
+import { AuthService } from '../../service/auth.service';
 
 @Component({
   selector: 'app-editorial',
@@ -25,7 +26,7 @@ export class EditorialComponent implements OnInit {
   });
 
   constructor(private editorialService: EditorialService,
-              private activatedRoute: ActivatedRoute) { }
+              public authService: AuthService) { }
 
   ngOnInit(): void {
     this.cargandoEditorial = true;

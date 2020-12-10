@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Idioma } from '../../model/idioma';
 import { IdiomaService } from '../../service/idioma.service';
 import Swal from 'sweetalert2';
+import { AuthService } from '../../service/auth.service';
 
 @Component({
   selector: 'app-idioma',
@@ -25,7 +26,8 @@ export class IdiomaComponent implements OnInit {
     buttonsStyling: false
   });
 
-  constructor(private idiomaService: IdiomaService) { }
+  constructor(private idiomaService: IdiomaService,
+              public authService: AuthService) { }
 
   ngOnInit(): void {
     this.cargandoIdioma = true;

@@ -1,4 +1,3 @@
-import { Rol } from './rol';
 
 export class Usuario{
 
@@ -12,6 +11,6 @@ export class Usuario{
     activado: boolean;
     fechaModificacion: Date;
     sexo: string;
-    roles: string[];
+    roles: string[] = [];
 
 }

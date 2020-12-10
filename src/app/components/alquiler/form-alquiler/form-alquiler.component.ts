@@ -69,7 +69,6 @@ export class FormAlquilerComponent implements OnInit {
   crearFormulario(): void{
     this.formAlquiler = this.fb.group({
       fechaRetorno: ['', [Validators.required]],
-      fechaCreacion: ['', [Validators.required]],
       usuario: ['', [Validators.required]],
       libro: ['', [Validators.required]]
     });

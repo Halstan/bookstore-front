@@ -3,6 +3,7 @@ import { Autor } from '../../model/autor';
 import { ActivatedRoute } from '@angular/router';
 import { AutorService } from '../../service/autor.service';
 import Swal from 'sweetalert2';
+import { AuthService } from '../../service/auth.service';
 
 @Component({
   selector: 'app-autor',
@@ -24,7 +25,7 @@ export class AutorComponent implements OnInit {
   });
 
   constructor(private autorService: AutorService,
-              private activatedRoute: ActivatedRoute) { }
+              public authService: AuthService) { }
 
   ngOnInit(): void {
     this.autorService.getAutores().subscribe(

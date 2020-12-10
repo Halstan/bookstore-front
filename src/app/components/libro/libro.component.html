@@ -3,7 +3,7 @@
     <div class="card border-primary mb-3 m-5 col-lg-12 col-xs-6 animated fadeIn">
         <div class="card-header">Listado de libros</div>
         <div class="card-body text-primary">
-            <h5 class="card-title">Cantidad de libros: {{libros?.length}}</h5>
+            <h5 class="card-title text-white">Cantidad de libros: {{libros?.length}}</h5>
             <div class="my-2 text-left">
                 <button class="btn btn-rounded btn-primary" [routerLink]="['/libros/form']">Crear Libro</button>
             </div>
@@ -25,7 +25,7 @@
                         <th>Precio</th>
                         <th>Estado</th>
                         <th>Editar</th>
-                        <th>Eliminar</th>
+                        <th *ngIf="authService.hasRole('ROLE_ADMIN')">Eliminar</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -58,7 +58,7 @@
                             <button type="button" name="button" [routerLink]="['/libros/form', libro.idLibro]"
                                 class="btn btn-success">Editar</button>
                         </td>
-                        <td>
+                        <td *ngIf="authService.hasRole('ROLE_ADMIN')">
                             <button type="button" name="Eliminar" (click)="eliminarLibro(libro)"
                                 class="btn btn-danger">Eliminar</button>
                         </td>

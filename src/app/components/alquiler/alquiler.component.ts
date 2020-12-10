@@ -1,8 +1,9 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Alquiler } from '../../model/alquiler';
 import { AlquilerService } from '../../service/alquiler.service';
 import Swal from 'sweetalert2';
+import { AuthService } from 'src/app/service/auth.service';
 
 @Component({
   selector: 'app-alquiler',
@@ -26,6 +27,7 @@ export class AlquilerComponent implements OnInit {
   });
 
   constructor(private alquilerService: AlquilerService,
+              public authService: AuthService,
               private router: Router) { }
 
   ngOnInit(): void {

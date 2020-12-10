@@ -6,30 +6,30 @@
         alt="{{ item.nombreLibro }}"
       />
       <div class="card-body">
-        <h2 class="card-title text-center">
+        <h2 class="card-title text-center  text-white">
           {{ item.nombreLibro }}
         </h2>
-        <p class="text-justify">
+        <p class="text-justify  text-white">
           {{ item.descripcion }}
         </p>
         <ul>
-          <li>{{ item.fechaPublicacion | date: "mediumDate":"":"es" }}</li>
+          <li class="text-white">{{ item.fechaPublicacion | date: "mediumDate":"":"es" }}</li>
           <ng-container *ngIf="item.estado == true; else elseTemplate">
-            <li>Disponible</li>
+            <li class="text-white">Disponible</li>
           </ng-container>
           <ng-template #elseTemplate>
-            <li>Reservado</li>
+            <li class="text-white">Reservado</li>
           </ng-template>
           <ng-container *ngIf="item.precio > 0; else elseTemplate2">
-            <li>Precio: {{ item.precio |currency:'PEN '}}</li>
+            <li class="text-white">Precio: {{ item.precio |currency:'PEN '}}</li>
           </ng-container>
           <ng-template #elseTemplate2>
-            <li>Precio: Gratuito</li>
+            <li class="text-white">Precio: Gratuito</li>
           </ng-template>
         </ul>
         <div class="card-text">
           <h2>
-            Autor:
+            <span class="text-white">Autor:</span>
             <span class="badge badge-danger font-weight-normal"
               >{{ item.autor.nombreAutor }} {{ item.autor.apellido }}</span
             >
@@ -37,23 +37,23 @@
         </div>
         <div class="card-text">
           <h2>
-            Editorial:
-            <span class="badge badge-primary font-weight-normal">{{
+            <span class="text-white">Editorial:</span>
+            <span class="badge badge-primary font-weight-normal text-white">{{
               item.editorial.nombreEditorial
             }}</span>
           </h2>
         </div>
         <div class="card-text">
           <h2>
-            Categoría:
-            <span class="badge badge-success font-weight-normal">{{
+            <span class="text-white">Categoría:</span>
+            <span class="badge badge-success font-weight-normal text-white">{{
               item.categoria.nombreCategoria
             }}</span>
           </h2>
         </div>
         <div class="card-text">
           <h2>
-            Idioma:
+            <span class="text-white">Idioma:</span>
             <span class="badge badge-info font-weight-normal">{{
               item.idioma.nombreIdioma
             }}</span>

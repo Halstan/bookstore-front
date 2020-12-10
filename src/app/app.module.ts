@@ -43,6 +43,7 @@ import { AuthService } from './service/auth.service';
 import { TokenInterceptor } from './interceptors/token/token.interceptor';
 import { AuthInterceptor } from './interceptors/token/auth.interceptor';
 import { LoginComponent } from './components/login/login.component';
+import { MisAlquileresComponent } from './components/alquiler/mis-alquileres/mis-alquileres.component';
 
 registerLocaleData(localEs);
 @NgModule({
@@ -70,7 +71,8 @@ registerLocaleData(localEs);
     FormAlquilerComponent,
     IdiomaComponent,
     FormIdiomaComponent,
-    LoginComponent
+    LoginComponent,
+    MisAlquileresComponent
   ],
   imports: [
     BrowserModule,
