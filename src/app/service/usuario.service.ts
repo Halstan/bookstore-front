@@ -58,7 +58,20 @@ export class UsuarioService {
   }
 
   actualizarUsuario(usuario: Usuario): Observable<Usuario>{
-    return this.httpClient.put(`usuarios`, usuario).pipe(
+    return this.httpClient.put(`${uri}usuarios`, usuario).pipe(
+      map(res => res as Usuario),
+      catchError(err => {
+        if (err.status === 400){
+          return throwError(err);
+        }
+        Swal.fire('Errors', err.error['Errores'], 'error');
+        return throwError(err);
+      })
+    );
+  }
+
+  actualizarUsuarioAdmin(usuario: Usuario): Observable<Usuario>{
+    return this.httpClient.put(`${uri}usuarios/admin`, usuario).pipe(
       map(res => res as Usuario),
       catchError(err => {
         if (err.status === 400){

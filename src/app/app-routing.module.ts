@@ -18,6 +18,9 @@ import { FormAlquilerComponent } from './components/alquiler/form-alquiler/form-
 import { IdiomaComponent } from './components/idioma/idioma.component';
 import { FormIdiomaComponent } from './components/idioma/form-idioma/form-idioma.component';
 import { LoginComponent } from './components/login/login.component';
+import { MisAlquileresComponent } from './components/alquiler/mis-alquileres/mis-alquileres.component';
+import { PerfilComponent } from './components/usuario/perfil/perfil.component';
+import { UsuarioAdminComponent } from './components/usuario/usuario-admin/usuario-admin.component';
 
 const routes: Routes = [
   {path: '', pathMatch: 'full', redirectTo: 'home'},
@@ -30,10 +33,13 @@ const routes: Routes = [
 
   {path: 'alquileres', component: AlquilerComponent},
   {path: 'alquileres/form', component: FormAlquilerComponent},
+  {path: 'alquileres/misalquileres', component: MisAlquileresComponent},
 
   {path: 'usuarios', component: UsuarioComponent},
   {path: 'usuarios/form', component: FormUsuarioComponent},
   {path: 'usuarios/form/:id', component: FormUsuarioComponent},
+  {path: 'usuarios/admin/form/:id', component: UsuarioAdminComponent},
+  {path: 'perfil', component: PerfilComponent},
 
   {path: 'categorias', component: CategoriaComponent},
   {path: 'categorias/form', component: FormCategoriaComponent},

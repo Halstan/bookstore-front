@@ -44,6 +44,9 @@ import { TokenInterceptor } from './interceptors/token/token.interceptor';
 import { AuthInterceptor } from './interceptors/token/auth.interceptor';
 import { LoginComponent } from './components/login/login.component';
 import { MisAlquileresComponent } from './components/alquiler/mis-alquileres/mis-alquileres.component';
+import { PerfilComponent } from './components/usuario/perfil/perfil.component';
+import { UsuarioAdminComponent } from './components/usuario/usuario-admin/usuario-admin.component';
+import { RolService } from './service/rol.service';
 
 registerLocaleData(localEs);
 @NgModule({
@@ -72,7 +75,9 @@ registerLocaleData(localEs);
     IdiomaComponent,
     FormIdiomaComponent,
     LoginComponent,
-    MisAlquileresComponent
+    MisAlquileresComponent,
+    PerfilComponent,
+    UsuarioAdminComponent
   ],
   imports: [
     BrowserModule,
@@ -92,6 +97,7 @@ registerLocaleData(localEs);
     IdiomaService,
     AlquilerService,
     AuthService,
+    RolService,
     {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
   ],

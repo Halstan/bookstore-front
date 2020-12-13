@@ -52,7 +52,7 @@ export class EditorialComponent implements OnInit {
       if (result.isConfirmed) {
         this.editorialService.eliminarEditorial(editorial.idEditorial).subscribe(
           res => {
-            this.editoriales = this.editoriales.filter(au => au !== editorial);
+            this.editoriales = this.editoriales.filter(ed => ed !== editorial);
             this.swalWithBootstrapButtons.fire(
               'Editorial eliminada',
               `La editorial ${editorial.nombreEditorial} fue eliminada con exito.`,

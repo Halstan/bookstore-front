@@ -20,6 +20,12 @@ export class AlquilerService {
 
   }
 
+  getAlquileresByUsername(username: string): Observable<any>{
+    return this.httpClient.get(`${uri}alquileres/usuario/${username}`).pipe(
+      map(res => res as Alquiler[])
+    );
+  }
+
   registrarAlquiler(alquiler: Alquiler): Observable<Alquiler>{
     return this.httpClient.post(`${uri}alquileres`, alquiler).pipe(
       map(res => res as Alquiler),

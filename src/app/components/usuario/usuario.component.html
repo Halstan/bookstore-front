@@ -46,7 +46,12 @@
                             </ul>
                         </td>
                         <td>
-                            <button type="button" name="button" [routerLink]="['/usuarios/form', usuario.idUsuario]" class="btn btn-success">Editar</button>
+                            <ng-container *ngIf="authService.hasRole('ROLE_ADMIN') else elseRol">
+                                <button type="button" name="button" [routerLink]="['/usuarios/admin/form', usuario.idUsuario]" class="btn btn-success">Editar</button>
+                            </ng-container>
+                            <ng-template #elseRol>
+                                <button type="button" name="button" [routerLink]="['/usuarios/form', usuario.idUsuario]" class="btn btn-success">Editar</button>
+                            </ng-template>
                         </td>
                         <td *ngIf="authService.hasRole('ROLE_ADMIN')">
                             <button type="button" name="Eliminar" (click)="eliminarUsuario(usuario)" class="btn btn-danger">Eliminar</button>

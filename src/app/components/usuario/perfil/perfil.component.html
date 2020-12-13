@@ -1,0 +1,147 @@
+<ul class="alert alert-danger m-5" *ngIf="errors?.length > 0">
+    <li *ngFor="let err of errors">
+      {{ err }}
+    </li>
+  </ul>
+  
+  <ul class="alert alert-danger m-5" *ngIf="messageError">
+    {{ messageError }}
+  </ul>
+  
+  <div class="card bg-dark text-white m-5">
+    <div class="card-header">
+      {{ title }}
+    </div>
+  
+    <div class="card-body text-primary">
+      <form [formGroup]="formUsuario" (ngSubmit)="actualizarUsuario()">
+        <div class="form-group row">
+          <label for="nombreCategoria" class="col-form-label col-sm-2"
+            >Nombre</label
+          >
+          <div class="col-sm-6">
+            <input
+              type="text"
+              class="form-control"
+              formControlName="nombre"
+              name="nombre"
+              placeholder="Nombre"
+            />
+          </div>
+        </div>
+  
+        <div class="form-group row">
+          <label for="apellido" class="col-form-label col-sm-2">Apellido</label>
+          <div class="col-sm-6">
+            <input
+              type="text"
+              class="form-control"
+              formControlName="apellido"
+              name="apellido"
+              placeholder="Apellido"
+            />
+          </div>
+        </div>
+  
+        <div class="form-group row">
+          <label for="username" class="col-form-label col-sm-2"
+            >Nombre de usuario</label
+          >
+          <div class="col-sm-6">
+            <input
+              type="text"
+              class="form-control"
+              formControlName="username"
+              placeholder="Nombre de usuario"
+              readonly
+            />
+          </div>
+        </div>
+  
+        <div class="form-group row">
+          <label for="correo" class="col-form-label col-sm-2"
+            >Correo</label
+          >
+          <div class="col-sm-6">
+            <input
+              type="email"
+              class="form-control"
+              formControlName="correo"
+              placeholder="Correo"
+            />
+          </div>
+        </div>
+  
+        <div class="form-group row">
+          <label for="contrasenha" class="col-form-label col-sm-2"
+            >Contraseña</label
+          >
+          <div class="col-sm-6">
+            <input
+              type="password"
+              class="form-control"
+              formControlName="contrasenha"
+              name="contrasenha"
+              placeholder="Contraseña"
+              [class.is-invalid]="pass1NoValido"
+            />
+          </div>
+        </div>
+  
+        <div class="form-group row">
+          <label for="asegurarContrasenha" class="col-form-label col-sm-2"
+            >Vuelve a introducir tu contraseña</label
+          >
+          <div class="col-sm-6">
+            <input
+              type="password"
+              class="form-control"
+              formControlName="asegurarContrasenha"
+              name="asegurarContrasenha"
+              placeholder="Confirmar contraseña"
+              [class.is-invalid]="pass2NoValido"
+            />
+          </div>
+        </div>
+  
+        <div class="form-group row">
+          <label for="sexo" class="col-form-label col-sm-2">Sexo</label>
+          <div class="col-sm-6">
+            <select
+              class="form-control"
+              formControlName="sexo"
+              name="sexo"
+            >
+              <option [ngValue]="undefined" [selected]="undefined">Seleccionar Sexo</option>
+              <option *ngFor="let sexo of sexos" [ngValue]="sexo">
+                {{ sexo }}
+              </option>
+            </select>
+          </div>
+        </div>
+  
+        <div class="form-group row">
+          <div class="col-sm-6">         
+
+              <button
+                class="btn btn-primary"
+                role="button"
+                [disabled]="!formUsuario.valid">
+                Actualizar
+              </button>
+
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <hr>
+  
+  <pre class="text-white">
+    Estado del formulario: {{ formUsuario.valid }}
+    <br>
+    Status: {{ formUsuario.status }}
+    <pre class="text-white">
+      {{ formUsuario.value | json}}
+    </pre>
+  </pre>

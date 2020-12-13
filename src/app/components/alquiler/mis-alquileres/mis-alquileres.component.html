@@ -1,1 +1,28 @@
-<p>mis-alquileres works!</p>
+<h2 class="text-center text-body m-5">Mis alquileres</h2>
+
+<app-loading *ngIf="loading"></app-loading>
+
+<div class="card-columns m-5 animated fadeIn" *ngIf="!loading">
+    <div *ngFor="let alquiler of alquileres" class="card">
+      <img
+        [src]="alquiler.libro.urlPortada"
+        class="card-img-top"
+        alt="{{ alquiler.libro.nombreLibro }}"
+      />
+      <div class="card-body">
+        <h2 class="card-title text-center text-white">
+          {{ alquiler.libro.nombreLibro }}
+        </h2>
+        <ng-container *ngIf="alquiler.estado else elseTemplate">
+            <p class="text-white">Estado: Activo</p>
+        </ng-container>
+        <ng-template #elseTemplate>
+            <p class="text-white">Estado: Devuelto</p>
+        </ng-template>
+        <ul>
+          <li class="text-white"><span class="font-weight">Fecha de registro:</span> {{ alquiler.fechaCreacion | date: "mediumDate":"":"es" }}</li>
+          <li class="text-white"><span class="font-weight">Fecha de devolucion:</span> {{ alquiler.fechaRetorno | date: "mediumDate":"":"es" }}</li>
+        </ul>
+      </div>
+    </div>
+  </div>

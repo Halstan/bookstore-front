@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Usuario } from '../../../model/usuario';
 import { UsuarioService } from '../../../service/usuario.service';
-import { ActivatedRoute, Router } from '@angular/router';
-import Swal from 'sweetalert2';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ValidadorService } from '../../../service/validador.service';
-import { AuthService } from 'src/app/service/auth.service';
+import Swal from 'sweetalert2';
+import { AuthService } from '../../../service/auth.service';
 
 @Component({
-  selector: 'app-form-usuario',
-  templateUrl: './form-usuario.component.html'
+  selector: 'app-perfil',
+  templateUrl: './perfil.component.html'
 })
-export class FormUsuarioComponent implements OnInit {
+export class PerfilComponent implements OnInit {
 
   usuario: Usuario = new Usuario();
   sexos = [`Masculino`, `Femenino`];
@@ -32,35 +32,18 @@ export class FormUsuarioComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
-  }
-
-  registrarUsuario(): void{
-    this.usuarioService.insertarUsuario(this.formUsuario.value).subscribe(
-      res => {
-        this.router.navigate(['/home']);
-        Swal.fire('Te has registrado con exito', `Bienvenido ${res.username}`, 'success');
-      },
-      err => {
-        this.messageError = err.error.Message;
-        this.errors = err.error.Errores as string[];
-      }
-    );
   }
 
   cargarUsuario(): void{
-    this.activatedRoute.params.subscribe(param => {
-      const id = param['id'];
-      if (id){
-        this.title = `Actualizar usuario`;
-        this.usuarioService.getUsuario(id).subscribe(
-          usuario => {
-            this.usuario = usuario;
-            this.cargarData();
-          }
-        );
-      }
-    });
+    const username = this.authService.getUsuario().username;
+    this.title = `Actualizar perfil de ${username}`;
+    this.usuarioService.getUsuarioByUsername(username).subscribe(
+      usuario => {
+      this.usuario = usuario;
+      this.cargarData();
+    }
+    );
+
   }
 
   get pass1NoValido(): boolean{
@@ -79,10 +62,9 @@ export class FormUsuarioComponent implements OnInit {
       apellido: this.usuario.apellido,
       username: this.usuario.username,
       correo: this.usuario.correo,
-      contrasenha: this.usuario.contrasenha,
+      contrasenha: '',
       asegurarContrasenha: this.usuario.asegurarContrasenha,
-      sexo: this.usuario.sexo,
-      rol: this.usuario.roles
+      sexo: this.usuario.sexo
     });
   }
 
@@ -95,7 +77,6 @@ export class FormUsuarioComponent implements OnInit {
       contrasenha: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(20)]],
       asegurarContrasenha: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(20)]],
       sexo: ['', [Validators.required]],
-      rol: ['', ],
     }, {
       validators: [this.validadorService.passwordsIguales('contrasenha', 'asegurarContrasenha')]
     });
@@ -107,6 +88,7 @@ export class FormUsuarioComponent implements OnInit {
     this.usuarioService.actualizarUsuario(usuario).subscribe(
       res => {
         this.router.navigate(['/home']);
+        this.authService.logout();
         Swal.fire('Usuario actualizado', `${res.username} ha sido actualizado`, 'success');
       },
       err => {
