@@ -1,6 +1,4 @@
 import { Injectable } from '@angular/core';
-import { UsuarioService } from './usuario.service';
-import { Usuario } from '../model/usuario';
 import { FormGroup } from '@angular/forms';
 
 @Injectable({
@@ -8,9 +6,7 @@ import { FormGroup } from '@angular/forms';
 })
 export class ValidadorService {
 
-  usuario: Usuario;
-
-  constructor(private usuarioService: UsuarioService) { }
+  constructor() { }
 
   passwordsIguales(pass1: string, pass2: string){
 

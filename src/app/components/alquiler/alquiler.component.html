@@ -1,63 +1,93 @@
 <app-loading *ngIf="cargandoAlquiler" class="m-5"></app-loading>
 <div class="row animated fadeIn" *ngIf="!cargandoAlquiler">
-    <div class="card border-primary mb-3 m-5 col-lg-12 col-xs-6 animated fadeIn">
-        <div class="card-header">Listado de alquileres</div>
-        <div class="card-body text-primary">
-            <h5 class="card-title text-white">Cantidad de alquileres: {{alquileres?.length}}</h5>
-            <div class="my-2 text-left">
-                <button class="btn btn-rounded btn-primary" [routerLink]="['/alquileres/form']">Añadir alquiler</button>
-            </div>
-            <div *ngIf="alquileres?.length == 0">
-                <p>No hay registros en la base de datos</p>
-            </div>
-            <table class="table table-bordered table-striped table-responsive-md table-hover"
-                *ngIf="alquileres?.length > 0">
-                <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>Fecha de creacion</th>
-                        <th>Fecha de retorno</th>
-                        <th>Estado</th>
-                        <th>Usuario</th>
-                        <th>Libro</th>
-                        <th>Cancelar</th>
-                        <th *ngIf="authService.hasRole('ROLE_ADMIN')">Eliminar</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let alquiler of alquileres">
-                        <td>{{ alquiler.idAlquiler }}</td>
-                        <td>{{ alquiler.fechaCreacion | date:'mediumDate':'':'es'}}</td>
-                        <td>{{ alquiler.fechaRetorno | date:'mediumDate':'':'es'}}</td>
-                        <ng-container *ngIf="alquiler.estado else elseTemplate">
-                            <td>Activo</td>
-                        </ng-container>
-                        <ng-template #elseTemplate>
-                            <td>Devuelto</td>
-                        </ng-template>
-                        <td>{{ alquiler.usuario.nombre }} {{alquiler.usuario.apellido}}</td>
-                        <td>{{ alquiler.libro.nombreLibro }}</td>
+  <div class="card border-primary mb-3 m-5 animated fadeIn">
+    <div class="card-header bg-form goldClass">Listado de alquileres</div>
+    <div class="card-body bg-dark text-primary">
+      <h5 class="card-title text-white">
+        Cantidad de alquileres: {{ alquileres?.length }}
+      </h5>
+      <div class="my-2 text-left">
+        <button
+          class="btn btn-rounded btn-primary"
+          [routerLink]="['/alquileres/form']"
+        >
+          Añadir alquiler
+        </button>
+      </div>
+      <div *ngIf="alquileres?.length == 0">
+        <p>No hay registros en la base de datos</p>
+      </div>
+      <table
+        class="table table-bordered table-striped table-responsive"
+        *ngIf="alquileres?.length > 0"
+      >
+        <thead class="text-white">
+          <tr>
+            <th class="goldClass">Id</th>
+            <th class="goldClass">Fecha de creacion</th>
+            <th class="goldClass">Fecha de retorno</th>
+            <th class="goldClass">Estado</th>
+            <th class="goldClass">Usuario</th>
+            <th class="goldClass">Libro</th>
+            <th class="goldClass">Cancelar</th>
+            <th class="goldClass" *ngIf="authService.hasRole('ROLE_ADMIN')">Eliminar</th>
+          </tr>
+        </thead>
+        <tbody class="text-white">
+          <tr *ngFor="let alquiler of alquileres">
+            <td class="goldClass">{{ alquiler.idAlquiler }}</td>
+            <td>{{ alquiler.fechaCreacion | date: "mediumDate":"":"es" }}</td>
+            <td>{{ alquiler.fechaRetorno | date: "mediumDate":"":"es" }}</td>
+            <ng-container *ngIf="alquiler.estado; else elseTemplate">
+              <td>Activo</td>
+            </ng-container>
+            <ng-template #elseTemplate>
+              <td>Devuelto</td>
+            </ng-template>
+            <td>
+              {{ alquiler.usuario.nombre }} {{ alquiler.usuario.apellido }}
+            </td>
+            <td>{{ alquiler.libro.nombreLibro }}</td>
 
-                        <ng-container *ngIf="alquiler.estado else elseIf">
-                            <td>
-                                <button type="button" name="button" (click)="desactivarAlquiler(alquiler)"
-                                class="btn btn-warning" >Cancelar</button>
-                            </td>
-                        </ng-container>
-                        <ng-template #elseIf>
-                            <td>
-                                <button type="button" name="button" (click)="desactivarAlquiler(alquiler)" disabled
-                                    class="btn btn-warning">Cancelar</button>
-                            </td>
-                        </ng-template>
+            <ng-container *ngIf="alquiler.estado; else elseIf">
+              <td>
+                <button
+                  type="button"
+                  name="button"
+                  (click)="desactivarAlquiler(alquiler)"
+                  class="btn btn-outline-warning"
+                >
+                  Cancelar
+                </button>
+              </td>
+            </ng-container>
+            <ng-template #elseIf>
+              <td>
+                <button
+                  type="button"
+                  name="button"
+                  (click)="desactivarAlquiler(alquiler)"
+                  disabled
+                  class="btn btn-outline-warning"
+                >
+                  Cancelar
+                </button>
+              </td>
+            </ng-template>
 
-                        <td *ngIf="authService.hasRole('ROLE_ADMIN')">
-                            <button type="button" name="Eliminar" (click)="eliminarAlquiler(alquiler)"
-                                class="btn btn-danger">Eliminar</button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+            <td *ngIf="authService.hasRole('ROLE_ADMIN')">
+              <button
+                type="button"
+                name="Eliminar"
+                (click)="eliminarAlquiler(alquiler)"
+                class="btn btn-outline-danger"
+              >
+                <i class="fa fa-trash-alt"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
+  </div>
 </div>

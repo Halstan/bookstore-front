@@ -15,35 +15,35 @@
   <div class="card-body">
     <form [formGroup]="formCategoria" (ngSubmit)="registrarCategoria()">
       <div class="form-group row">
-        <label for="nombreCategoria" class="col-form-label col-sm-2"
-          >Nombre</label
-        >
-        <div class="col-sm-6">
-          <input
+        <mat-form-field class="ml-5 w-50">
+        <mat-label for="nombreCategoria" class="col-form-label col-sm-2"
+          >Nombre</mat-label>
+        <div class="col w-100">
+          <input matInput
             type="text"
-            class="form-control"
             formControlName="nombreCategoria"
             placeholder="Nombre"
           />
         </div>
+      </mat-form-field>
       </div>
 
-      <div class="form-group row">
-        <div class="col-sm-6">
-          <button
-            class="btn btn-primary"
+      <div class="ml-3 row">
+        <div class="col w-100">
+          <button mat-raised-button
+            color="primary"
             role="button"
             *ngIf="!categoria.idCategoria; else elseBlock"
-            [disabled]="!formCategoria.valid"
+            [disabled]="formCategoria.invalid"
           >
             Registrar
           </button>
           <ng-template #elseBlock>
-            <button
-              class="btn btn-primary"
+            <button mat-raised-button
+              color="primary"
               (click)="actualizarCategoria()"
               role="button"
-              [disabled]="!formCategoria.valid"
+              [disabled]="formCategoria.invalid"
             >
               Actualizar
             </button>

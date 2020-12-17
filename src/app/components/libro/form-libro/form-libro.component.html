@@ -13,179 +13,190 @@
     {{ title }}
   </div>
 
-  <div class="card-body text-primary">
+  <div class="card-body">
     <form [formGroup]="formLibro" (ngSubmit)="registrarLibro()">
-      <div class="form-group row">
-        <label for="nombreCategoria" class="col-form-label col-sm-2"
-          >Nombre</label
+      <div class="row">
+        <mat-form-field class="ml-5 w-50">
+        <mat-label for="nombreLibro" class="col-form-label col-sm-2"
+          >Nombre</mat-label
         >
-        <div class="col-sm-6">
-          <input
+        <div class="col w-100">
+          <input matInput
             type="text"
-            class="form-control"
             autofocus
             formControlName="nombreLibro"
             name="nombreLibro"
             placeholder="Nombre"
           />
         </div>
+      </mat-form-field>
       </div>
 
-      <div class="form-group row">
-        <label for="fundador" class="col-form-label col-sm-2">ISBN</label>
-        <div class="col-sm-6">
-          <input
+      <div class="row">
+        <mat-form-field class="ml-5 w-50">
+        <mat-label for="isbn" class="col-form-label col-sm-2">ISBN</mat-label>
+        <div class="col w-100">
+          <input matInput
             type="text"
-            class="form-control"
             formControlName="isbn"
             name="isbn"
             placeholder="ISBN"
           />
         </div>
+      </mat-form-field>
       </div>
 
-      <div class="form-group row">
-        <label for="fechaFundacion" class="col-form-label col-sm-2"
-          >Descripcion</label
+      <div class="row">
+        <mat-form-field class="ml-5 w-50">
+        <mat-label for="descripcion" class="col-form-label col-sm-2"
+          >Descripcion</mat-label
         >
-        <div class="col-sm-6">
-          <textarea
-            class="form-control"
+        <div class="col w-100">
+          <textarea matInput 
             formControlName="descripcion"
             name="descripcion"
             placeholder="Descripción"
           ></textarea>
         </div>
+      </mat-form-field>
       </div>
 
-      <div class="form-group row">
-        <label for="fechaFundacion" class="col-form-label col-sm-2"
-          >Url Portada</label
+      <div class="row">
+        <mat-form-field class="ml-5 w-50">
+        <mat-label for="urlPortada" class="col-form-label col-sm-2"
+          >Url Portada</mat-label
         >
-        <div class="col-sm-6">
-          <input
+        <div class="col w-100">
+          <input matInput
             type="text"
-            class="form-control"
             formControlName="urlPortada"
             name="urlPortada"
             placeholder="Url de la portada"
           />
         </div>
+      </mat-form-field>
       </div>
 
-      <div class="form-group row">
-        <label for="fechaFundacion" class="col-form-label col-sm-2"
-          >Precio</label
-        >
-        <div class="col-sm-6">
-          <input
+      <div class="row">
+        <mat-form-field class="ml-5 w-50">
+        <mat-label for="precio" class="col-form-label col-sm-2"
+          >Precio</mat-label>
+        <div class="col w-100">
+          <input matInput
             type="text"
-            class="form-control"
             formControlName="precio"
             name="precio"
             placeholder="Precio"
           />
         </div>
+      </mat-form-field>
       </div>
 
-      <div class="form-group row">
-        <label for="fechaFundacion" class="col-form-label col-sm-2"
-          >Fecha de Publicación</label
-        >
-        <div class="col-sm-6">
-          <input
-            type="date"
-            class="form-control"
+      <div class="row">
+        <mat-form-field class="ml-5 w-50" appearance="fill">
+        <mat-label for="fechaPublicacion" class="col-form-label col-sm-2"
+          >Fecha de Publicación</mat-label>
+        <div class="col w-100">
+          <input matInput
+            [matDatepicker]="picker"
             formControlName="fechaPublicacion"
             name="fechaPublicacion"
           />
         </div>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        
+      </mat-form-field>
       </div>
 
-      <div class="form-group row">
-        <label for="pais" class="col-form-label col-sm-2">Idioma</label>
-        <div class="col-sm-6">
-          <select
+      <div class="row">
+        <mat-form-field class="ml-5 w-50" appearance="fill">
+        <mat-label for="idioma" class="col-form-label col-sm-2">Idioma</mat-label>
+        <div class="col w-100">
+          <mat-select
             [compareWith]="compararIdioma"
-            class="form-control"
             formControlName="idioma"
             name="idioma"
           >
-            <option [ngValue]="undefined" selected>Seleccionar Idioma</option>
-            <option *ngFor="let idioma of idiomas" [ngValue]="idioma">
+            <mat-option [value]="undefined" selected>Seleccionar Idioma</mat-option>
+            <mat-option *ngFor="let idioma of idiomas" [value]="idioma">
               {{ idioma.nombreIdioma }}
-            </option>
-          </select>
+            </mat-option>
+          </mat-select>
         </div>
+      </mat-form-field>
       </div>
 
-      <div class="form-group row">
-        <label for="pais" class="col-form-label col-sm-2">Categoria</label>
-        <div class="col-sm-6">
-          <select
+      <div class="row">
+        <mat-form-field class="ml-5 w-50" appearance="fill">
+        <mat-label for="categoria" class="col-form-label col-sm-2">Categoria</mat-label>
+        <div class="col w-100">
+          <mat-select
             [compareWith]="compararCategoria"
-            class="form-control"
             formControlName="categoria"
             name="categoria"
           >
-            <option [ngValue]="undefined" selected>Seleccionar Categoria</option>
-            <option *ngFor="let categoria of categorias" [ngValue]="categoria">
+            <mat-option [value]="undefined" selected>Seleccionar Categoria</mat-option>
+            <mat-option *ngFor="let categoria of categorias" [value]="categoria">
               {{ categoria.nombreCategoria }}
-            </option>
-          </select>
+            </mat-option>
+          </mat-select>
         </div>
+      </mat-form-field>
       </div>
 
-      <div class="form-group row">
-        <label for="pais" class="col-form-label col-sm-2">Editorial</label>
-        <div class="col-sm-6">
-          <select
+      <div class="row">
+        <mat-form-field class="ml-5 w-50" appearance="fill">
+        <mat-label for="editorial" class="col-form-label col-sm-2">Editorial</mat-label>
+        <div class="col w-100">
+          <mat-select
             [compareWith]="compareEditorial"
-            class="form-control"
             formControlName="editorial"
             name="editorial"
           >
-            <option [ngValue]="undefined" selected>Seleccionar Editorial</option>
-            <option *ngFor="let editorial of editoriales" [ngValue]="editorial">
+            <mat-option [value]="undefined" selected>Seleccionar Editorial</mat-option>
+            <mat-option *ngFor="let editorial of editoriales" [value]="editorial">
               {{ editorial.nombreEditorial }}
-            </option>
-          </select>
+            </mat-option>
+          </mat-select>
         </div>
+      </mat-form-field>
       </div>
 
-      <div class="form-group row">
-        <label for="pais" class="col-form-label col-sm-2">Autor</label>
-        <div class="col-sm-6">
-          <select
+      <div class="row">
+        <mat-form-field class="ml-5 w-50" appearance="fill">
+        <mat-label for="autor" class="col-form-label col-sm-2">Autor</mat-label>
+        <div class="col w-100">
+          <mat-select
             [compareWith]="compareAutor"
-            class="form-control"
             formControlName="autor"
             name="autor"
           >
-            <option [ngValue]="undefined" selected>Seleccionar Autor</option>
-            <option *ngFor="let autor of autores" [ngValue]="autor">
-              {{ autor.nombreAutor }}
-            </option>
-          </select>
+            <mat-option [value]="undefined" selected>Seleccionar Autor</mat-option>
+            <mat-option *ngFor="let autor of autores" [value]="autor">
+              {{ autor.nombreAutor }} {{ autor.apellido }}
+            </mat-option>
+          </mat-select>
         </div>
+      </mat-form-field>
       </div>
 
-      <div class="form-group row">
-        <div class="col-sm-6">
-          <button
-            class="btn btn-primary"
+      <div class="ml-3 row">
+        <div class="col w-100">
+          <button mat-raised-button
+            color="primary"
             role="button"
             *ngIf="!libro.idLibro; else elseBlock"
-            [disabled]="!formLibro.valid"
+            [disabled]="formLibro.invalid"
           >
             Registrar
           </button>
           <ng-template #elseBlock>
-            <button
-              class="btn btn-primary"
+            <button mat-raised-button
+              color="primary"
               (click)="actualizarLibro()"
               role="button"
-              [disabled]="!formLibro.valid"
+              [disabled]="formLibro.invalid"
             >
               Actualizar
             </button>
@@ -195,3 +206,12 @@
     </form>
   </div>
 </div>
+
+<pre class="text-white">
+  Estado del formulario: {{ formLibro.valid }}
+  <br>
+  Status: {{ formLibro.status }}
+  <pre class="text-white">
+    {{ formLibro.value | json}}
+  </pre>
+</pre>

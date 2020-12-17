@@ -14,12 +14,12 @@
         alt="{{ autor.nombreAutor }}"
       />
       <div class="card-body">
-        <h2 class="card-title text-center text-white">
+        <h2 class="card-title text-center">
           {{ autor.nombreAutor }} {{ autor.apellido }}
         </h2>
-        <p class="text-white"> {{ autor.biografia }} </p>
+        <p> {{ autor.biografia }} </p>
         <ul>
-          <li class="text-white"><span class="font-weight">Fecha de nacimiento:</span> {{ autor.fechaNacimiento | date: "mediumDate":"":"es" }}</li>
+          <li><span class="font-weight">Fecha de nacimiento:</span> {{ autor.fechaNacimiento | date: "mediumDate":"":"es" }}</li>
         </ul>
       </div>
     </div>

@@ -1,8 +1,8 @@
 <app-loading *ngIf="cargandoIdioma" class="m-5"></app-loading>
 <div class="row animated fadeIn" *ngIf="!cargandoIdioma">
-  <div class="card border-primary mb-3 m-5 col-lg-12 col-xs-6 animated fadeIn">
-    <div class="card-header">Listado de idiomas</div>
-    <div class="card-body text-primary">
+  <div class="card border-primary mb-3 m-5 animated fadeIn">
+    <div class="card-header bg-form goldClass">Listado de idiomas</div>
+    <div class="card-body bg-dark text-primary w-100">
       <h5 class="card-title text-white">Cantidad de idiomas: {{ idiomas?.length }}</h5>
       <div class="my-2 text-left">
         <button
@@ -16,29 +16,29 @@
         <p>No hay registros en la base de datos</p>
       </div>
       <table
-        class="table table-bordered table-striped table-responsive-md table-hover"
+        class="table table-bordered table-striped table-responsive"
         *ngIf="idiomas?.length > 0"
       >
-        <thead>
+        <thead class="text-white">
           <tr>
-            <th>Id</th>
-            <th>Idioma</th>
-            <th>Cancelar</th>
-            <th *ngIf="authService.hasRole('ROLE_ADMIN')">Eliminar</th>
+            <th class="goldClass">Id</th>
+            <th class="goldClass" style="width: 800px;">Idioma</th>
+            <th class="goldClass" style="width: 100px;">Cancelar</th>
+            <th class="goldClass" style="width: 100px;" *ngIf="authService.hasRole('ROLE_ADMIN')">Eliminar</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody class="text-white">
           <tr *ngFor="let idioma of idiomas">
-            <td>{{ idioma.idIdioma }}</td>
+            <td class="goldClass">{{ idioma.idIdioma }}</td>
             <td>{{ idioma.nombreIdioma }}</td>
             <td>
               <button
                 type="button"
                 name="button"
                 [routerLink]="['/idiomas/form', idioma.idIdioma]"
-                class="btn btn-success"
+                class="btn btn-outline-success"
               >
-                Editar
+              <i class="fa fa-edit"></i>
               </button>
             </td>
             <td *ngIf="authService.hasRole('ROLE_ADMIN')">
@@ -46,9 +46,9 @@
                 type="button"
                 name="Eliminar"
                 (click)="eliminarIdioma(idioma)"
-                class="btn btn-danger"
+                class="btn btn-outline-danger"
               >
-                Eliminar
+              <i class="fa fa-trash-alt"></i>
               </button>
             </td>
           </tr>

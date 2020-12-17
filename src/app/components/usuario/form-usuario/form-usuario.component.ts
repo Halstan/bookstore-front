@@ -63,6 +63,22 @@ export class FormUsuarioComponent implements OnInit {
     });
   }
 
+  get nombreNoValido(): boolean{
+    return this.formUsuario.get('nombre').invalid && this.formUsuario.get('nombre').touched;
+  }
+
+  get apellidoNoValido(): boolean{
+    return this.formUsuario.get('apellido').invalid && this.formUsuario.get('apellido').touched;
+  }
+
+  get usernameNoValido(): boolean{
+    return this.formUsuario.get('username').invalid && this.formUsuario.get('username').touched;
+  }
+
+  get correoNoValido(): boolean{
+    return this.formUsuario.get('correo').invalid && this.formUsuario.get('correo').touched;
+  }
+
   get pass1NoValido(): boolean{
     return this.formUsuario.get('contrasenha').invalid && this.formUsuario.get('contrasenha').touched;
   }
@@ -78,11 +94,10 @@ export class FormUsuarioComponent implements OnInit {
       nombre: this.usuario.nombre,
       apellido: this.usuario.apellido,
       username: this.usuario.username,
-      correo: this.usuario.correo,
+      correo: '',
       contrasenha: this.usuario.contrasenha,
       asegurarContrasenha: this.usuario.asegurarContrasenha,
-      sexo: this.usuario.sexo,
-      rol: this.usuario.roles
+      sexo: this.usuario.sexo
     });
   }
 
@@ -94,8 +109,7 @@ export class FormUsuarioComponent implements OnInit {
       correo: ['', [Validators.minLength(10), Validators.maxLength(70), Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]],
       contrasenha: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(20)]],
       asegurarContrasenha: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(20)]],
-      sexo: ['', [Validators.required]],
-      rol: ['', ],
+      sexo: ['', [Validators.required]]
     }, {
       validators: [this.validadorService.passwordsIguales('contrasenha', 'asegurarContrasenha')]
     });

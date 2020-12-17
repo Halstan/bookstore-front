@@ -1,7 +1,7 @@
 <app-loading *ngIf="cargandoEditorial" class="m-5"></app-loading>
 <div class="card border-primary mb-3 m-5 animated fadeIn" *ngIf="!cargandoEditorial">
-  <div class="card-header">Listado de editoriales</div>
-  <div class="card-body text-primary">
+  <div class="card-header bg-form goldClass">Listado de editoriales</div>
+  <div class="card-body bg-dark text-primary">
     <h5 class="card-title text-white">
       Cantidad de editoriales: {{ editoriales?.length }}
     </h5>
@@ -17,24 +17,24 @@
       <p>No hay registros en la base de datos</p>
     </div>
     <table
-      class="table table-bordered table-striped table-responsive-md table-hover"
+      class="table table-bordered table-striped table-responsive-md"
       *ngIf="editoriales?.length > 0"
     >
-      <thead>
+      <thead class="text-white">
         <tr>
-          <th>id</th>
-          <th>Nombre</th>
-          <th>Fundador</th>
-          <th>Fecha de fundación</th>
-          <th>Fecha de creación</th>
-          <th>Estado</th>
-          <th>Editar</th>
-          <th *ngIf="authService.hasRole('ROLE_ADMIN')">Eliminar</th>
+          <th class="goldClass">Id</th>
+          <th class="goldClass">Nombre</th>
+          <th class="goldClass">Fundador</th>
+          <th class="goldClass">Fecha de fundación</th>
+          <th class="goldClass">Fecha de creación</th>
+          <th class="goldClass">Estado</th>
+          <th class="goldClass" *ngIf="authService.hasRole('ROLE_ADMIN')">Editar</th>
+          <th class="goldClass" *ngIf="authService.hasRole('ROLE_ADMIN')">Eliminar</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody class="text-white">
         <tr *ngFor="let editorial of editoriales">
-          <td>{{ editorial.idEditorial }}</td>
+          <td class="goldClass">{{ editorial.idEditorial }}</td>
           <td>{{ editorial.nombreEditorial }}</td>
           <td>{{ editorial.fundador }}</td>
           <td>{{ editorial.fechaFundacion | date: "mediumDate":"":"es" }}</td>
@@ -45,14 +45,14 @@
           <ng-template #elseTemplate>
             <td>Cerrado</td>
           </ng-template>
-          <td>
+          <td *ngIf="authService.hasRole('ROLE_ADMIN')">
             <button
               type="button"
               name="button"
               [routerLink]="['/editoriales/form', editorial.idEditorial]"
-              class="btn btn-success"
+              class="btn btn-outline-success"
             >
-              Editar
+            <i class="fa fa-edit"></i>
             </button>
           </td>
           <td *ngIf="authService.hasRole('ROLE_ADMIN')">
@@ -60,9 +60,9 @@
               type="button"
               name="Eliminar"
               (click)="eliminarEditorial(editorial)"
-              class="btn btn-danger"
+              class="btn btn-outline-danger"
             >
-              Eliminar
+            <i class="fa fa-trash-alt"></i>
             </button>
           </td>
         </tr>

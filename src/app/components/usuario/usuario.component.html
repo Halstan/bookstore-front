@@ -1,63 +1,94 @@
 <app-loading *ngIf="cargandoUsuario" class="m-5"></app-loading>
-<div class="card border-primary mb-3 m-5 animated fadeIn" *ngIf="!cargandoUsuario">
-    <div class="card-header">Listado de usuarios</div>
-    <div class="card-body text-primary">
-        <h5 class="card-title text-white">Cantidad de usuarios: {{usuarios?.length}}</h5>
-            <div class="my-2 text-left">
-                <button class="btn btn-rounded btn-primary" [routerLink] = "['/usuarios/form']">Crear Usuario</button>
-            </div>
-            <div *ngIf="usuarios?.length == 0">
-                <p>No hay registros en la base de datos</p>
-            </div>
-            <table class="table table-bordered table-striped table-responsive-md table-hover" *ngIf="usuarios?.length > 0">
-                <thead>
-                    <tr>
-                        <th>id</th>
-                        <th>Nombre</th>
-                        <th>Apellido</th>
-                        <th>Username</th>
-                        <th>Correo</th>
-                        <th>Estado</th>
-                        <th>Fecha de creación</th>
-                        <th>Sexo</th>
-                        <td *ngIf="authService.hasRole('ROLE_ADMIN')">Rol</td>
-                        <th>Editar</th>
-                        <th *ngIf="authService.hasRole('ROLE_ADMIN')">Eliminar</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let usuario of usuarios">
-                        <td>{{ usuario.idUsuario }}</td>
-                        <td>{{ usuario.nombre }}</td>
-                        <td>{{ usuario.apellido }}</td>
-                        <td>{{ usuario.username }}</td>
-                        <td>{{ usuario.correo }}</td>
-                        <ng-container *ngIf="usuario.activado else elseTemplate">
-                            <td>Activado</td>
-                        </ng-container>
-                        <ng-template #elseTemplate>
-                            <td>Desactivado</td>
-                        </ng-template>
-                        <td>{{ usuario.fechaModificacion | date}}</td>
-                        <td>{{ usuario.sexo }}</td>
-                        <td *ngIf="authService.hasRole('ROLE_ADMIN')">
-                            <ul *ngFor="let rol of usuario.roles">
-                                <li class="text-white">{{ rol['nombreRol'] }}</li>
-                            </ul>
-                        </td>
-                        <td>
-                            <ng-container *ngIf="authService.hasRole('ROLE_ADMIN') else elseRol">
-                                <button type="button" name="button" [routerLink]="['/usuarios/admin/form', usuario.idUsuario]" class="btn btn-success">Editar</button>
-                            </ng-container>
-                            <ng-template #elseRol>
-                                <button type="button" name="button" [routerLink]="['/usuarios/form', usuario.idUsuario]" class="btn btn-success">Editar</button>
-                            </ng-template>
-                        </td>
-                        <td *ngIf="authService.hasRole('ROLE_ADMIN')">
-                            <button type="button" name="Eliminar" (click)="eliminarUsuario(usuario)" class="btn btn-danger">Eliminar</button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+<div class="row animated fadeIn" *ngIf="!cargandoUsuario">
+  <div class="card border-primary mb-3 m-5 animated fadeIn">
+  <div class="card-header bg-form goldClass">Listado de usuarios</div>
+  <div class="card-body bg-dark text-primary">
+    <h5 class="card-title text-white">Cantidad de usuarios: {{ usuarios?.length }}</h5>
+    <div class="my-2 text-left">
+      <button
+        class="btn btn-rounded btn-primary"
+        [routerLink]="['/usuarios/form']"
+      >
+        Crear Usuario
+      </button>
+    </div>
+    <div *ngIf="usuarios?.length == 0">
+      <p>No hay registros en la base de datos</p>
+    </div>
+    <table
+      class="table table-bordered table-striped table-responsive"
+      *ngIf="usuarios?.length > 0"
+    >
+      <thead class="text-white">
+        <tr>
+          <th class="goldClass">Id</th>
+          <th class="goldClass">Nombre Completo</th>
+          <th class="goldClass">Username</th>
+          <th class="goldClass">Correo</th>
+          <th class="goldClass">Estado</th>
+          <th class="goldClass">Fecha de creación</th>
+          <th class="goldClass">Sexo</th>
+          <td class="goldClass" *ngIf="authService.hasRole('ROLE_ADMIN')">Rol</td>
+          <th class="goldClass">Editar</th>
+          <th class="goldClass" *ngIf="authService.hasRole('ROLE_ADMIN')">Eliminar</th>
+        </tr>
+      </thead>
+      <tbody class="text-white">
+        <tr *ngFor="let usuario of usuarios">
+          <td class="goldClass">{{ usuario.idUsuario }}</td>
+          <td>{{ usuario.nombre }} {{ usuario.apellido }}</td>
+          <td>{{ usuario.username }}</td>
+          <td>{{ usuario.correo }}</td>
+          <ng-container *ngIf="usuario.activado; else elseTemplate">
+            <td>Activado</td>
+          </ng-container>
+          <ng-template #elseTemplate>
+            <td>Desactivado</td>
+          </ng-template>
+          <td>{{ usuario.fechaModificacion | date }}</td>
+          <td>{{ usuario.sexo }}</td>
+          <td *ngIf="authService.hasRole('ROLE_ADMIN')">
+            <ul *ngFor="let rol of usuario.roles">
+              <li class="text-white">{{ rol["nombreRol"] }}</li>
+            </ul>
+          </td>
+          <td>
+            <ng-container
+              *ngIf="authService.hasRole('ROLE_ADMIN'); else elseRol"
+            >
+              <button
+                type="button"
+                name="button"
+                [routerLink]="['/usuarios/admin/form', usuario.idUsuario]"
+                class="btn btn-outline-success"
+              >
+              <i class="fa fa-edit"></i>
+              </button>
+            </ng-container>
+            <ng-template #elseRol>
+              <button
+                type="button"
+                name="button"
+                [routerLink]="['/usuarios/form', usuario.idUsuario]"
+                class="btn btn-outline-success"
+              >
+              <i class="fa fa-edit"></i>
+              </button>
+            </ng-template>
+          </td>
+          <td *ngIf="authService.hasRole('ROLE_ADMIN')">
+            <button
+              type="button"
+              name="Eliminar"
+              (click)="eliminarUsuario(usuario)"
+              class="btn btn-outline-danger"
+            >
+            <i class="fa fa-trash-alt"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
 </div>

@@ -1,4 +1,4 @@
-<h2 class="text-center text-body m-5">Mis alquileres</h2>
+<h2 class="text-center m-5 text-white text-capitalize">Mis alquileres</h2>
 
 <app-loading *ngIf="loading"></app-loading>
 
@@ -10,18 +10,18 @@
         alt="{{ alquiler.libro.nombreLibro }}"
       />
       <div class="card-body">
-        <h2 class="card-title text-center text-white">
+        <h2 class="card-title text-center">
           {{ alquiler.libro.nombreLibro }}
         </h2>
         <ng-container *ngIf="alquiler.estado else elseTemplate">
-            <p class="text-white">Estado: Activo</p>
+            <p>Estado: Activo</p>
         </ng-container>
         <ng-template #elseTemplate>
-            <p class="text-white">Estado: Devuelto</p>
+            <p>Estado: Devuelto</p>
         </ng-template>
         <ul>
-          <li class="text-white"><span class="font-weight">Fecha de registro:</span> {{ alquiler.fechaCreacion | date: "mediumDate":"":"es" }}</li>
-          <li class="text-white"><span class="font-weight">Fecha de devolucion:</span> {{ alquiler.fechaRetorno | date: "mediumDate":"":"es" }}</li>
+          <li><span class="font-weight">Fecha de registro:</span> {{ alquiler.fechaCreacion | date: "mediumDate":"":"es" }}</li>
+          <li><span class="font-weight">Fecha de devolucion:</span> {{ alquiler.fechaRetorno | date: "mediumDate":"":"es" }}</li>
         </ul>
       </div>
     </div>

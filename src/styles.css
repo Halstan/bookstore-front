@@ -3,7 +3,23 @@
 /* You can add global styles to this file, and also import other style files */
 
 body {
-    background-color: rgb(80, 36, 10)!important;
+    background-color: #636363!important;
+}
+
+nav {
+    background-color: #101010;
+}
+
+.bg-form{
+    background-color: #101010;
+}
+
+.goldClass {
+    color: rgb(255, 179, 86);
+}
+
+nav > a:hover {
+    color: rgb(255, 140, 0);
 }
 
 h1{

@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Usuario } from '../model/usuario';
-import uri from './global.service';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
+  private uri = environment.url;
   private usuario: Usuario;
   private token: string;
   private httpHeader = new HttpHeaders({
@@ -44,7 +45,7 @@ export class AuthService {
       password: user.contrasenha
     };
 
-    return this.httpClient.post<any>(`${uri}auth`, params, {headers: this.httpHeader});
+    return this.httpClient.post<any>(`${this.uri}auth`, params, {headers: this.httpHeader});
   }
 
   saveUser(accessToken: string): void{

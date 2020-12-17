@@ -45,7 +45,7 @@ export class FormAutorComponent implements OnInit {
 
   cargarAutor(): void{
     this.activatedRoute.params.subscribe(param => {
-      const id = param['id'];
+      const id = param?.id;
       if (id){
         this.title = 'Editar autor';
         this.autorService.getAutor(id).subscribe(

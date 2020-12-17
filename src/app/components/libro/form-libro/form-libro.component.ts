@@ -27,6 +27,7 @@ export class FormLibroComponent implements OnInit {
   title = 'Registrar Libro';
   errors: string[] = [];
   messageError: string;
+  portada: string;
   formLibro: FormGroup;
 
   constructor(private libroService: LibroService,
@@ -99,6 +100,7 @@ export class FormLibroComponent implements OnInit {
         this.libroService.getLibro(id).subscribe(
           libro => {
             this.libro = libro;
+            this.portada = libro.urlPortada;
             this.cargarData();
           }
         );

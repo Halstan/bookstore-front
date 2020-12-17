@@ -8,6 +8,7 @@ import { Usuario } from '../../../model/usuario';
 import { Alquiler } from '../../../model/alquiler';
 import Swal from 'sweetalert2';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/service/auth.service';
 
 @Component({
   selector: 'app-form-alquiler',
@@ -27,7 +28,8 @@ export class FormAlquilerComponent implements OnInit {
               private usuarioService: UsuarioService,
               private libroService: LibroService,
               private router: Router,
-              private fb: FormBuilder) {
+              private fb: FormBuilder,
+              public authService: AuthService) {
 
     this.crearFormulario();
 

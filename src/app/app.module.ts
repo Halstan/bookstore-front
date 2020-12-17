@@ -36,6 +36,12 @@ import { AlquilerComponent } from './components/alquiler/alquiler.component';
 import { AlquilerService } from './service/alquiler.service';
 import { FormAlquilerComponent } from './components/alquiler/form-alquiler/form-alquiler.component';
 import { IdiomaComponent } from './components/idioma/idioma.component';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatButtonModule } from '@angular/material/button';
+import { MatTableModule } from '@angular/material/table';
 import { FormIdiomaComponent } from './components/idioma/form-idioma/form-idioma.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
@@ -47,6 +53,7 @@ import { MisAlquileresComponent } from './components/alquiler/mis-alquileres/mis
 import { PerfilComponent } from './components/usuario/perfil/perfil.component';
 import { UsuarioAdminComponent } from './components/usuario/usuario-admin/usuario-admin.component';
 import { RolService } from './service/rol.service';
+import { MatNativeDateModule } from '@angular/material/core';
 
 registerLocaleData(localEs);
 @NgModule({
@@ -86,6 +93,13 @@ registerLocaleData(localEs);
     AppRoutingModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
+    MatSliderModule,
+    MatInputModule,
+    MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatButtonModule,
+    MatTableModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [

@@ -2,27 +2,29 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Observable, throwError } from 'rxjs';
-import uri from './global.service';
 import { map, catchError } from 'rxjs/operators';
 import { Idioma } from '../model/idioma';
 import Swal from 'sweetalert2';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class IdiomaService {
 
+  private uri = environment.url;
+
   constructor(private httpClient: HttpClient,
               private router: Router) { }
 
   getIdiomas(): Observable<any>{
-    return this.httpClient.get(`${uri}idiomas`).pipe(
+    return this.httpClient.get(`${this.uri}idiomas`).pipe(
       map(res => res as Idioma[])
     );
   }
 
   agregarIdioma(idioma: Idioma): Observable<Idioma>{
-    return this.httpClient.post(`${uri}idiomas`, idioma).pipe(
+    return this.httpClient.post(`${this.uri}idiomas`, idioma).pipe(
       map(res => res as any),
       catchError(err => {
         if (err.status === 400){
@@ -34,7 +36,7 @@ export class IdiomaService {
   }
 
   getIdioma(idIdioma: number): Observable<Idioma>{
-    return this.httpClient.get(`${uri}idiomas/${idIdioma}`).pipe(
+    return this.httpClient.get(`${this.uri}idiomas/${idIdioma}`).pipe(
       map(res => res as Idioma),
       catchError(err => {
         if (err.status === 400){
@@ -47,7 +49,7 @@ export class IdiomaService {
   }
 
   actualizarIdioma(idioma: Idioma): Observable<Idioma>{
-    return this.httpClient.put(`${uri}idiomas`, idioma).pipe(
+    return this.httpClient.put(`${this.uri}idiomas`, idioma).pipe(
       map(res => res as Idioma),
       catchError(err => {
         if (err.status === 400){
@@ -60,7 +62,7 @@ export class IdiomaService {
   }
 
   eliminarIdioma(idIdioma: number): Observable<Idioma>{
-    return this.httpClient.delete(`${uri}idiomas/${idIdioma}`).pipe(
+    return this.httpClient.delete(`${this.uri}idiomas/${idIdioma}`).pipe(
       map(res => res as Idioma),
       catchError(err => {
         Swal.fire('Error', err.error.Mensaje, 'error');

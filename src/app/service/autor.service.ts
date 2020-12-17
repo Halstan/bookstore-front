@@ -1,34 +1,36 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import uri from './global.service';
 import { Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { Autor } from '../model/autor';
 import Swal from 'sweetalert2';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AutorService {
 
+  private uri = environment.url;
+
   constructor(private httpClient: HttpClient,
               private router: Router) { }
 
   getAutores(): Observable<any> {
-    return this.httpClient.get(`${uri}autores`).pipe(
+    return this.httpClient.get(`${this.uri}autores`).pipe(
       map(res => res as Autor[])
     );
   }
 
   getAutoresByNombre(nombre: string): Observable<any> {
-    return this.httpClient.get(`${uri}autores/nombre/${nombre}`).pipe(
+    return this.httpClient.get(`${this.uri}autores/nombre/${nombre}`).pipe(
       map(res => res as Autor[])
     );
   }
 
   insertarAutor(autor: Autor): Observable<Autor>{
-    return this.httpClient.post(`${uri}autores`, autor).pipe(
+    return this.httpClient.post(`${this.uri}autores`, autor).pipe(
       map(res => res as Autor),
       catchError(err => {
         if (err.status === 400){
@@ -41,7 +43,7 @@ export class AutorService {
   }
 
   getAutor(idAutor: number): Observable<Autor>{
-    return this.httpClient.get(`${uri}autores/${idAutor}`).pipe(
+    return this.httpClient.get(`${this.uri}autores/${idAutor}`).pipe(
       map(res => res as Autor),
       catchError(err => {
         this.router.navigate(['/autores']);
@@ -52,7 +54,7 @@ export class AutorService {
   }
 
   actualizarAutor(autor: Autor): Observable<Autor>{
-    return this.httpClient.put(`${uri}autores`, autor).pipe(
+    return this.httpClient.put(`${this.uri}autores`, autor).pipe(
       map(res => res as Autor),
       catchError(err => {
         if (err.status === 400){
@@ -66,7 +68,7 @@ export class AutorService {
   }
 
   eliminarAutor(idAutor: number): Observable<Autor>{
-    return this.httpClient.delete(`${uri}autores/${idAutor}`).pipe(
+    return this.httpClient.delete(`${this.uri}autores/${idAutor}`).pipe(
       map(res => res as Autor),
       catchError(err => {
         Swal.fire('Error', err.error.Mensaje, 'error');

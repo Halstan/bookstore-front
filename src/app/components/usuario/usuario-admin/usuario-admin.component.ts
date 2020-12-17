@@ -76,7 +76,7 @@ export class UsuarioAdminComponent implements OnInit {
       apellido: this.usuario.apellido,
       username: this.usuario.username,
       correo: this.usuario.correo,
-      contrasenha: this.usuario.contrasenha,
+      contrasenha: '',
       asegurarContrasenha: this.usuario.asegurarContrasenha,
       sexo: this.usuario.sexo,
       roles: this.usuario.roles

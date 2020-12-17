@@ -1,29 +1,31 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import uri from './global.service';
 import { map, catchError } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
 import { Categoria } from '../model/categoria';
 import Swal from 'sweetalert2';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CategoriaService {
 
+  private uri = environment.url;
+
   constructor(private httpClient: HttpClient,
               private router: Router) { }
 
   getCategorias(): Observable<any> {
-    return this.httpClient.get(`${uri}categorias`).pipe(
+    return this.httpClient.get(`${this.uri}categorias`).pipe(
       map(res => res as Categoria[]
       )
     );
   }
 
   insertarCategoria(categoria: Categoria): Observable<Categoria>{
-    return this.httpClient.post(`${uri}categorias`, categoria).pipe(
+    return this.httpClient.post(`${this.uri}categorias`, categoria).pipe(
       map(res => res as Categoria),
       catchError(err => {
         if (err.status === 400){
@@ -36,7 +38,7 @@ export class CategoriaService {
   }
 
   getCategoria(idCategoria: number): Observable<Categoria>{
-    return this.httpClient.get(`${uri}categorias/${idCategoria}`).pipe(
+    return this.httpClient.get(`${this.uri}categorias/${idCategoria}`).pipe(
       map(res => res as Categoria),
       catchError(err => {
         this.router.navigate(['/categorias']);
@@ -47,7 +49,7 @@ export class CategoriaService {
   }
 
   actualizarCategoria(categoria: Categoria): Observable<Categoria>{
-    return this.httpClient.put(`${uri}categorias`, categoria).pipe(
+    return this.httpClient.put(`${this.uri}categorias`, categoria).pipe(
       map(res => res as Categoria),
       catchError(err => {
         if (err.status === 400){
@@ -60,7 +62,7 @@ export class CategoriaService {
   }
 
   eliminarCategorias(idCategoria: number): Observable<Categoria>{
-    return this.httpClient.delete(`${uri}categorias/${idCategoria}`).pipe(
+    return this.httpClient.delete(`${this.uri}categorias/${idCategoria}`).pipe(
       map(res => res as Categoria),
       catchError(err => {
         Swal.fire('Error', err.error.Mensaje, 'error');
