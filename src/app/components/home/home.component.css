@@ -8,3 +8,13 @@ picture>img{
     opacity: 0.7;
     
 }
+
+.img-bg{
+    background: url(../../../assets/img/background.jpg);
+    height: 100%;
+    width: 100%;
+}
+
+.img{
+    background-image: url(../../../assets/img/background.jpg)
+}

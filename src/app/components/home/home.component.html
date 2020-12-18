@@ -1,9 +1,91 @@
 <div class="container p-5 text-center">
-    <h1>{{title}}</h1>
+  <h1>{{ title }}</h1>
 </div>
 
-<section class="container">
-        <picture>
-            <img src="{{img}}" alt="Fondo de biblioteca">
-        </picture>
-</section>
+
+<swiper 
+    [speed]="600"
+    [parallax]="true"
+    [pagination]="{ 
+        clickable: true,
+        type: 'progressbar',
+        hideOnClick: true
+    }"
+    [grabCursor]="true"
+    >
+    <div class="parallax-bg img" data-swiper-parallax="-23%"></div>
+    <ng-container>
+        <ng-template swiperSlide>
+            <br>
+            <h3 class="title" data-swiper-parallax="-300">Nosotros</h3>
+				<div class="subtitle" data-swiper-parallax="-200">Subtitle</div>
+				<div class="text" data-swiper-parallax="-100">
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam dictum mattis velit, sit amet
+						faucibus felis iaculis nec. Nulla laoreet justo vitae porttitor porttitor. Suspendisse in sem
+						justo. Integer laoreet magna nec elit suscipit, ac laoreet nibh euismod. Aliquam hendrerit lorem
+						at elit facilisis rutrum. Ut at ullamcorper velit. Nulla ligula nisi, imperdiet ut lacinia nec,
+						tincidunt ut libero. Aenean feugiat non eros quis feugiat.</p>
+				</div>
+        </ng-template>
+    </ng-container>
+    <ng-container>
+        <ng-template swiperSlide>
+            <br>
+            <h3 class="title" data-swiper-parallax="-300" data-swiper-parallax-opacity="0">Objetivos</h3>
+				<div class="subtitle" data-swiper-parallax="-200">Subtitle</div>
+				<div class="text" data-swiper-parallax="-100">
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam dictum mattis velit, sit amet
+						faucibus felis iaculis nec. Nulla laoreet justo vitae porttitor porttitor. Suspendisse in sem
+						justo. Integer laoreet magna nec elit suscipit, ac laoreet nibh euismod. Aliquam hendrerit lorem
+						at elit facilisis rutrum. Ut at ullamcorper velit. Nulla ligula nisi, imperdiet ut lacinia nec,
+						tincidunt ut libero. Aenean feugiat non eros quis feugiat.</p>
+				</div>
+        </ng-template>
+    </ng-container>
+    <ng-container>
+        <ng-template swiperSlide>
+            <br>
+            <h3 class="title" data-swiper-parallax="-300">Contactanos</h3>
+				<div class="subtitle" data-swiper-parallax="-200">Subtitle</div>
+				<div class="text" data-swiper-parallax="-100">
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam dictum mattis velit, sit amet
+						faucibus felis iaculis nec. Nulla laoreet justo vitae porttitor porttitor. Suspendisse in sem
+						justo. Integer laoreet magna nec elit suscipit, ac laoreet nibh euismod. Aliquam hendrerit lorem
+						at elit facilisis rutrum. Ut at ullamcorper velit. Nulla ligula nisi, imperdiet ut lacinia nec,
+						tincidunt ut libero. Aenean feugiat non eros quis feugiat.</p>
+				</div>
+        </ng-template>
+    </ng-container>
+</swiper>
+
+<app-loading *ngIf="cargando" class="p-5 m-5"></app-loading>
+<swiper
+  [slidesPerView]="3"
+  [spaceBetween]="30"
+  [navigation]="{}"
+  [virtual]="true"
+  [autoplay]="{
+    delay: 2000
+  }"
+  [pagination]="{ clickable: true }"
+  [scrollbar]="{ draggable: true }"
+  *ngIf="!cargando"
+  class="card m-5 animated fadeIn lg-5"
+>
+  <ng-container *ngFor="let libro of libros" class="card puntero">
+    <ng-template swiperSlide>
+      <div class="card">
+        <img
+          class="card-img-top"
+          [src]="libro.urlPortada"
+          alt="{{ libro.nombreLibro }}"
+        />
+        <div class="card-body">
+          <h5 class="card-title text-center">{{ libro.nombreLibro }}</h5>
+          <p class="card-text">{{ libro.descripcion }}</p>
+          <p class="card-text"><span>Publicacion:</span> {{ libro.fechaPublicacion }}</p>
+        </div>
+      </div>
+    </ng-template>
+  </ng-container>
+</swiper>

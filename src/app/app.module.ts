@@ -15,7 +15,7 @@ import { EditorialComponent } from './components/editorial/editorial.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CardComponent } from './components/libro/card/card.component';
 import localEs from '@angular/common/locales/es';
-import { registerLocaleData } from '@angular/common';
+import { CommonModule, registerLocaleData } from '@angular/common';
 import { HomeComponent } from './components/home/home.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AutorService } from './service/autor.service';
@@ -42,6 +42,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
+import { SwiperModule } from 'node_modules/swiper/angular';
 import { FormIdiomaComponent } from './components/idioma/form-idioma/form-idioma.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
@@ -100,6 +101,8 @@ registerLocaleData(localEs);
     MatNativeDateModule,
     MatButtonModule,
     MatTableModule,
+    SwiperModule,
+    CommonModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [
