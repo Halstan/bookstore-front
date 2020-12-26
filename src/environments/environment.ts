@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  url: 'https://bibliotecarikazzo.herokuapp.com/biblioteca/api/',
+  url: 'http://localhost:7070/biblioteca/api/',
 };
 
 /*

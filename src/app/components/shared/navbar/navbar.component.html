@@ -12,51 +12,51 @@
                 <a href="#" class="nav-link">Home <span class="sr-only">(current)</span></a>
             </li>
 
-            <li class="nav-item select" routerLinkActive="goldClass" *ngIf="!auth.isAuthenticated()">
+            <li class="nav-item select" routerLinkActive="selected" *ngIf="!auth.isAuthenticated()">
                 <a class="nav-link" routerLink="/usuarios/form">Registrarme</a>
             </li>
 
-            <li class="nav-item select" routerLinkActive="goldClass" *ngIf="auth.hasRole('ROLE_ADMIN') || auth.hasRole('ROLE_BIBLIOTECARIO')">
+            <li class="nav-item select" routerLinkActive="selected" *ngIf="auth.hasRole('ROLE_ADMIN') || auth.hasRole('ROLE_BIBLIOTECARIO')">
                 <a class="nav-link" routerLink="/categorias">Categorias</a>
             </li>
 
-            <li class="nav-item select" routerLinkActive="goldClass" *ngIf="auth.hasRole('ROLE_ADMIN') || auth.hasRole('ROLE_BIBLIOTECARIO')">
+            <li class="nav-item select" routerLinkActive="selected" *ngIf="auth.hasRole('ROLE_ADMIN') || auth.hasRole('ROLE_BIBLIOTECARIO')">
               <a class="nav-link" routerLink="/alquileres">Alquileres</a>
             </li>
 
-            <li class="nav-item select" routerLinkActive="goldClass" *ngIf="auth.hasRole('ROLE_ADMIN') || auth.hasRole('ROLE_BIBLIOTECARIO')">
+            <li class="nav-item select" routerLinkActive="selected" *ngIf="auth.hasRole('ROLE_ADMIN') || auth.hasRole('ROLE_BIBLIOTECARIO')">
               <a class="nav-link" routerLink="/usuarios">Usuarios</a>
             </li>
 
-            <li class="nav-item select" routerLinkActive="goldClass" *ngIf="auth.hasRole('ROLE_ADMIN') || auth.hasRole('ROLE_BIBLIOTECARIO')">
+            <li class="nav-item select" routerLinkActive="selected" *ngIf="auth.hasRole('ROLE_ADMIN') || auth.hasRole('ROLE_BIBLIOTECARIO')">
               <a class="nav-link" routerLink="/idiomas">Idiomas</a>
             </li>
 
-            <li class="nav-item select dropdown" routerLinkActive="goldClass">
+            <li class="nav-item select dropdown" routerLinkActive="selected">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   Autor
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" routerLinkActive="goldClass" routerLink="/autores/mostrar">Mostrar Autores</a>
-                  <a class="dropdown-item" routerLinkActive="goldClass" routerLink="/autores" *ngIf="auth.hasRole('ROLE_ADMIN') || auth.hasRole('ROLE_BIBLIOTECARIO')">Autores</a>
+                  <a class="dropdown-item" routerLinkActive="selected" routerLink="/autores/mostrar">Mostrar Autores</a>
+                  <a class="dropdown-item" routerLinkActive="selected" routerLink="/autores" *ngIf="auth.hasRole('ROLE_ADMIN') || auth.hasRole('ROLE_BIBLIOTECARIO')">Autores</a>
                 </div>
               </li>
 
-            <li class="nav-item select dropdown" routerLinkActive="goldClass">
+            <li class="nav-item select dropdown" routerLinkActive="selected">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   Libro
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" routerLinkActive="goldClass" routerLink="/libros/mostrar">Mostrar Libros</a>
-                  <a class="dropdown-item" routerLinkActive="goldClass" routerLink="/libros" *ngIf="auth.hasRole('ROLE_ADMIN') || auth.hasRole('ROLE_BIBLIOTECARIO')">Libros</a>
+                  <a class="dropdown-item" routerLinkActive="selected" routerLink="/libros/mostrar">Mostrar Libros</a>
+                  <a class="dropdown-item" routerLinkActive="selected" routerLink="/libros" *ngIf="auth.hasRole('ROLE_ADMIN') || auth.hasRole('ROLE_BIBLIOTECARIO')">Libros</a>
                 </div>
               </li>
 
-            <li class="nav-item select" routerLinkActive="goldClass">
+            <li class="nav-item select" routerLinkActive="selected">
                 <a class="nav-link" routerLink="/editoriales" *ngIf="auth.hasRole('ROLE_ADMIN') || auth.hasRole('ROLE_BIBLIOTECARIO')">Editoriales</a>
             </li>
 
-            <li class="nav-item select" routerLinkActive="goldClass">
+            <li class="nav-item select" routerLinkActive="selected">
               <a class="nav-link" routerLink="/alquileres/misalquileres" *ngIf="auth.hasRole('ROLE_USER') && auth.isAuthenticated()">Historial</a>
           </li>
         </ul>
