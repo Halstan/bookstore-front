@@ -22,7 +22,7 @@ export class MostrarComponent implements OnInit {
 
     this.libroService.getLibros().subscribe(
       libros => {
-        this.libros = libros['Libros'];
+        this.libros = libros;
         this.loading = false;
         this.error = false;
       }

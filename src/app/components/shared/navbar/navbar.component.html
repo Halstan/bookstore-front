@@ -9,7 +9,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item select">
-                <a href="#" class="nav-link">Home <span class="sr-only">(current)</span></a>
+                <a href="#" class="nav-link">Inicio<span class="sr-only">(current)</span></a>
             </li>
 
             <li class="nav-item select" routerLinkActive="selected" *ngIf="!auth.isAuthenticated()">
@@ -61,7 +61,7 @@
           </li>
         </ul>
         <ul class="navbar-nav navbar-right">
-            <li *ngIf="!auth.isAuthenticated()"><a [routerLink]="['/login']" class="btn btn-outline-primary">Login</a>
+            <li *ngIf="!auth.isAuthenticated()"><a [routerLink]="['/login']" class="btn btn-outline-primary">Iniciar sesión</a>
             </li>
             <li *ngIf="auth.isAuthenticated()" class="dropdown dropleft">
                 <a class="btn btn-outline-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"

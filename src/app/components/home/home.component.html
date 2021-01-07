@@ -59,34 +59,22 @@
 </swiper>
 
 <app-loading *ngIf="cargando" class="p-5 m-5"></app-loading>
-<swiper
-  [slidesPerView]="3"
-  [spaceBetween]="30"
-  [navigation]="{}"
-  [virtual]="true"
-  [grabCursor]="true"
-  [autoplay]="{
-    delay: 2000
-  }"
-  [pagination]="{ clickable: true }"
-  [scrollbar]="{ draggable: true }"
-  *ngIf="!cargando"
-  class="card m-5 animated fadeIn lg-5"
->
-  <ng-container *ngFor="let libro of libros" class="card puntero">
-    <ng-template swiperSlide>
-      <div class="card">
+
+<div class="card mt-5" *ngIf="!cargando">
+  <div class="card-body d-flex overflow-auto card-container">
+      <div class="card responsive-all" *ngFor="let libro of libros">
+        <figure class="img-container">
         <img
           class="card-img-top"
           [src]="libro.urlPortada"
           alt="{{ libro.nombreLibro }}"
         />
+        </figure>
         <div class="card-body">
-          <h5 class="card-title text-center">{{ libro.nombreLibro }}</h5>
+          <h3 class="card-title text-center">{{ libro.nombreLibro }}</h3>
           <p class="card-text">{{ libro.descripcion }}</p>
-          <p class="card-text"><span>Publicacion:</span> {{ libro.fechaPublicacion }}</p>
+          <p class="card-text"><span class="font-weight-bold">Publicacion</span>: {{ libro.fechaPublicacion }}</p>
         </div>
       </div>
-    </ng-template>
-  </ng-container>
-</swiper>
+    </div>
+</div>

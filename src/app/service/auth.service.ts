@@ -70,8 +70,7 @@ export class AuthService {
   }
 
   isAuthenticated(): boolean{
-    const payload = this.obtainToken(this.token);
-    if (payload != null && payload.sub && payload.sub.length > 0) {
+    if (this.getToken()) {
       return true;
     }
     return false;

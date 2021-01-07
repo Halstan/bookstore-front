@@ -1,22 +1,44 @@
 <div class="card border-primary text-center m-5 animated fadeIn">
-    <div class="card-header">{{ titulo }}</div>
-    <div class="card-body">
+  <div class="card-header bg-dark text-white">{{ titulo }}</div>
+  <div class="card-body" class="bg-dark">
+    <form #weaponForm="ngForm">
+      <mat-form-field class="form-group col-sm-6 col-lg col-md mt-2">
+        <mat-label for="username">Nombre de usuario</mat-label>
+        <input
+          matInput
+          [(ngModel)]="user.username"
+          type="text"
+          name="username"
+          placeholder="Nombre de usuario"
+          [required]="true"
+          autofocus
+        />
+      </mat-form-field>
 
-        <form method="post">
-            <div class="form-group col-sm-6 col-lg col-md">
-                <label for="username"></label>
-                <input [(ngModel)]="user.username" type="text" class="form-control" 
-                name="username" placeholder="Nombre de usuario" required autofocus>
-            </div>
+      <mat-form-field class="form-group col-sm-6 col-lg col-md">
+        <mat-label for="username">Contraseña</mat-label>
+        <input
+          matInput
+          [(ngModel)]="user.contrasenha"
+          type="password"
+          name="password"
+          placeholder="Contraseña"
+          [required]="true"
+        />
+      </mat-form-field>
 
-            <div class="form-group col-sm-6 col-lg col-md">
-                <input [(ngModel)]="user.contrasenha" type="password" class="form-control" 
-                name="password" placeholder="Contraseña" required>
-            </div>
-
-            <div class="form-group col-sm-6 col-lg col-md">
-                <input (click)="login()" type="submit" class="btn btn-lg btn-primary btn-block" value="Iniciar sesión">
-            </div>
-        </form>
-    </div>
+      <div class="form-group col-sm-6 col-lg col-md">
+        <button
+          mat-raised-button
+          (click)="login()"
+          color="primary"
+          type="submit"
+          class="btn btn-lg btn-block"
+          [disabled]="weaponForm.form.invalid"
+        >
+          Iniciar sesión
+        </button>
+      </div>
+    </form>
+  </div>
 </div>

@@ -20,7 +20,7 @@ export class HomeComponent implements OnInit {
     this.cargando = true;
     this.libroService.getLibros().subscribe(
       libros => {
-        this.libros = libros['Libros'];
+        this.libros = libros;
         this.cargando = false;
       }
     );

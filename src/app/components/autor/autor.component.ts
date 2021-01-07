@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Autor } from '../../model/autor';
-import { ActivatedRoute } from '@angular/router';
 import { AutorService } from '../../service/autor.service';
 import Swal from 'sweetalert2';
 import { AuthService } from '../../service/auth.service';
@@ -13,6 +12,7 @@ export class AutorComponent implements OnInit {
 
   autores: Autor[];
   messageError: string;
+  cargandoAutor: boolean;
   swalWithBootstrapButtons = Swal.mixin({
     customClass: {
       confirmButton: 'btn btn-success',
@@ -28,8 +28,12 @@ export class AutorComponent implements OnInit {
               public authService: AuthService) { }
 
   ngOnInit(): void {
+    this.cargandoAutor = true;
     this.autorService.getAutores().subscribe(
-      autores => this.autores = autores
+      autores => {
+        this.autores = autores;
+        this.cargandoAutor = false;
+      }
     );
   }
 

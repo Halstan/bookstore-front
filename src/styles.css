@@ -6,6 +6,10 @@ body {
     background-color: #636363!important;
 }
 
+input:placeholder {
+    color: #fff!important;
+}
+
 nav {
     background-color: #101010;
 }
@@ -89,3 +93,24 @@ hr {
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+::-webkit-scrollbar {
+    width: 7px;
+    overflow-y: scroll;
+    background: grey;
+    background-color: #F5F5F5;
+    box-shadow: inset 0 0 4px #707070;
+    cursor: pointer;
+}
+
+::-webkit-scrollbar-thumb {
+    background-image: -webkit-linear-gradient(45deg,
+	    rgba(255, 255, 255, .2) 25%,
+        transparent 25%,
+		transparent 50%,
+		rgba(255, 255, 255, .2) 50%,
+	    rgba(255, 255, 255, .2) 75%,
+	    transparent 75%,
+		transparent);
+    background-color: #F90;
+}

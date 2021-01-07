@@ -33,7 +33,7 @@ export class LibroComponent implements OnInit {
     this.cargandoLibro = true;
     this.libroService.getLibros().subscribe(
       libros => {
-        this.libros = libros['Libros'];
+        this.libros = libros;
         this.cargandoLibro = false;
       }
     );

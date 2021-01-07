@@ -109,7 +109,8 @@ export class FormLibroComponent implements OnInit {
   }
 
   cargarData(): void{
-    this.formLibro.reset({
+    // POR SEACA
+    this.formLibro.patchValue({
       nombreLibro: this.libro.nombreLibro,
       isbn: this.libro.isbn,
       descripcion: this.libro.descripcion,
