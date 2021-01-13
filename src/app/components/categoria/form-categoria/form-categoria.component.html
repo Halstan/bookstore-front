@@ -23,6 +23,7 @@
             type="text"
             formControlName="nombreCategoria"
             placeholder="Nombre"
+            onkeydown="return /[a-zA-ZñÑá-úÁ-Ú ]/i.test(event.key)"
           />
         </div>
       </mat-form-field>

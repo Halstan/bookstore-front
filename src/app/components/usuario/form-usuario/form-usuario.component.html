@@ -26,6 +26,7 @@
             name="nombre"
             placeholder="Nombre"
             [class.is-invalid]="nombreNoValido"
+            onkeydown="return /[a-zA-ZñÑá-úÁ-Ú ]/i.test(event.key)"
           />
         </div>
       </mat-form-field>
@@ -41,6 +42,7 @@
             name="apellido"
             placeholder="Apellido"
             [class.is-invalid]="apellidoNoValido"
+            onkeydown="return /[a-zA-ZñÑá-úÁ-Ú ]/i.test(event.key)"
           />
         </div>
       </mat-form-field>
@@ -55,6 +57,7 @@
           <input matInput
             type="text"
             formControlName="username"
+            auto
             placeholder="Nombre de usuario"
             [class.is-invalid]="usernameNoValido"
           />

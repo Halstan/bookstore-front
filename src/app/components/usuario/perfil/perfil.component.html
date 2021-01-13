@@ -25,6 +25,7 @@
               formControlName="nombre"
               name="nombre"
               placeholder="Nombre"
+              onkeydown="return /[a-zA-ZñÑá-úÁ-Ú ]/i.test(event.key)"
             />
           </div>
           </mat-form-field>
@@ -39,6 +40,7 @@
               formControlName="apellido"
               name="apellido"
               placeholder="Apellido"
+              onkeydown="return /[a-zA-ZñÑá-úÁ-Ú ]/i.test(event.key)"
             />
           </div>
         </mat-form-field>
@@ -80,6 +82,7 @@
           <div class="col w-100">
             <input matInput
               type="password"
+              autocomplete="off"
               formControlName="contrasenha"
               name="contrasenha"
               placeholder="Contraseña"

@@ -23,6 +23,7 @@
             formControlName="nombreAutor"
             name="nombreAutor"
             placeholder="Nombre"
+            onkeydown="return /[a-zA-ZñÑá-úÁ-Ú ]/i.test(event.key)"
           />
         </div>
       </mat-form-field>
@@ -37,6 +38,7 @@
             formControlName="apellido"
             name="apellido"
             placeholder="Apellido"
+            onkeydown="return /[a-zA-ZñÑá-úÁ-Ú ]/i.test(event.key)"
           />
         </div>
       </mat-form-field>
