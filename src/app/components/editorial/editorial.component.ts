@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Editorial } from '../../model/editorial';
+import { Editorial } from '../../model/editorial.model';
 import { ActivatedRoute } from '@angular/router';
 import { EditorialService } from '../../service/editorial.service';
 import Swal from 'sweetalert2';

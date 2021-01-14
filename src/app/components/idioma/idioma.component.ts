@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Idioma } from '../../model/idioma';
+import { Idioma } from '../../model/idioma.model.ts';
 import { IdiomaService } from '../../service/idioma.service';
 import Swal from 'sweetalert2';
 import { AuthService } from '../../service/auth.service';

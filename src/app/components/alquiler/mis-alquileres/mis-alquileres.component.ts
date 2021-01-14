@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AlquilerService } from '../../../service/alquiler.service';
 import { AuthService } from '../../../service/auth.service';
-import { Alquiler } from '../../../model/alquiler';
+import { Alquiler } from '../../../model/alquiler.model';
 
 @Component({
   selector: 'app-mis-alquileres',

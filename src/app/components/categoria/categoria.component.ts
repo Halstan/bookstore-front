@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Categoria } from '../../model/categoria';
+import { Categoria } from '../../model/categoria.model';
 import { CategoriaService } from '../../service/categoria.service';
 import { map } from 'rxjs/operators';
 import Swal from 'sweetalert2';

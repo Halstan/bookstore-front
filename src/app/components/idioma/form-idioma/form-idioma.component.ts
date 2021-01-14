@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { IdiomaService } from '../../../service/idioma.service';
-import { Idioma } from '../../../model/idioma';
+import { Idioma } from '../../../model/idioma.model.ts';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
 

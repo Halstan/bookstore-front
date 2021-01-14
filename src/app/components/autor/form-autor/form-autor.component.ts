@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Autor } from '../../../model/autor';
+import { Autor } from '../../../model/autor.model';
 import { AutorService } from '../../../service/autor.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';

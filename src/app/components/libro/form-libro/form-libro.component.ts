@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { Libro } from '../../../model/libro';
+import { Libro } from '../../../model/libro.model';
 import { LibroService } from '../../../service/libro.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
-import { Categoria } from '../../../model/categoria';
-import { Editorial } from 'src/app/model/editorial';
-import { Idioma } from '../../../model/idioma';
-import { Autor } from '../../../model/autor';
+import { Categoria } from '../../../model/categoria.model';
+import { Editorial } from 'src/app/model/editorial.model';
+import { Idioma } from '../../../model/idioma.model.ts';
+import { Autor } from '../../../model/autor.model';
 import { CategoriaService } from '../../../service/categoria.service';
 import { EditorialService } from '../../../service/editorial.service';
 import { IdiomaService } from '../../../service/idioma.service';

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CategoriaService } from '../../../service/categoria.service';
 import Swal from 'sweetalert2';
-import { Categoria } from 'src/app/model/categoria';
+import { Categoria } from 'src/app/model/categoria.model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({

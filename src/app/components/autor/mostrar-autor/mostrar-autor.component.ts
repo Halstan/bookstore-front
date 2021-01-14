@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AutorService } from '../../../service/autor.service';
-import { Autor } from '../../../model/autor';
+import { Autor } from '../../../model/autor.model';
 
 @Component({
   selector: 'app-mostrar-autor',

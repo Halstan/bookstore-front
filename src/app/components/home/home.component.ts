@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LibroService } from '../../service/libro.service';
 import SwiperCore, { Virtual, Navigation, Pagination, Scrollbar, A11y, Autoplay } from 'swiper/core';
-import { Libro } from '../../model/libro';
+import { Libro } from '../../model/libro.model';
 SwiperCore.use([Virtual, Navigation, Pagination, Scrollbar, A11y, Autoplay]);
 @Component({
   selector: 'app-home',

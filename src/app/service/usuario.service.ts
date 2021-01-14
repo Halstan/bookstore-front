@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
-import { Usuario } from '../model/usuario';
+import { Usuario } from '../model/usuario.model';
 import Swal from 'sweetalert2';
 import { environment } from '../../environments/environment';
 

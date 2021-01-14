@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Usuario } from '../../../model/usuario';
+import { Usuario } from '../../../model/usuario.model';
 import Swal from 'sweetalert2';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -7,7 +7,7 @@ import { UsuarioService } from '../../../service/usuario.service';
 import { ValidadorService } from '../../../service/validador.service';
 import { RolService } from '../../../service/rol.service';
 import { AuthService } from '../../../service/auth.service';
-import { Rol } from '../../../model/rol';
+import { Rol } from '../../../model/rol.model';
 
 @Component({
   selector: 'app-usuario-admin',

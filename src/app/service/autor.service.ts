@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
-import { Autor } from '../model/autor';
+import { Autor } from '../model/autor.model';
 import Swal from 'sweetalert2';
 import { environment } from '../../environments/environment';
 

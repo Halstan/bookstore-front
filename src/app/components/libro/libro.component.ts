@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Libro } from '../../model/libro';
+import { Libro } from '../../model/libro.model';
 import { LibroService } from '../../service/libro.service';
 import { ActivatedRoute } from '@angular/router';
 import Swal from 'sweetalert2';

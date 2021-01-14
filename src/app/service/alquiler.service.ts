@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
-import { Alquiler } from '../model/alquiler';
+import { Alquiler } from '../model/alquiler.model';
 import Swal from 'sweetalert2';
 import { environment } from 'src/environments/environment';
 

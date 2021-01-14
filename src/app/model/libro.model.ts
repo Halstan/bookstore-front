@@ -1,7 +1,7 @@
-import { Categoria } from './categoria';
-import { Editorial } from './editorial';
-import { Autor } from './autor';
-import { Idioma } from './idioma';
+import { Categoria } from './categoria.model';
+import { Editorial } from './editorial.model';
+import { Autor } from './autor.model';
+import { Idioma } from './idioma.model.ts';
 
 export class Libro {
 

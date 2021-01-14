@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Alquiler } from '../../model/alquiler';
+import { Alquiler } from '../../model/alquiler.model';
 import { AlquilerService } from '../../service/alquiler.service';
 import Swal from 'sweetalert2';
 import { AuthService } from 'src/app/service/auth.service';
