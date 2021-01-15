@@ -19,7 +19,10 @@ export class AlquilerService {
     return this.httpClient.get(`${this.uri}alquileres`).pipe(
       map(res => res as Alquiler[])
     );
+  }
 
+  getAlquileresPaginated(page: number): Observable<Alquiler[]>{
+    return this.httpClient.get<Alquiler[]>(`${this.uri}alquileres/page/${page}`);
   }
 
   getAlquileresByUsername(username: string): Observable<any>{

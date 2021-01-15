@@ -13,6 +13,10 @@ export class LibroComponent implements OnInit {
 
   libros: Libro[];
   cargandoLibro: boolean;
+  page = 0;
+  totalPages: Array<number>;
+  isLast = false;
+  totalElements: number;
   swalWithBootstrapButtons = Swal.mixin({
     customClass: {
       confirmButton: 'btn btn-success',
@@ -30,14 +34,46 @@ export class LibroComponent implements OnInit {
               public authService: AuthService) { }
 
   ngOnInit(): void {
+    this.getLibros(this.page);
+
+  }
+
+  getLibros(page: number): void {
     this.cargandoLibro = true;
-    this.libroService.getLibros().subscribe(
+    this.libroService.getLibrosPaginated(page).subscribe(
       libros => {
-        this.libros = libros;
+        this.libros = libros['content'];
+        this.isLast = libros['last'];
+        this.totalPages = new Array(libros['totalPages']);
+        this.totalElements = libros['totalElements'];
         this.cargandoLibro = false;
+      },
+      err => {
+        console.log(err);
       }
     );
+  }
 
+  minPages(): void{
+    if (this.page >= 0){
+      this.page--;
+      this.getLibros(this.page);
+    }
+  }
+
+  maxPages(): void{
+    if (this.page < this.totalPages.length){
+      this.page++;
+
+      this.getLibros(this.page);
+    }
+
+  }
+
+  cambiarPagina(page: number, event: any): void{
+    event.preventDefault();
+    this.page = page;
+    this.getLibros(this.page);
   }
 
   eliminarLibro(libro: Libro): void{

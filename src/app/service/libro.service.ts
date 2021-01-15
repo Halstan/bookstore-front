@@ -31,6 +31,10 @@ export class LibroService {
     );
   }
 
+  getLibrosPaginated(page: number): Observable<Libro[]>{
+    return this.httpClient.get<Libro[]>(`${this.uri}libros/page/${page}`);
+  }
+
   getLibrosByNombre(nombre: string): Observable<object>{
     return this.httpClient.get(`${this.uri}libros/nombre/${nombre}`).pipe(
       map(res => res as Libro[]),

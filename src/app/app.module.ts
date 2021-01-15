@@ -55,6 +55,7 @@ import { PerfilComponent } from './components/usuario/perfil/perfil.component';
 import { UsuarioAdminComponent } from './components/usuario/usuario-admin/usuario-admin.component';
 import { RolService } from './service/rol.service';
 import { MatNativeDateModule } from '@angular/material/core';
+import { LazyImageDirective } from './directives/lazy-image.directive';
 
 registerLocaleData(localEs);
 @NgModule({
@@ -85,7 +86,8 @@ registerLocaleData(localEs);
     LoginComponent,
     MisAlquileresComponent,
     PerfilComponent,
-    UsuarioAdminComponent
+    UsuarioAdminComponent,
+    LazyImageDirective
   ],
   imports: [
     BrowserModule,

@@ -45,7 +45,7 @@
           <ng-template #elseTemplate>
             <td>Desactivado</td>
           </ng-template>
-          <td>{{ usuario.fechaModificacion | date }}</td>
+          <td>{{ usuario.fechaModificacion | date: "mediumDate":"":"es" }}</td>
           <td>{{ usuario.sexo }}</td>
           <td *ngIf="authService.hasRole('ROLE_ADMIN')">
             <ul *ngFor="let rol of usuario.roles">

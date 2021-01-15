@@ -15,6 +15,10 @@ export class AlquilerComponent implements OnInit {
   error: boolean;
   cargandoAlquiler: boolean;
   messageError: string;
+  page = 0;
+  totalPages: Array<number>;
+  isLast = false;
+  totalElements: number;
   swalWithBootstrapButtons = Swal.mixin({
     customClass: {
       confirmButton: 'btn btn-success',
@@ -31,10 +35,17 @@ export class AlquilerComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit(): void {
+    this.getAlquileres(this.page);
+  }
+
+  getAlquileres(page: number): void{
     this.cargandoAlquiler = true;
-    this.alquilerService.getAlquileres().subscribe(
+    this.alquilerService.getAlquileresPaginated(page).subscribe(
       alquileres => {
-        this.alquileres = alquileres;
+        this.alquileres = alquileres['content'];
+        this.isLast = alquileres['last'];
+        this.totalPages = new Array(alquileres['totalPages']);
+        this.totalElements = alquileres['totalElements'];
         this.cargandoAlquiler = false;
       });
   }
@@ -65,6 +76,28 @@ export class AlquilerComponent implements OnInit {
         );
       }
     });
+  }
+
+  minPages(): void{
+    if (this.page >= 0){
+      this.page--;
+      this.getAlquileres(this.page);
+    }
+  }
+
+  maxPages(): void{
+    if (this.page < this.totalPages.length){
+      this.page++;
+
+      this.getAlquileres(this.page);
+    }
+
+  }
+
+  cambiarPagina(page: number, event: any): void{
+    event.preventDefault();
+    this.page = page;
+    this.getAlquileres(this.page);
   }
 
   eliminarAlquiler(alquiler: Alquiler): void {
