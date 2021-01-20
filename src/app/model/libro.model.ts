@@ -10,12 +10,13 @@ export class Libro {
     editorial: Editorial;
     nombreLibro: string;
     descripcion: string;
-    urlPortada: string;
+    portada: string;
     isbn: string;
     fechaPublicacion: Date;
     fechaCreacion: Date;
     fechaActualizacion: Date;
     precio: number;
+    fechaVigencia: Date;
     estado: boolean;
     idioma: Idioma;
     autor: Autor;

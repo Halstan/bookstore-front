@@ -57,7 +57,7 @@
             </li>
 
             <li class="nav-item select" routerLinkActive="selected">
-              <a class="nav-link" routerLink="/alquileres/misalquileres" *ngIf="auth.hasRole('ROLE_USER') && auth.isAuthenticated()">Historial</a>
+              <a class="nav-link" routerLink="/alquileres/misalquileres" *ngIf="auth.hasRole('ROLE_LECTOR') && auth.isAuthenticated()">Historial</a>
           </li>
         </ul>
         <ul class="navbar-nav navbar-right">

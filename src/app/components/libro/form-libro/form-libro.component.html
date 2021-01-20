@@ -63,14 +63,14 @@
 
       <div class="row">
         <mat-form-field class="ml-5 w-50">
-        <mat-label for="urlPortada" class="col-form-label col-sm-2"
+        <mat-label for="portada" class="col-form-label col-sm-2"
           >Url Portada</mat-label
         >
         <div class="col w-100">
           <input matInput
             type="text"
-            formControlName="urlPortada"
-            name="urlPortada"
+            formControlName="portada"
+            name="portada"
             placeholder="Url de la portada"
           />
         </div>
@@ -89,6 +89,23 @@
             placeholder="Precio"
           />
         </div>
+      </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field class="ml-5 w-50" appearance="fill">
+        <mat-label for="fechaVigencia" class="col-form-label col-sm-2"
+          >Fecha de Vigencia del precio</mat-label>
+        <div class="col w-100">
+          <input matInput
+            [matDatepicker]="pickerVigencia"
+            formControlName="fechaVigencia"
+            name="fechaVigencia"
+          />
+        </div>
+          <mat-datepicker-toggle matSuffix [for]="pickerVigencia"></mat-datepicker-toggle>
+          <mat-datepicker #pickerVigencia></mat-datepicker>
+        
       </mat-form-field>
       </div>
 

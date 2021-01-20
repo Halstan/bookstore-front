@@ -25,6 +25,7 @@
             <th class="goldClass">Autor</th>
             <th class="goldClass">Fecha de publicación</th>
             <th class="goldClass">Fecha de actualización</th>
+            <th class="goldClass">Fecha de Vigencia</th>
             <th class="goldClass">Precio</th>
             <th class="goldClass">Estado</th>
             <th class="goldClass">Editar</th>
@@ -43,6 +44,7 @@
             <td>{{ libro.autor.nombreAutor }}</td>
             <td>{{ libro.fechaPublicacion | date: "mediumDate":"":"es" }}</td>
             <td>{{ libro.fechaActualizacion | date: "mediumDate":"":"es" }}</td>
+            <td>{{ libro.fechaVigencia | date: "mediumDate":"":"es" }}</td>
 
             <ng-container *ngIf="libro.precio; else elsePrecio">
               <td>{{ libro.precio }}</td>

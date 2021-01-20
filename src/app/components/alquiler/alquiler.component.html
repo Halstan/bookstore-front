@@ -27,9 +27,9 @@
             <th class="goldClass">Fecha de creacion</th>
             <th class="goldClass">Fecha de retorno</th>
             <th class="goldClass">Estado</th>
+            <th class="goldClass">Precio</th>
             <th class="goldClass">Usuario</th>
             <th class="goldClass">Libro</th>
-            <th class="goldClass">Detalle Alquiler</th>
             <th class="goldClass">Cancelar</th>
             <th class="goldClass" *ngIf="authService.hasRole('ROLE_ADMIN')">Eliminar</th>
           </tr>
@@ -46,16 +46,12 @@
               <td>Devuelto</td>
             </ng-template>
             <td>
+              {{ alquiler.precio }}
+            </td>
+            <td>
               {{ alquiler.usuario.nombre }} {{ alquiler.usuario.apellido }}
             </td>
             <td>{{ alquiler.libro.nombreLibro }}</td>
-            <ng-container *ngIf="alquiler.detalleAlquiler; else elseDetalleAlquiler">
-              <td>{{ alquiler.detalleAlquiler.total }}</td>
-            </ng-container>
-            <ng-template #elseDetalleAlquiler>
-              <td>Libro gratuito</td>
-            </ng-template>
-            
 
             <ng-container *ngIf="alquiler.estado; else elseIf">
               <td>

@@ -100,7 +100,7 @@ export class FormLibroComponent implements OnInit {
         this.libroService.getLibro(id).subscribe(
           libro => {
             this.libro = libro;
-            this.portada = libro.urlPortada;
+            this.portada = libro.portada;
             this.cargarData();
           }
         );
@@ -114,8 +114,9 @@ export class FormLibroComponent implements OnInit {
       nombreLibro: this.libro.nombreLibro,
       isbn: this.libro.isbn,
       descripcion: this.libro.descripcion,
-      urlPortada: this.libro.urlPortada,
+      portada: this.libro.portada,
       precio: this.libro.precio,
+      fechaVigencia: this.libro.fechaVigencia,
       categoria: this.libro.categoria,
       editorial: this.libro.editorial,
       idioma:  this.libro.idioma,
@@ -124,13 +125,14 @@ export class FormLibroComponent implements OnInit {
     });
   }
 
-  crearFormulario(): void{
+  crearFormulario(): void {
     this.formLibro = this.fb.group({
       nombreLibro: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(80)]],
       isbn: ['', [Validators.required, Validators.maxLength(30)]],
       descripcion: ['', [Validators.required, Validators.maxLength(200)]],
-      urlPortada: ['', [Validators.required, Validators.minLength(30), Validators.maxLength(150)]],
+      portada: ['', [Validators.required, Validators.minLength(30), Validators.maxLength(150)]],
       precio: ['', [Validators.maxLength(5)]],
+      fechaVigencia: ['', [Validators.required]],
       categoria: ['', [Validators.required]],
       editorial: ['', [Validators.required]],
       idioma: ['', [Validators.required]],
