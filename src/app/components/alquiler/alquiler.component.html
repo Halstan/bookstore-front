@@ -46,7 +46,7 @@
               <td>Devuelto</td>
             </ng-template>
             <td>
-              {{ alquiler.precio }}
+              {{ alquiler.precio | currency:'PEN ' }}
             </td>
             <td>
               {{ alquiler.usuario.nombre }} {{ alquiler.usuario.apellido }}

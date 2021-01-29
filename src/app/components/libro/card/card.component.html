@@ -21,7 +21,7 @@
             <li>Reservado</li>
           </ng-template>
           <ng-container *ngIf="item.precio > 0; else elseTemplate2">
-            <li>Precio: {{ item.precio |currency:'PEN '}}</li>
+            <li>Precio: {{ item.precio | currency:'PEN '}}</li>
           </ng-container>
           <ng-template #elseTemplate2>
             <li>Precio: Gratuito</li>
