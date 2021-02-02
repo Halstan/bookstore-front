@@ -13,6 +13,10 @@ export class UsuarioComponent implements OnInit {
   usuarios: Usuario[];
   messageError: string;
   cargandoUsuario: boolean;
+  page = 0;
+  totalPages: Array<number>;
+  isLast = false;
+  totalElements: number;
   swalWithBootstrapButtons = Swal.mixin({
     customClass: {
       confirmButton: 'btn btn-success',
@@ -28,14 +32,46 @@ export class UsuarioComponent implements OnInit {
               public authService: AuthService) { }
 
   ngOnInit(): void {
+    this.getUsuarios(this.page);
+
+  }
+
+  getUsuarios(page: number): void{
     this.cargandoUsuario = true;
-    this.usuarioService.getUsuarios().subscribe(
+    this.usuarioService.getUsuariosPaginated(page).subscribe(
       usuarios => {
-        this.usuarios = usuarios['Usuarios'];
+        this.usuarios = usuarios['content'];
+        this.isLast = usuarios['last'];
+        this.totalPages = new Array(usuarios['totalPages']);
+        this.totalElements = usuarios['totalElements'];
         this.cargandoUsuario = false;
+      },
+      err => {
+        console.log(err);
       }
     );
+  }
 
+  minPages(): void{
+    if (this.page >= 0){
+      this.page--;
+      this.getUsuarios(this.page);
+    }
+  }
+
+  maxPages(): void{
+    if (this.page < this.totalPages.length){
+      this.page++;
+
+      this.getUsuarios(this.page);
+    }
+
+  }
+
+  cambiarPagina(page: number, event: any): void{
+    event.preventDefault();
+    this.page = page;
+    this.getUsuarios(this.page);
   }
 
   eliminarUsuario(usuario: Usuario): void{

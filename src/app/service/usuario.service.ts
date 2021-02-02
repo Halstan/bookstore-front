@@ -23,6 +23,10 @@ export class UsuarioService {
     );
   }
 
+  getUsuariosPaginated(page: number): Observable<Usuario[]> {
+    return this.httpClient.get<Usuario[]>(`${this.uri}usuarios/page/${page}`);
+  }
+
   insertarUsuario(usuario: Usuario): Observable<Usuario>{
     return this.httpClient.post(`${this.uri}usuarios`, usuario).pipe(
       map(res => res as Usuario),
